@@ -100,3 +100,27 @@ async function applyStyleProfile(node, profile) {
 
   return { ok: true, warnings };
 }
+
+/**
+ * Change a text node's characters while preserving its design-system bindings
+ * and local overrides. Steps in order:
+ *   1. Snapshot the style profile.
+ *   2. Load the current font (required before assigning characters).
+ *   3. Set characters.
+ *   4. Re-apply the snapshot.
+ *
+ * Does not touch textAutoResize. Returns `{ ok, warnings }`.
+ */
+async function setTextPreservingBindings(node, newText) {
+  if (node.type !== 'TEXT') {
+    throw new Error(`setTextPreservingBindings: node ${node.id} is ${node.type}, expected TEXT`);
+  }
+  const warnings = [];
+  const profile = await snapshotStyleProfile(node);
+  const fontResult = await loadFontForNode(node);
+  warnings.push(...fontResult.warnings);
+  node.characters = newText;
+  const applyResult = await applyStyleProfile(node, profile);
+  warnings.push(...applyResult.warnings);
+  return { ok: true, warnings };
+}
