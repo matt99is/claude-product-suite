@@ -126,6 +126,60 @@ async function setTextPreservingBindings(node, newText) {
 }
 
 /**
+ * Clone a node, insert it into `parent` at `insertIndex` via
+ * insertChildSafe, then verify the clone's text-node bindings did not drift
+ * from the source. If they did, re-apply the source's textStyleId.
+ *
+ * Returns `{ ok, warnings, value }` where `value` is the inserted clone.
+ */
+async function cloneAndRebind(source, parent, insertIndex) {
+  const warnings = [];
+
+  const clone = source.clone();
+
+  const insertResult = insertChildSafe(parent, insertIndex, clone);
+  warnings.push(...insertResult.warnings);
+
+  const collectTexts = (root) => {
+    const out = [];
+    const walk = (n) => {
+      if (n.type === 'TEXT') out.push(n);
+      if (Array.isArray(n.children)) {
+        for (const c of n.children) walk(c);
+      }
+    };
+    walk(root);
+    return out;
+  };
+
+  const sourceTexts = collectTexts(source);
+  const cloneTexts = collectTexts(clone);
+
+  if (sourceTexts.length !== cloneTexts.length) {
+    warnings.push(
+      `cloneAndRebind: structural drift, source has ${sourceTexts.length} text nodes, ` +
+      `clone has ${cloneTexts.length}`
+    );
+    return { ok: true, warnings, value: clone };
+  }
+
+  for (let i = 0; i < sourceTexts.length; i++) {
+    const srcId = await getTextStyleIdCompat(sourceTexts[i]);
+    const cloneId = await getTextStyleIdCompat(cloneTexts[i]);
+    if (srcId && srcId !== cloneId) {
+      warnings.push(`cloneAndRebind: textStyleId drifted on text node ${i}, re-applying`);
+      if (typeof cloneTexts[i].setTextStyleIdAsync === 'function') {
+        await cloneTexts[i].setTextStyleIdAsync(srcId);
+      } else {
+        cloneTexts[i].textStyleId = srcId;
+      }
+    }
+  }
+
+  return { ok: true, warnings, value: clone };
+}
+
+/**
  * Pair the text nodes inside `sourceParent` with the text nodes inside
  * `targetParent` by pre-order traversal index. Use this instead of matching by
  * ancestor pathKey, which collapses sibling instances that share component
