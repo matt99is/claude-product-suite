@@ -2,37 +2,61 @@
 
 A Claude plugin bundling skills for product, design, and creative workflows.
 
-## Status
+## Installed skills
 
-Pre-v1. Currently scoping the first skill: `figma-writing`. Design spec lives in [`docs/specs/`](docs/specs/).
+- **`figma-writing`** (v1). Safe write-side operations against the Figma MCP.
+  Covers cloning frames, updating text while preserving design-system
+  bindings, generating variants, and auto-layout-aware insertion. Surfaces
+  warnings rather than silently swapping fonts or breaking style links.
 
-## Planned skills
-
-- `figma-writing`: safe write-side operations against the Figma MCP, with helpers for cloning, text updates preserving design-system bindings, and auto-layout-aware insertion. *First skill, in active design.*
-- User research, slide decks, prototyping, and other product workflows will be added as siblings under `skills/`.
+Planned future skills (not yet implemented): user research, slide-deck
+building, prototyping, and others.
 
 ## Layout
 
 ```
 claude-product-suite/
-├── .claude-plugin/
-│   └── plugin.json
-├── skills/
-│   └── figma-writing/
-│       ├── SKILL.md
-│       ├── helpers/
-│       ├── references/
-│       └── playbooks/
-├── commands/
-│   └── figma-learn.md
+├── .claude-plugin/plugin.json
+├── skills/figma-writing/
+│   ├── SKILL.md
+│   ├── helpers/figma-helpers.js
+│   ├── references/pitfalls.md
+│   └── playbooks/
+├── commands/figma-learn.md
+├── tests/
 ├── docs/
-│   └── specs/
-├── README.md
-└── LICENSE
+└── package.json
 ```
 
-Each skill folder is self-contained (helpers, references, playbooks scoped to the skill that uses them). Commands live at the plugin root by Claude plugin convention.
+Each skill is self-contained inside its own folder. Helpers, references,
+and playbooks are scoped to the skill that uses them. Commands live at the
+plugin root by Claude plugin convention.
+
+## Development
+
+Tests use Node's built-in `node:test` runner. No external dependencies.
+
+```bash
+npm test          # run unit tests
+npm run check     # syntax-check the helpers file
+```
+
+Unit tests cover the two helpers with pure-data logic
+(`matchTextNodesByIndex`, `insertChildSafe`). The remaining six helpers are
+hand-tested against a real Figma file using the instructions in
+[`docs/hand-test-figma-helpers.md`](docs/hand-test-figma-helpers.md).
+
+## Adding a new skill
+
+Adding a sibling skill (e.g. `user-research`) is a clone-and-rename
+operation against `skills/figma-writing/`. Each new skill includes:
+
+- `SKILL.md` (router and guard)
+- `references/pitfalls.md` (categorised gotchas in the same per-entry format)
+- `playbooks/` (operation recipes)
+- An optional `helpers/` folder if the skill has an execution surface
+- A corresponding `/<skill-name>-learn` slash command at `commands/`
 
 ## Audience
 
-Personal use for now. Will be shared with colleagues. Public distribution deferred.
+Personal use, then shared with colleagues. Public distribution deferred.
