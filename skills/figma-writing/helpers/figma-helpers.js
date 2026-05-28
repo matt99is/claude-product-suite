@@ -126,6 +126,42 @@ async function setTextPreservingBindings(node, newText) {
 }
 
 /**
+ * Pair the text nodes inside `sourceParent` with the text nodes inside
+ * `targetParent` by pre-order traversal index. Use this instead of matching by
+ * ancestor pathKey, which collapses sibling instances that share component
+ * paths (e.g. two buttons in one frame whose internal text nodes have the
+ * same path within their respective instances).
+ *
+ * Throws if the text node counts differ (structural drift suggests the clone
+ * is not equivalent to the source and index-based matching is unsafe).
+ */
+function matchTextNodesByIndex(sourceParent, targetParent) {
+  const collect = (root) => {
+    const out = [];
+    const walk = (n) => {
+      if (n.type === 'TEXT') out.push(n);
+      if (Array.isArray(n.children)) {
+        for (const c of n.children) walk(c);
+      }
+    };
+    walk(root);
+    return out;
+  };
+
+  const sourceTexts = collect(sourceParent);
+  const targetTexts = collect(targetParent);
+
+  if (sourceTexts.length !== targetTexts.length) {
+    throw new Error(
+      `matchTextNodesByIndex: text node count mismatch ` +
+      `(source=${sourceTexts.length}, target=${targetTexts.length})`
+    );
+  }
+
+  return sourceTexts.map((s, i) => [s, targetTexts[i]]);
+}
+
+/**
  * Insert a node into a parent at a specific index. If `index` is omitted and
  * the parent is auto-layout, falls back to end-of-flow with a warning instead
  * of silently using appendChild (which can hide positional bugs). If the
