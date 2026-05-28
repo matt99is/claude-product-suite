@@ -124,3 +124,29 @@ async function setTextPreservingBindings(node, newText) {
   warnings.push(...applyResult.warnings);
   return { ok: true, warnings };
 }
+
+/**
+ * Insert a node into a parent at a specific index. If `index` is omitted and
+ * the parent is auto-layout, falls back to end-of-flow with a warning instead
+ * of silently using appendChild (which can hide positional bugs). If the
+ * parent is not auto-layout, appendChild is used silently.
+ *
+ * Returns `{ ok, warnings }`.
+ */
+function insertChildSafe(parent, index, node) {
+  const warnings = [];
+  const isAutoLayout = parent.layoutMode && parent.layoutMode !== 'NONE';
+
+  if (typeof index === 'number') {
+    parent.insertChild(index, node);
+  } else if (isAutoLayout) {
+    parent.insertChild(parent.children.length, node);
+    warnings.push(
+      `insertChildSafe: no index provided for auto-layout parent ${parent.id}, appended at end`
+    );
+  } else {
+    parent.appendChild(node);
+  }
+
+  return { ok: true, warnings };
+}
