@@ -1,0 +1,16 @@
+{
+  "name": "claude-product-suite",
+  "description": "Claude plugin bundling skills for product, design, and creative workflows. First skill: figma-writing.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Matthew Lelonek"
+  },
+  "repository": "https://github.com/matt99is/claude-product-suite",
+  "license": "MIT",
+  "keywords": [
+    "figma",
+    "design",
+    "product",
+    "creative"
+  ]
+}
