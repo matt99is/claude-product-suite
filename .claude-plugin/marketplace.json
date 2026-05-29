@@ -1,0 +1,11 @@
+{
+  "name": "claude-product-suite",
+  "description": "Plugin bundling skills for product, design, and creative workflows. First skill: figma-writing.",
+  "plugins": [
+    {
+      "name": "claude-product-suite",
+      "description": "Plugin bundling skills for product, design, and creative workflows. First skill: figma-writing.",
+      "source": "."
+    }
+  ]
+}
