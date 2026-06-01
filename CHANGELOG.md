@@ -4,6 +4,17 @@ All notable changes to `claude-product-suite` are documented here.
 
 This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) style and uses [Semantic Versioning](https://semver.org/) for public plugin releases.
 
+## [Unreleased]
+
+### Added
+
+- Added `docs/roadmap.md` as the working backlog for planned suite capabilities, including Figma wireframing, UserTesting.com workflows, brainstorming, and high-fidelity prototyping.
+- Added content-contract coverage for the roadmap and README plugin reinstall command.
+
+### Fixed
+
+- Fixed the README fallback reinstall command for GitHub marketplace installs.
+
 ## [0.2.0] - 2026-06-01
 
 ### Added

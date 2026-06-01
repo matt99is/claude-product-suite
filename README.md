@@ -8,7 +8,7 @@ A Claude plugin bundling skills for product, design, and creative workflows.
 - **`research`**. Brief-first, source-led research for UX and product work. Covers evidence gathering, source quality, competitor scans, supplied-source synthesis, UX/product implications, and a clean URL list for optional NotebookLM use.
 - **`figma-writing`** (v1). Safe write-side operations against the Figma MCP. Covers cloning frames, updating text while preserving design-system bindings, generating variants, and auto-layout-aware insertion. Surfaces warnings rather than silently swapping fonts or breaking style links.
 
-Planned future skills or improvements (not yet implemented): deeper design-system-safe Figma creation, wireframing, slide-deck building, prototyping, product brief processing, and others.
+Planned future skills or improvements live in [`docs/roadmap.md`](docs/roadmap.md). Near-term themes include Figma wireframing, user testing, brainstorming, high-fidelity prototyping, slide decks, and product brief processing.
 
 ## Layout
 
@@ -58,7 +58,7 @@ To update after a new release is pushed to GitHub:
 If update does not resolve the GitHub marketplace install, reinstall from the
 registered marketplace:
 
-    /plugin install claude-product-suite-product-suite
+    /plugin install claude-product-suite@claude-product-suite
 
 Restart Claude Code after installing or updating the plugin. See
 [`docs/release.md`](docs/release.md) for release and versioning rules.

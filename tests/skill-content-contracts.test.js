@@ -112,6 +112,34 @@ test('release documentation defines changelog and semantic versioning', async ()
   assert.match(readme, /plugin update claude-product-suite/i);
 });
 
+test("roadmap captures planned suite capabilities", async () => {
+  const roadmap = await read("docs/roadmap.md");
+
+  assert.match(roadmap, /# Roadmap/i);
+  assert.match(roadmap, /## Now/i);
+  assert.match(roadmap, /## Next/i);
+  assert.match(roadmap, /## Later/i);
+  assert.match(roadmap, /user testing/i);
+  assert.match(roadmap, /UserTesting\.com/i);
+  assert.match(roadmap, /wireframing/i);
+  assert.match(roadmap, /chart/i);
+  assert.match(roadmap, /graph/i);
+  assert.match(roadmap, /table/i);
+  assert.match(roadmap, /Figma skill/i);
+  assert.match(roadmap, /brainstorming/i);
+  assert.match(roadmap, /prototyping/i);
+  assert.match(roadmap, /centralised design library/i);
+  assert.match(roadmap, /reusable components/i);
+});
+
+test("README documents correct plugin reinstall command", async () => {
+  const readme = await read("README.md");
+
+  assert.match(readme, /claude-product-suite@claude-product-suite/);
+  assert.doesNotMatch(readme, /claude-product-suite-product-suite/);
+});
+
+
 test('package and plugin manifest versions stay in sync', async () => {
   const pkg = JSON.parse(await read('package.json'));
   const plugin = JSON.parse(await read('.claude-plugin/plugin.json'));
