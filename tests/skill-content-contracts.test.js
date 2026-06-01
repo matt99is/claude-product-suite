@@ -78,3 +78,14 @@ test('research learning command requires approval before editing', async () => {
   assert.match(command, /Wait for approval/i);
   assert.match(command, /research-pitfalls/i);
 });
+
+
+test('plugin marketplace manifest supports GitHub installation', async () => {
+  const manifest = JSON.parse(await read('.claude-plugin/marketplace.json'));
+
+  assert.equal(manifest.name, 'claude-product-suite');
+  assert.equal(manifest.owner.name, 'Matthew Lelonek');
+  assert.match(manifest.metadata.description, /Product, design, UX research/);
+  assert.equal(manifest.plugins[0].name, 'claude-product-suite');
+  assert.equal(manifest.plugins[0].source, './');
+});

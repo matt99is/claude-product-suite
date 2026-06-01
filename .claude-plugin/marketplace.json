@@ -1,11 +1,17 @@
 {
   "name": "claude-product-suite",
-  "description": "Plugin bundling skills for product, design, and creative workflows. First skill: figma-writing.",
+  "owner": {
+    "name": "Matthew Lelonek"
+  },
+  "description": "Plugin bundling skills for product, design, and creative workflows.",
   "plugins": [
     {
       "name": "claude-product-suite",
-      "description": "Plugin bundling skills for product, design, and creative workflows. First skill: figma-writing.",
-      "source": "."
+      "description": "Plugin bundling skills for product, design, and creative workflows.",
+      "source": "./"
     }
-  ]
+  ],
+  "metadata": {
+    "description": "Product, design, UX research, and creative workflow skills for Claude Code."
+  }
 }

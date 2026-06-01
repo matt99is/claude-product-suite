@@ -39,6 +39,20 @@ Each skill is self-contained inside its own folder. Helpers, references,
 and playbooks are scoped to the skill that uses them. Commands live at the
 plugin root by Claude plugin convention.
 
+## Installation
+
+From Claude Code CLI, install from GitHub with:
+
+    /plugin marketplace add matt99is/claude-product-suite
+    /plugin install claude-product-suite@claude-product-suite
+
+For local development installs, use the local clone path instead:
+
+    /plugin marketplace add <absolute path to this local clone>
+    /plugin install claude-product-suite@claude-product-suite
+
+Restart Claude Code after installing or updating the plugin.
+
 ## Development
 
 Tests use Node's built-in `node:test` runner. No external dependencies.
