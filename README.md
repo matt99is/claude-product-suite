@@ -51,7 +51,17 @@ For local development installs, use the local clone path instead:
     /plugin marketplace add <absolute path to this local clone>
     /plugin install claude-product-suite@claude-product-suite
 
-Restart Claude Code after installing or updating the plugin.
+To update after a new release is pushed to GitHub:
+
+    /plugin update claude-product-suite
+
+If update does not resolve the GitHub marketplace install, reinstall from the
+registered marketplace:
+
+    /plugin install claude-product-suite-product-suite
+
+Restart Claude Code after installing or updating the plugin. See
+[`docs/release.md`](docs/release.md) for release and versioning rules.
 
 ## Development
 

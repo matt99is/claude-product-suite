@@ -94,6 +94,32 @@ test('research learning command keeps public learning local by default', async (
 });
 
 
+test('release documentation defines changelog and semantic versioning', async () => {
+  const changelog = await read('CHANGELOG.md');
+  const releaseDoc = await read('docs/release.md');
+  const readme = await read('README.md');
+
+  assert.match(changelog, /# Changelog/i);
+  assert.match(changelog, /## \[0\.2\.0\]/);
+  assert.match(changelog, /Keep a Changelog/i);
+  assert.match(releaseDoc, /Semantic Versioning/i);
+  assert.match(releaseDoc, /patch/i);
+  assert.match(releaseDoc, /minor/i);
+  assert.match(releaseDoc, /major/i);
+  assert.match(releaseDoc, /package\.json/);
+  assert.match(releaseDoc, /plugin\.json/);
+  assert.match(releaseDoc, /git tag v/);
+  assert.match(readme, /plugin update claude-product-suite/i);
+});
+
+test('package and plugin manifest versions stay in sync', async () => {
+  const pkg = JSON.parse(await read('package.json'));
+  const plugin = JSON.parse(await read('.claude-plugin/plugin.json'));
+
+  assert.equal(pkg.version, plugin.version);
+  assert.match(pkg.version, /^\d+\.\d+\.\d+$/);
+});
+
 test('plugin marketplace manifest supports GitHub installation', async () => {
   const manifest = JSON.parse(await read('.claude-plugin/marketplace.json'));
 
