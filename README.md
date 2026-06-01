@@ -77,6 +77,15 @@ Adding a sibling skill follows the suite pattern established by the router, rese
 - An optional `helpers/` folder if the skill has an execution surface
 - A corresponding `/<skill-name>-learn` slash command at `commands/`
 
+## Learning loops
+
+Learning commands are local by default. Public users can capture preferences,
+pitfalls, and workflow refinements into their own local skillset without editing
+this plugin or creating git commits. Maintainer improvements to
+`claude-product-suite` happen as normal project work in this repository: propose
+the source change, get approval, update files, run tests, and create a local
+commit only when requested. Learning commands never push to GitHub by default.
+
 ## Audience
 
 Personal use, then shared with colleagues. Public distribution deferred.

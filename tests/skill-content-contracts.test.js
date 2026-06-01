@@ -70,12 +70,26 @@ test('research playbooks cover the first supported workflows', async () => {
   assert.match(competitor, /comparison dimensions/i);
 });
 
-test('research learning command requires approval before editing', async () => {
+test('figma learning command keeps public learning local by default', async () => {
+  const command = await read('commands/figma-learn.md');
+
+  assert.match(command, /Capture a new Figma writing learning/i);
+  assert.match(command, /Show the draft to the user/i);
+  assert.match(command, /Wait for approval/i);
+  assert.match(command, /local learning/i);
+  assert.match(command, /Do not run `git commit` by default/i);
+  assert.match(command, /maintainer/i);
+});
+
+test('research learning command keeps public learning local by default', async () => {
   const command = await read('commands/research-learn.md');
 
   assert.match(command, /Capture a new research learning/i);
   assert.match(command, /Show the draft to the user/i);
   assert.match(command, /Wait for approval/i);
+  assert.match(command, /local learning/i);
+  assert.match(command, /Do not run `git commit` by default/i);
+  assert.match(command, /maintainer/i);
   assert.match(command, /research-pitfalls/i);
 });
 

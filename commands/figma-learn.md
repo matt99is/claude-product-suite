@@ -1,10 +1,12 @@
 ---
-description: "Capture a new Figma writing learning as a structured pitfall, playbook step, or helper TODO. Commits it."
+description: "Capture a new Figma writing learning as local learning, or prepare a maintainer project change when explicitly requested."
 ---
 
 You are capturing a new learning about Figma writing that emerged during this
 session. The goal is to make sure it survives the conversation as a
-structured, committed entry in the `figma-writing` skill.
+structured local learning entry for the user. Public users should build their
+local skillset; maintainer improvements to `figma-writing` are normal project
+work.
 
 Follow these five steps in order.
 
@@ -64,26 +66,39 @@ Present the draft and ask:
 
 > "Does this capture it? Edit the wording or tell me to change classification."
 
+Wait for approval before recording local learning.
+
 Iterate until the user approves.
 
-## 5. Apply and commit
+## 5. Capture local learning
 
-- For a new pitfall: append the entry under the appropriate category in
-  `skills/figma-writing/references/pitfalls.md`. If a new category is
-  needed, create it.
-- For a refinement: edit the existing entry in place.
-- For a playbook change: edit or create the relevant file under
-  `skills/figma-writing/playbooks/`.
-- For a helper TODO: record it as a pitfall entry whose Correct pattern
-  reads `TODO(helper): <description>`. The next time helper code is
-  changed, address the TODO in a real code change with tests.
+Default public behavior is local learning. Record the approved draft in a
+user-local place such as:
 
-Stage the changed files and commit with:
+```text
+~/.claude-product-suite/learnings/figma-writing.md
+```
+
+Include the date, category, draft content, and any source context needed to make
+the note useful later. Do not edit files under `skills/figma-writing/` unless the
+user explicitly asks to change this project. Do not run `git commit` by default.
+
+## Maintainer project changes
+
+If the user says they are maintaining `claude-product-suite` itself, treat the
+learning as normal project work instead of local learning:
+
+- propose the source change and get approval;
+- edit the relevant skill, pitfall, playbook, helper, or test file;
+- run the appropriate checks;
+- create a local repo commit only after approval.
+
+A maintainer commit may use:
 
 ```bash
 git add <changed-paths>
 git commit -m "learn(figma): <one-line summary>"
 ```
 
-End by showing the user the commit hash and a short summary of what was
-added or changed.
+Never push to GitHub from this command unless the user separately asks for a
+push.

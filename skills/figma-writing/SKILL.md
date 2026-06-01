@@ -59,4 +59,4 @@ For auto-layout-affected mutations, screenshot the parent frame after the final 
 
 ## Learning loop
 
-When a new failure mode surfaces (especially in auto-layout), invoke the `/figma-learn` slash command. It captures the learning as a structured pitfall, playbook step, or helper TODO, then commits it. Conversation history is not a durable record.
+When a new failure mode surfaces (especially in auto-layout), invoke the `/figma-learn` slash command. It captures the learning as local learning by default so public users can build their own skillset. Maintainer improvements to this plugin are handled as normal project work with explicit approval, tests, and local commits. Conversation history is not a durable record.
