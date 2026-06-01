@@ -4,25 +4,32 @@ A Claude plugin bundling skills for product, design, and creative workflows.
 
 ## Installed skills
 
-- **`figma-writing`** (v1). Safe write-side operations against the Figma MCP.
-  Covers cloning frames, updating text while preserving design-system
-  bindings, generating variants, and auto-layout-aware insertion. Surfaces
-  warnings rather than silently swapping fonts or breaking style links.
+- **`product-suite-router`**. Top-level intent router for UX, product, design, research, Figma, wireframing, prototyping, slide-deck, and creative workflow requests. Routes to implemented specialist skills and names future capabilities honestly.
+- **`research`**. Brief-first, source-led research for UX and product work. Covers evidence gathering, source quality, competitor scans, supplied-source synthesis, UX/product implications, and a clean URL list for optional NotebookLM use.
+- **`figma-writing`** (v1). Safe write-side operations against the Figma MCP. Covers cloning frames, updating text while preserving design-system bindings, generating variants, and auto-layout-aware insertion. Surfaces warnings rather than silently swapping fonts or breaking style links.
 
-Planned future skills (not yet implemented): user research, slide-deck
-building, prototyping, and others.
+Planned future skills or improvements (not yet implemented): deeper design-system-safe Figma creation, wireframing, slide-deck building, prototyping, product brief processing, and others.
 
 ## Layout
 
 ```
 claude-product-suite/
 ├── .claude-plugin/plugin.json
+├── skills/product-suite-router/
+│   ├── SKILL.md
+│   └── references/
+├── skills/research/
+│   ├── SKILL.md
+│   ├── references/
+│   └── playbooks/
 ├── skills/figma-writing/
 │   ├── SKILL.md
 │   ├── helpers/figma-helpers.js
 │   ├── references/pitfalls.md
 │   └── playbooks/
-├── commands/figma-learn.md
+├── commands/
+│   ├── figma-learn.md
+│   └── research-learn.md
 ├── tests/
 ├── docs/
 └── package.json
@@ -48,11 +55,10 @@ hand-tested against a real Figma file using the instructions in
 
 ## Adding a new skill
 
-Adding a sibling skill (e.g. `user-research`) is a clone-and-rename
-operation against `skills/figma-writing/`. Each new skill includes:
+Adding a sibling skill follows the suite pattern established by the router, research, and Figma skills. Each new skill includes:
 
 - `SKILL.md` (router and guard)
-- `references/pitfalls.md` (categorised gotchas in the same per-entry format)
+- `references/` (pitfalls, quality bars, examples, or constraints)
 - `playbooks/` (operation recipes)
 - An optional `helpers/` folder if the skill has an execution surface
 - A corresponding `/<skill-name>-learn` slash command at `commands/`
