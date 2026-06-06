@@ -7,6 +7,7 @@ A Claude plugin bundling skills for product, design, and creative workflows.
 - **`product-suite-router`**. Top-level intent router for UX, product, design, research, Figma, wireframing, prototyping, slide-deck, and creative workflow requests. Routes to implemented specialist skills and names future capabilities honestly.
 - **`research`**. Brief-first, source-led research for UX and product work. Covers evidence gathering, source quality, competitor scans, supplied-source synthesis, UX/product implications, and a clean URL list for optional NotebookLM use.
 - **`figma-writing`** (v1). Safe write-side operations against the Figma MCP. Covers cloning frames, updating text while preserving design-system bindings, generating variants, and auto-layout-aware insertion. Surfaces warnings rather than silently swapping fonts or breaking style links.
+- **`design-critique`**. Source-grounded UX critique of static design artefacts such as screenshots, Figma frames, mockups, and wireframes. Covers context-first review, severity-ranked findings, visual accessibility checks, and optional research escalation.
 
 Planned future skills or improvements live in [`docs/roadmap.md`](docs/roadmap.md). Near-term themes include Figma wireframing, user testing, brainstorming, high-fidelity prototyping, slide decks, and product brief processing.
 
@@ -26,6 +27,10 @@ claude-product-suite/
 │   ├── SKILL.md
 │   ├── helpers/figma-helpers.js
 │   ├── references/pitfalls.md
+│   └── playbooks/
+├── skills/design-critique/
+│   ├── SKILL.md
+│   ├── references/
 │   └── playbooks/
 ├── commands/
 │   ├── figma-learn.md
@@ -79,7 +84,7 @@ hand-tested against a real Figma file using the instructions in
 
 ## Adding a new skill
 
-Adding a sibling skill follows the suite pattern established by the router, research, and Figma skills. Each new skill includes:
+Adding a sibling skill follows the suite pattern established by the router, research, Figma, and design critique skills. Each new skill includes:
 
 - `SKILL.md` (router and guard)
 - `references/` (pitfalls, quality bars, examples, or constraints)

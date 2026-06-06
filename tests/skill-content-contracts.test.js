@@ -14,6 +14,7 @@ test('product-suite-router skill defines routing boundaries', async () => {
   assert.match(skill, /Do not automatically route/i);
   assert.match(skill, /research/i);
   assert.match(skill, /figma-writing/i);
+  assert.match(skill, /design-critique/i);
   assert.match(skill, /future capability/i);
 });
 
@@ -23,6 +24,7 @@ test('router references include capability map and pitfalls', async () => {
 
   assert.match(capabilityMap, /Research/i);
   assert.match(capabilityMap, /Figma writing/i);
+  assert.match(capabilityMap, /Design critique/i);
   assert.match(capabilityMap, /Wireframing/i);
   assert.match(capabilityMap, /Future/i);
 
@@ -70,6 +72,37 @@ test('research playbooks cover the first supported workflows', async () => {
   assert.match(competitor, /comparison dimensions/i);
 });
 
+test('design critique skill enforces artefact-only source-grounded critique', async () => {
+  const skill = await read('skills/design-critique/SKILL.md');
+  const principles = await read('skills/design-critique/references/principles-library.md');
+  const playbook = await read('skills/design-critique/playbooks/artefact-critique.md');
+
+  assert.match(skill, /name:\s*design-critique/);
+  assert.match(skill, /static design artefacts/i);
+  assert.match(skill, /context/i);
+  assert.match(skill, /primary objective/i);
+  assert.match(skill, /severity/i);
+  assert.match(skill, /confidence/i);
+  assert.match(skill, /visual accessibility only/i);
+  assert.match(skill, /research/i);
+
+  assert.match(principles, /WCAG 2\.2/i);
+  assert.match(principles, /Nielsen Norman Group/i);
+  assert.match(principles, /Baymard/i);
+  assert.match(principles, /24 by 24 CSS pixels/i);
+  assert.match(principles, /4\.5:1/i);
+  assert.match(principles, /3:1/i);
+  assert.match(principles, /48 by 48 dp/i);
+  assert.match(principles, /44 by 44 pt/i);
+  assert.match(principles, /Do not claim full accessibility compliance/i);
+
+  assert.match(playbook, /What works/i);
+  assert.match(playbook, /Issue/i);
+  assert.match(playbook, /Principle/i);
+  assert.match(playbook, /Consequence/i);
+  assert.match(playbook, /Recommendation/i);
+});
+
 test('figma learning command keeps public learning local by default', async () => {
   const command = await read('commands/figma-learn.md');
 
@@ -110,6 +143,7 @@ test('release documentation defines changelog and semantic versioning', async ()
   assert.match(releaseDoc, /plugin\.json/);
   assert.match(releaseDoc, /git tag v/);
   assert.match(readme, /plugin update claude-product-suite/i);
+  assert.match(readme, /design-critique/i);
 });
 
 test("roadmap captures planned suite capabilities", async () => {

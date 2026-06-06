@@ -6,7 +6,7 @@ This is the entry point for any AI agent working on this project. Read this file
 
 ## What this project is
 
-claude-product-suite is a Claude plugin bundling product, design, and creative workflow skills. Current skills include `product-suite-router` for intent routing, `research` for brief-first source-led UX/product research, and `figma-writing` for safe write-side Figma MCP operations such as cloning frames, updating text while preserving design-system bindings, generating variants, and inserting nodes in auto-layout frames.
+claude-product-suite is a Claude plugin bundling product, design, and creative workflow skills. Current skills include `product-suite-router` for intent routing, `research` for brief-first source-led UX/product research, `figma-writing` for safe write-side Figma MCP operations such as cloning frames, updating text while preserving design-system bindings, generating variants, and inserting nodes in auto-layout frames, and `design-critique` for source-grounded UX critique of static design artefacts.
 
 **Stack:** Claude plugin manifest, Markdown skills/playbooks, pure JavaScript helpers, Node.js built-in `node:test`
 
@@ -22,13 +22,14 @@ Read these files before starting any task:
 | 2 - always | `skills/product-suite-router/SKILL.md` | Suite-level routing guard and capability map entry point |
 | 3 - always | `skills/research/SKILL.md` | Current research skill router and evidence guard |
 | 4 - always | `skills/figma-writing/SKILL.md` | Figma write-side router and safety guard |
-| 5 - always | `../vault/Projects/claude-product-suite.md` | Current status, decisions, gotchas, and next steps |
-| 6 - always | `../vault/Patterns/vault-note-governance.md` | Rules for keeping the vault project note lean |
-| 7 - before helper changes | `skills/figma-writing/helpers/figma-helpers.js` | Shared helper preamble pasted into Figma MCP calls |
-| 7 - before pitfall/playbook changes | `skills/figma-writing/references/pitfalls.md` | Current failure-mode catalogue |
-| 7 - before real Figma validation | `docs/hand-test-figma-helpers.md` | Manual validation flow for API-bound helpers |
-| 7 - for historical design context | `docs/specs/2026-05-28-figma-writing-skill-design.md` | v1 design rationale |
-| 7 - for historical implementation context | `docs/plans/2026-05-28-figma-writing-v1-implementation-plan.md` | v1 implementation plan |
+| 5 - always | `skills/design-critique/SKILL.md` | Design critique router and artefact-only safety guard |
+| 6 - always | `../vault/Projects/claude-product-suite.md` | Current status, decisions, gotchas, and next steps |
+| 7 - always | `../vault/Patterns/vault-note-governance.md` | Rules for keeping the vault project note lean |
+| 8 - before helper changes | `skills/figma-writing/helpers/figma-helpers.js` | Shared helper preamble pasted into Figma MCP calls |
+| 8 - before pitfall/playbook changes | `skills/figma-writing/references/pitfalls.md` | Current failure-mode catalogue |
+| 8 - before real Figma validation | `docs/hand-test-figma-helpers.md` | Manual validation flow for API-bound helpers |
+| 8 - for historical design context | `docs/specs/2026-05-28-figma-writing-skill-design.md` | v1 design rationale |
+| 8 - for historical implementation context | `docs/plans/2026-05-28-figma-writing-v1-implementation-plan.md` | v1 implementation plan |
 
 ---
 
@@ -41,9 +42,10 @@ Before running commands, searching code, or editing files, every agent must load
 3. Read `skills/product-suite-router/SKILL.md`.
 4. Read `skills/research/SKILL.md`.
 5. Read `skills/figma-writing/SKILL.md`.
-6. Read vault project note: `../vault/Projects/claude-product-suite.md`.
-7. Read vault governance note: `../vault/Patterns/vault-note-governance.md`.
-8. In the first response of the session, explicitly confirm these files were loaded.
+6. Read `skills/design-critique/SKILL.md`.
+7. Read vault project note: `../vault/Projects/claude-product-suite.md`.
+8. Read vault governance note: `../vault/Patterns/vault-note-governance.md`.
+9. In the first response of the session, explicitly confirm these files were loaded.
 
 Load other items from the table above only when their scope applies to the task.
 
@@ -154,6 +156,10 @@ skills/
     helpers/figma-helpers.js      # helper preamble for write-side Figma calls
     references/pitfalls.md        # categorized gotchas
     playbooks/                    # operation recipes
+  design-critique/
+    SKILL.md                      # artefact-only UX critique router and guard
+    references/                   # source canon and critique principles
+    playbooks/                    # critique operation recipes
 tests/                            # Node test suite and Figma mocks
 docs/
   hand-test-figma-helpers.md

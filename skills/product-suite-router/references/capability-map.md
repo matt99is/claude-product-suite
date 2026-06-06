@@ -9,6 +9,7 @@ supporting references or playbooks that change Claude's behavior.
 | Research | Implemented | `skills/research/SKILL.md` |
 | Evidence synthesis | Implemented | `skills/research/SKILL.md` |
 | Figma writing | Existing partial v1 | `skills/figma-writing/SKILL.md` |
+| Design critique | Implemented | `skills/design-critique/SKILL.md` |
 | Figma design-system-safe creation | Future improvement | Use current `figma-writing` guard for write-side safety; do not claim full creation coverage |
 | Wireframing | Future | General assistance until a dedicated skill exists |
 | Prototyping | Future | General assistance until a dedicated skill exists |
@@ -19,6 +20,7 @@ supporting references or playbooks that change Claude's behavior.
 
 - Route research and source-led synthesis to `research`.
 - Route Figma mutations to `figma-writing`.
+- Route static artefact UX critique, heuristic review, and visual-accessibility critique to `design-critique`.
 - Do not route decks, prototypes, wireframes, or Figma work through research by default.
 - When a future capability is requested, help with general reasoning and say that
   the suite does not yet have a dedicated specialist skill for that capability.

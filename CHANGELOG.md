@@ -8,6 +8,7 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ### Added
 
+- Added `design-critique`, a standalone source-grounded UX critique skill for static design artefacts with a baked-in principles library, severity-ranked findings, visual-accessibility limits, and optional research escalation.
 - Added `docs/roadmap.md` as the working backlog for planned suite capabilities, including Figma wireframing, UserTesting.com workflows, brainstorming, and high-fidelity prototyping.
 - Added content-contract coverage for the roadmap and README plugin reinstall command.
 

@@ -11,8 +11,9 @@
 3. Read `skills/product-suite-router/SKILL.md`.
 4. Read `skills/research/SKILL.md`.
 5. Read `skills/figma-writing/SKILL.md`.
-6. Read vault project note: `../vault/Projects/claude-product-suite.md`.
-7. Read vault governance note: `../vault/Patterns/vault-note-governance.md`.
-8. In the first response, explicitly confirm these files were loaded.
+6. Read `skills/design-critique/SKILL.md`.
+7. Read vault project note: `../vault/Projects/claude-product-suite.md`.
+8. Read vault governance note: `../vault/Patterns/vault-note-governance.md`.
+9. In the first response, explicitly confirm these files were loaded.
 
 For all remaining project rules, load and follow `AGENTS.md`.
