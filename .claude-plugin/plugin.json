@@ -1,6 +1,6 @@
 {
   "name": "claude-product-suite",
-  "description": "Claude plugin bundling skills for product, design, and creative workflows. Includes router, research, Figma writing, and design critique skills.",
+  "description": "Modular toolbox of product, design, research, testing, and creative workflow skills for product teams. Includes router, research, Figma writing, and design critique skills.",
   "version": "0.2.0",
   "author": {
     "name": "Matthew Lelonek"

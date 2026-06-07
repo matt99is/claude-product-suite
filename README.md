@@ -1,15 +1,17 @@
 # claude-product-suite
 
-A Claude plugin bundling skills for product, design, and creative workflows.
+A Claude plugin that provides a modular toolbox of product, design, research, testing, and creative workflow skills for product teams. The suite is meant to be useful throughout product discovery, design exploration, delivery, testing, and iteration without forcing a prescribed lifecycle or single process.
+
+Skills can be used independently or combined when a user asks for a multi-step workflow. The router should preserve the user chosen job-to-be-done, route to implemented specialist skills, and name future capabilities honestly.
 
 ## Installed skills
 
-- **`product-suite-router`**. Top-level intent router for UX, product, design, research, Figma, wireframing, prototyping, slide-deck, and creative workflow requests. Routes to implemented specialist skills and names future capabilities honestly.
+- **`product-suite-router`**. Top-level intent router for UX, product, design, research, Figma, wireframing, prototyping, slide-deck, testing, strategy, and creative workflow requests. Routes to implemented specialist skills without forcing a product lifecycle.
 - **`research`**. Brief-first, source-led research for UX and product work. Covers evidence gathering, source quality, competitor scans, supplied-source synthesis, UX/product implications, and a clean URL list for optional NotebookLM use.
 - **`figma-writing`** (v1). Safe write-side operations against the Figma MCP. Covers cloning frames, updating text while preserving design-system bindings, generating variants, and auto-layout-aware insertion. Surfaces warnings rather than silently swapping fonts or breaking style links.
 - **`design-critique`**. Source-grounded UX critique of static design artefacts such as screenshots, Figma frames, mockups, and wireframes. Covers context-first review, severity-ranked findings, visual accessibility checks, and optional research escalation.
 
-Planned future skills or improvements live in [`docs/roadmap.md`](docs/roadmap.md). Near-term themes include Figma wireframing, user testing, brainstorming, high-fidelity prototyping, slide decks, and product brief processing.
+Planned future skills or improvements live in [`docs/roadmap.md`](docs/roadmap.md). The roadmap is organised as toolbox areas for product teams: thinking and strategy, evidence and discovery, design quality, making artefacts, testing and iteration, and communication.
 
 ## Layout
 
@@ -70,7 +72,7 @@ Restart Claude Code after installing or updating the plugin. See
 
 ## Development
 
-Tests use Node's built-in `node:test` runner. No external dependencies.
+Tests use Node built-in `node:test` runner. No external dependencies.
 
 ```bash
 npm test          # run unit tests
@@ -90,7 +92,9 @@ Adding a sibling skill follows the suite pattern established by the router, rese
 - `references/` (pitfalls, quality bars, examples, or constraints)
 - `playbooks/` (operation recipes)
 - An optional `helpers/` folder if the skill has an execution surface
-- A corresponding `/<skill-name>-learn` slash command at `commands/`
+- A corresponding `/<skill-name>-learn` slash command at `commands/` when a learning loop is useful
+
+New skills should add a useful specialist tool to the product-team toolbox. They should not assume users must follow a fixed process before using them.
 
 ## Learning loops
 

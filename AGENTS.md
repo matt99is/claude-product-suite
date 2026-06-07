@@ -6,7 +6,7 @@ This is the entry point for any AI agent working on this project. Read this file
 
 ## What this project is
 
-claude-product-suite is a Claude plugin bundling product, design, and creative workflow skills. Current skills include `product-suite-router` for intent routing, `research` for brief-first source-led UX/product research, `figma-writing` for safe write-side Figma MCP operations such as cloning frames, updating text while preserving design-system bindings, generating variants, and inserting nodes in auto-layout frames, and `design-critique` for source-grounded UX critique of static design artefacts.
+claude-product-suite is a Claude plugin providing a modular toolbox of product, design, research, testing, and creative workflow skills for product teams. Skills are useful independently and can be combined when a user asks for a connected workflow; the suite should not force a prescribed product lifecycle. Current skills include `product-suite-router` for job-to-be-done routing, `research` for brief-first source-led UX/product research, `figma-writing` for safe write-side Figma MCP operations such as cloning frames, updating text while preserving design-system bindings, generating variants, and inserting nodes in auto-layout frames, and `design-critique` for source-grounded UX critique of static design artefacts.
 
 **Stack:** Claude plugin manifest, Markdown skills/playbooks, pure JavaScript helpers, Node.js built-in `node:test`
 

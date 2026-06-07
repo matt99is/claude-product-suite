@@ -11,6 +11,9 @@ test('product-suite-router skill defines routing boundaries', async () => {
 
   assert.match(skill, /name:\s*product-suite-router/);
   assert.match(skill, /primary intent/i);
+  assert.match(skill, /toolbox/i);
+  assert.match(skill, /Do not force a lifecycle/i);
+  assert.match(skill, /independent specialist tools/i);
   assert.match(skill, /Do not automatically route/i);
   assert.match(skill, /research/i);
   assert.match(skill, /figma-writing/i);
@@ -25,12 +28,19 @@ test('router references include capability map and pitfalls', async () => {
   assert.match(capabilityMap, /Research/i);
   assert.match(capabilityMap, /Figma writing/i);
   assert.match(capabilityMap, /Design critique/i);
+  assert.match(capabilityMap, /Thinking and strategy/i);
+  assert.match(capabilityMap, /Evidence and discovery/i);
+  assert.match(capabilityMap, /Design quality/i);
+  assert.match(capabilityMap, /Making artefacts/i);
+  assert.match(capabilityMap, /Testing and iteration/i);
+  assert.match(capabilityMap, /Communication/i);
   assert.match(capabilityMap, /Wireframing/i);
   assert.match(capabilityMap, /Future/i);
 
   assert.match(pitfalls, /Over-routing/i);
   assert.match(pitfalls, /False capability/i);
   assert.match(pitfalls, /Chain inflation/i);
+  assert.match(pitfalls, /Lifecycle forcing/i);
 });
 
 test('research skill enforces brief-first source-led workflow', async () => {
@@ -150,9 +160,11 @@ test("roadmap captures planned suite capabilities", async () => {
   const roadmap = await read("docs/roadmap.md");
 
   assert.match(roadmap, /# Roadmap/i);
-  assert.match(roadmap, /## Now/i);
-  assert.match(roadmap, /## Next/i);
-  assert.match(roadmap, /## Later/i);
+  assert.match(roadmap, /modular toolbox/i);
+  assert.match(roadmap, /not a prescribed product lifecycle/i);
+  assert.match(roadmap, /## Product Direction/i);
+  assert.match(roadmap, /## Toolbox Areas/i);
+  assert.match(roadmap, /## Near-Term Priorities/i);
   assert.match(roadmap, /user testing/i);
   assert.match(roadmap, /UserTesting\.com/i);
   assert.match(roadmap, /wireframing/i);
@@ -164,6 +176,15 @@ test("roadmap captures planned suite capabilities", async () => {
   assert.match(roadmap, /prototyping/i);
   assert.match(roadmap, /centralised design library/i);
   assert.match(roadmap, /reusable components/i);
+});
+
+test("README frames the suite as a modular toolbox", async () => {
+  const readme = await read("README.md");
+
+  assert.match(readme, /modular toolbox/i);
+  assert.match(readme, /product teams/i);
+  assert.match(readme, /without forcing a prescribed lifecycle/i);
+  assert.match(readme, /independently or combined/i);
 });
 
 test("README documents correct plugin reinstall command", async () => {
@@ -187,7 +208,7 @@ test('plugin marketplace manifest supports GitHub installation', async () => {
 
   assert.equal(manifest.name, 'claude-product-suite');
   assert.equal(manifest.owner.name, 'Matthew Lelonek');
-  assert.match(manifest.metadata.description, /Product, design, UX research/);
+  assert.match(manifest.metadata.description, /Product-team toolbox/);
   assert.equal(manifest.plugins[0].name, 'claude-product-suite');
   assert.equal(manifest.plugins[0].source, './');
 });

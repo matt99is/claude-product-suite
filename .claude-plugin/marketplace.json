@@ -3,15 +3,15 @@
   "owner": {
     "name": "Matthew Lelonek"
   },
-  "description": "Plugin bundling skills for product, design, and creative workflows.",
+  "description": "Modular toolbox of product, design, research, testing, and creative workflow skills for product teams.",
   "plugins": [
     {
       "name": "claude-product-suite",
-      "description": "Plugin bundling skills for product, design, and creative workflows.",
+      "description": "Modular toolbox of product, design, research, testing, and creative workflow skills for product teams.",
       "source": "./"
     }
   ],
   "metadata": {
-    "description": "Product, design, UX research, and creative workflow skills for Claude Code."
+    "description": "Product-team toolbox for research, design critique, Figma writing, testing, strategy, and creative workflows."
   }
 }

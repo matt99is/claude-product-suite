@@ -5,26 +5,51 @@ Each entry uses the same four-part format as other suite references: **Symptom**
 
 ---
 
+## Lifecycle forcing
+
+### The toolbox is treated like a fixed process
+
+#### Symptom
+A user asks for one product, design, testing, or communication task, and the
+response turns it into a prescribed lifecycle such as brief -> research -> design
+-> testing -> deck.
+
+#### Cause
+The router treats product work as a universal sequence rather than a toolbox of
+independent specialist skills.
+
+#### Correct pattern
+Classify the current job-to-be-done and route to the smallest implemented tool
+that satisfies the requested output. Offer adjacent tools only as optional next
+steps when they would clearly help.
+
+#### When this matters
+Any broad product-team request, especially brainstorming, briefs, critique,
+research, testing, prototyping, decks, and Figma work.
+
+---
+
 ## Over-routing
 
 ### Research becomes a tax on every downstream task
 
 #### Symptom
-A user asks for a prototype, deck, wireframe, or Figma edit, and the response
-starts a research workflow even though the user did not ask for evidence
-gathering.
+A user asks for a prototype, deck, wireframe, testing plan, strategy document, or
+Figma edit, and the response starts a research workflow even though the user did
+not ask for evidence gathering.
 
 #### Cause
 The router treats research as a universal gate instead of a peer specialist
 skill.
 
 #### Correct pattern
-Preserve the primary intent. Route directly to the requested artefact workflow
-when one exists. If external evidence is clearly missing, ask whether the user
-wants research first.
+Preserve the primary intent. Route directly to the requested artefact or workflow
+when a specialist exists. If external evidence is clearly missing, ask whether
+the user wants research first.
 
 #### When this matters
-Deck, prototype, wireframe, Figma, and brief-processing requests.
+Deck, prototype, wireframe, Figma, user testing, brainstorming, and
+brief-processing requests.
 
 ---
 
@@ -42,7 +67,7 @@ source-led workflow.
 
 #### Correct pattern
 Route to `skills/research/SKILL.md` whenever evidence gathering, source-backed
-synthesis, or a competitor scan is the user's goal.
+synthesis, or a competitor scan is the user goal.
 
 #### When this matters
 Research, evidence, market scan, competitor scan, trend scan, and best-practice
@@ -55,9 +80,9 @@ requests.
 ### Future capability is described as implemented
 
 #### Symptom
-The response claims the suite can create decks, prototypes, wireframes, or full
-design-system-safe Figma compositions through a dedicated skill when that skill
-does not exist yet.
+The response claims the suite can create decks, prototypes, wireframes, user
+testing reports, brainstorming systems, or full design-system-safe Figma
+compositions through a dedicated skill when that skill does not exist yet.
 
 #### Cause
 The router confuses the capability roadmap with the installed capability set.
@@ -80,8 +105,8 @@ A simple request becomes a multi-skill workflow with unnecessary setup,
 handoffs, or clarifying questions.
 
 #### Cause
-The router optimizes for possible relevance rather than the user's primary
-intent and expected output.
+The router optimizes for possible relevance rather than the user primary intent
+and expected output.
 
 #### Correct pattern
 Choose the smallest route that satisfies the request. Chain skills only when the
@@ -89,8 +114,8 @@ user asks for a sequence or when one specialist output is explicitly needed as
 input to another.
 
 #### When this matters
-Broad UX/product requests where research, briefs, prototypes, decks, and Figma
-could all be related but are not all required.
+Broad UX/product requests where research, briefs, prototypes, decks, critique,
+testing, and Figma could all be related but are not all required.
 
 ---
 
@@ -100,15 +125,16 @@ could all be related but are not all required.
 
 #### Symptom
 The response assumes the user wants evidence gathering when they wanted
-synthesis, or assumes artefact production when they wanted research.
+synthesis, assumes artefact production when they wanted research, or assumes
+critique when they wanted edits.
 
 #### Cause
 The router fails to clarify the intended output.
 
 #### Correct pattern
-Ask one concise question that distinguishes research, synthesis, and artefact
-production.
+Ask one concise question that distinguishes research, synthesis, critique,
+testing, and artefact production.
 
 #### When this matters
 Requests like "look into this", "turn this into a prototype", "make a brief",
-or "what should we do about this?"
+"test this", or "what should we do about this?"
