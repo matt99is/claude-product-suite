@@ -16,7 +16,7 @@ workflow or one output is genuinely needed by another.
 | Evidence and discovery | Research | Implemented | `skills/research/SKILL.md` |
 | Evidence and discovery | Evidence synthesis | Implemented | `skills/research/SKILL.md` |
 | Design quality | Design critique | Implemented | `skills/design-critique/SKILL.md` |
-| Making artefacts | Figma writing | Existing partial v1 | `skills/figma-writing/SKILL.md` |
+| Making artefacts | Figma writing | Existing partial v1 | `skills/figma-writing/SKILL.md`; includes write-capable setup and permission troubleshooting |
 | Making artefacts | Figma design-system-safe creation | Future improvement | Use current `figma-writing` guard for write-side safety; do not claim full creation coverage |
 | Making artefacts | Wireframing | Future | General assistance until a dedicated skill exists |
 | Making artefacts | Prototyping | Future | General assistance until a dedicated skill exists |
@@ -32,7 +32,7 @@ workflow or one output is genuinely needed by another.
 ## Routing Defaults
 
 - Route research and source-led synthesis to `research`.
-- Route Figma mutations to `figma-writing`.
+- Route Figma mutations and write-capable Figma setup troubleshooting to `figma-writing`.
 - Route static artefact UX critique, heuristic review, and visual-accessibility critique to `design-critique`.
 - Do not route decks, prototypes, wireframes, testing plans, brief processing, brainstorming, or Figma work through research by default.
 - When a future capability is requested, help with general reasoning and say that the suite does not yet have a dedicated specialist skill for that capability.

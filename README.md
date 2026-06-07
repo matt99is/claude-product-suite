@@ -8,10 +8,12 @@ Skills can be used independently or combined when a user asks for a multi-step w
 
 - **`product-suite-router`**. Top-level intent router for UX, product, design, research, Figma, wireframing, prototyping, slide-deck, testing, strategy, and creative workflow requests. Routes to implemented specialist skills without forcing a product lifecycle.
 - **`research`**. Brief-first, source-led research for UX and product work. Covers evidence gathering, source quality, competitor scans, supplied-source synthesis, UX/product implications, and a clean URL list for optional NotebookLM use.
-- **`figma-writing`** (v1). Safe write-side operations against the Figma MCP. Covers cloning frames, updating text while preserving design-system bindings, generating variants, and auto-layout-aware insertion. Surfaces warnings rather than silently swapping fonts or breaking style links.
+- **`figma-writing`** (v1). Safe write-side operations against write-capable Figma MCP tools. Covers setup and permission checks, cloning frames, updating text while preserving design-system bindings, generating variants, and auto-layout-aware insertion. Surfaces warnings rather than silently swapping fonts or breaking style links.
 - **`design-critique`**. Source-grounded UX critique of static design artefacts such as screenshots, Figma frames, mockups, and wireframes. Covers context-first review, severity-ranked findings, visual accessibility checks, and optional research escalation.
 
 Planned future skills or improvements live in [`docs/roadmap.md`](docs/roadmap.md). The roadmap is organised as toolbox areas for product teams: thinking and strategy, evidence and discovery, design quality, making artefacts, testing and iteration, and communication.
+
+
 
 ## Layout
 
@@ -29,6 +31,7 @@ claude-product-suite/
 │   ├── SKILL.md
 │   ├── helpers/figma-helpers.js
 │   ├── references/pitfalls.md
+│   ├── references/setup-and-permissions.md
 │   └── playbooks/
 ├── skills/design-critique/
 │   ├── SKILL.md

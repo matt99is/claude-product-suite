@@ -41,7 +41,7 @@ Before doing product-suite work:
 
 - Research, evidence gathering, competitor scan, trend scan, best-practice review -> `skills/research/SKILL.md`.
 - Synthesis of supplied source material -> `skills/research/SKILL.md`, skipping source discovery.
-- Figma write-side mutation -> `skills/figma-writing/SKILL.md`.
+- Figma write-side mutation or troubleshooting write-capable Figma setup -> `skills/figma-writing/SKILL.md`.
 - Static design artefact critique, UX critique, heuristic review, or visual accessibility review -> `skills/design-critique/SKILL.md`.
 - Product/design brainstorming, product brief processing, user testing, wireframes, prototypes, and slide decks -> future specialist skills; use general assistance for now unless the user explicitly asks for an implemented specialist first.
 

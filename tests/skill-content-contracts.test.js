@@ -113,6 +113,25 @@ test('design critique skill enforces artefact-only source-grounded critique', as
   assert.match(playbook, /Recommendation/i);
 });
 
+test('figma writing skill guards write-capable setup', async () => {
+  const skill = await read('skills/figma-writing/SKILL.md');
+  const setup = await read('skills/figma-writing/references/setup-and-permissions.md');
+
+  assert.match(skill, /write-capable Figma MCP/i);
+  assert.match(skill, /setup-and-permissions\.md/);
+  assert.match(skill, /claude plugin install figma@claude-plugins-official/);
+  assert.match(skill, /edit access/i);
+
+  assert.match(setup, /remote Figma MCP server/i);
+  assert.match(setup, /desktop Figma MCP server/i);
+  assert.match(setup, /figma-use/i);
+  assert.match(setup, /Skills do not add MCP capabilities/i);
+  assert.match(setup, /read-only/i);
+  assert.match(setup, /\/plugin/);
+  assert.match(setup, /\/mcp/);
+  assert.match(setup, /claude plugin install figma@claude-plugins-official/);
+});
+
 test('figma learning command keeps public learning local by default', async () => {
   const command = await read('commands/figma-learn.md');
 

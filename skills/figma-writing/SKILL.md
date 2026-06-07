@@ -5,24 +5,29 @@ description: Use when modifying, cloning, or generating Figma nodes via the MCP,
 
 # figma-writing
 
-This skill governs every write-side operation against Figma through the `use_figma` MCP tool. The Figma cloud renderer is the execution environment. The render is the truth, the API response is the intention.
+This skill governs every write-side operation against Figma through write-capable Figma MCP tools such as `use_figma`. The Figma cloud renderer is the execution environment. The render is the truth, the API response is the intention.
+
+Figma setup is part of the safety guard. A user may have read-only Figma context available without having write-to-canvas capability. Before attempting mutation, confirm the write-capable Figma MCP setup described in `references/setup-and-permissions.md`, including the Claude Code setup command `claude plugin install figma@claude-plugins-official` when guidance is needed, and confirm the authenticated user has edit access to the target file.
 
 ## Non-negotiables
 
-1. Never set `node.characters` without first calling `loadFontForNode(node)`. Setting characters with an unloaded font throws.
-2. Never mutate a styled property (fontName, fontSize, fills, textStyleId source) without re-applying the snapshot. Mutating a bound property breaks the binding silently.
-3. Never use ancestor pathKeys to match text nodes across sibling instances. Use `matchTextNodesByIndex(sourceParent, targetParent)`.
-4. Never trust the `use_figma` API response as confirmation. Screenshot to verify visual mutations.
-5. Never change `textAutoResize`. If you think you need to, state the reason out loud and read the Text wrapping section of `references/pitfalls.md` first.
+1. Never attempt mutation unless a write-capable Figma MCP server is connected and the user has edit access to the target file. If unsure, read `references/setup-and-permissions.md` and provide setup guidance before writing.
+2. Never set `node.characters` without first calling `loadFontForNode(node)`. Setting characters with an unloaded font throws.
+3. Never mutate a styled property (fontName, fontSize, fills, textStyleId source) without re-applying the snapshot. Mutating a bound property breaks the binding silently.
+4. Never use ancestor pathKeys to match text nodes across sibling instances. Use `matchTextNodesByIndex(sourceParent, targetParent)`.
+5. Never trust the `use_figma` API response as confirmation. Screenshot to verify visual mutations.
+6. Never change `textAutoResize`. If you think you need to, state the reason out loud and read the Text wrapping section of `references/pitfalls.md` first.
 
 ## Pre-flight checklist
 
 Before writing any `use_figma` script:
 
-1. Identify the operation type: clone, text update, variant generation, arc, or other.
-2. If a playbook in `skills/figma-writing/playbooks/` matches, read it end to end.
-3. Read the sections of `skills/figma-writing/references/pitfalls.md` named in the playbook (or the relevant categories if no playbook fits).
-4. For text operations, confirm the font is loadable. If unsure, call `figma.listAvailableFontsAsync()` from a probe script first.
+1. Identify whether the user is asking for Figma mutation, read-only inspection, or critique. Route critique to `design-critique` instead.
+2. Confirm a write-capable Figma MCP setup is available. If the server, tools, authentication, or file edit access are unclear, read `skills/figma-writing/references/setup-and-permissions.md` and stop to provide setup or troubleshooting guidance.
+3. Identify the operation type: clone, text update, variant generation, arc, or other.
+4. If a playbook in `skills/figma-writing/playbooks/` matches, read it end to end.
+5. Read the sections of `skills/figma-writing/references/pitfalls.md` named in the playbook (or the relevant categories if no playbook fits).
+6. For text operations, confirm the font is loadable. If unsure, call `figma.listAvailableFontsAsync()` from a probe script first.
 
 ## Script-writing pattern
 

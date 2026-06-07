@@ -26,6 +26,7 @@ Read these files before starting any task:
 | 6 - always | `../vault/Projects/claude-product-suite.md` | Current status, decisions, gotchas, and next steps |
 | 7 - always | `../vault/Patterns/vault-note-governance.md` | Rules for keeping the vault project note lean |
 | 8 - before helper changes | `skills/figma-writing/helpers/figma-helpers.js` | Shared helper preamble pasted into Figma MCP calls |
+| 8 - before Figma setup or permission changes | `skills/figma-writing/references/setup-and-permissions.md` | Write-capable Figma MCP setup, auth, and edit-access guidance |
 | 8 - before pitfall/playbook changes | `skills/figma-writing/references/pitfalls.md` | Current failure-mode catalogue |
 | 8 - before real Figma validation | `docs/hand-test-figma-helpers.md` | Manual validation flow for API-bound helpers |
 | 8 - for historical design context | `docs/specs/2026-05-28-figma-writing-skill-design.md` | v1 design rationale |
