@@ -1,6 +1,22 @@
 import { readFile } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import test from 'node:test';
 import assert from 'node:assert/strict';
+
+const execFileAsync = promisify(execFile);
+
+function compareVersions(a, b) {
+  const aParts = a.split('.').map(Number);
+  const bParts = b.split('.').map(Number);
+
+  for (let i = 0; i < 3; i += 1) {
+    if (aParts[i] > bParts[i]) return 1;
+    if (aParts[i] < bParts[i]) return -1;
+  }
+
+  return 0;
+}
 
 async function read(path) {
   return await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -222,7 +238,42 @@ test('package and plugin manifest versions stay in sync', async () => {
   assert.match(pkg.version, /^\d+\.\d+\.\d+$/);
 });
 
-test('plugin marketplace manifest supports GitHub installation', async () => {
+test("user-facing plugin changes require a new release version", async () => {
+  const pkg = JSON.parse(await read("package.json"));
+  const { stdout: tagOutput } = await execFileAsync("git", [
+    "tag",
+    "--list",
+    "v[0-9]*.[0-9]*.[0-9]*",
+    "--sort=-version:refname",
+  ]);
+  const latestTag = tagOutput.trim().split("\n").filter(Boolean)[0];
+
+  assert.ok(latestTag, "expected at least one semver release tag");
+
+  const releasedVersion = latestTag.slice(1);
+  const { stdout: diffOutput } = await execFileAsync("git", [
+    "diff",
+    "--name-only",
+    latestTag,
+    "--",
+    ".claude-plugin",
+    "commands",
+    "skills",
+    "README.md",
+    "CHANGELOG.md",
+  ]);
+  const changedReleaseFiles = diffOutput.trim().split("\n").filter(Boolean);
+
+  if (changedReleaseFiles.length > 0) {
+    assert.ok(
+      compareVersions(pkg.version, releasedVersion) > 0,
+      `user-facing plugin changes since ${latestTag} require package.json version > ${releasedVersion}; changed files: ${changedReleaseFiles.join(", ")}`,
+    );
+  }
+});
+
+
+test("plugin marketplace manifest supports GitHub installation", async () => {
   const manifest = JSON.parse(await read('.claude-plugin/marketplace.json'));
 
   assert.equal(manifest.name, 'claude-product-suite');

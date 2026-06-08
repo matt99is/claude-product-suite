@@ -6,23 +6,27 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-06-08
+
 ### Added
 
 - Added `design-critique`, a standalone source-grounded UX critique skill for static design artefacts with a baked-in principles library, severity-ranked findings, visual-accessibility limits, and optional research escalation.
+- Added `usertesting`, a UserTesting.com workflow skill for audience and screener definition, concise low-bias unmoderated test planning, export guidance, and qualitative synthesis.
 - Added `docs/roadmap.md` as the working backlog for planned suite capabilities, including Figma wireframing, UserTesting.com workflows, brainstorming, and high-fidelity prototyping.
-- Added content-contract coverage for the roadmap and README plugin reinstall command.
+- Added content-contract coverage for the roadmap, README plugin reinstall command, UserTesting.com skill, and release version guard.
 - Added Figma setup and permissions guidance for write-capable MCP configuration, read-only symptoms, remote vs desktop server setup, and edit-access troubleshooting.
 
 ### Changed
 
 - Reframed the suite as a modular product-team toolbox rather than a prescribed product lifecycle.
-- Updated `product-suite-router` to classify requests by job-to-be-done, avoid lifecycle forcing, and compose specialist skills only when needed.
+- Updated `product-suite-router` to classify requests by job-to-be-done, avoid lifecycle forcing, route UserTesting.com workflows, and compose specialist skills only when needed.
 - Reorganised `docs/roadmap.md` around toolbox areas: thinking and strategy, evidence and discovery, design quality, making artefacts, testing and iteration, and communication.
-- Added content-contract coverage for toolbox-oriented router, roadmap behavior, and Figma write-capable setup guidance.
+- Bumped the plugin release to `0.3.0` so Claude Code can detect the new installable version.
 
 ### Fixed
 
 - Fixed the README fallback reinstall command for GitHub marketplace installs.
+- Added a regression test so user-facing plugin changes after the latest release tag require a newer manifest/package version.
 
 ## [0.2.0] - 2026-06-01
 

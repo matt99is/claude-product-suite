@@ -1,7 +1,7 @@
 {
   "name": "claude-product-suite",
   "description": "Modular toolbox of product, design, research, testing, and creative workflow skills for product teams. Includes router, research, Figma writing, design critique, and UserTesting.com workflow skills.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Matthew Lelonek"
   },
