@@ -10,6 +10,7 @@ Skills can be used independently or combined when a user asks for a multi-step w
 - **`research`**. Brief-first, source-led research for UX and product work. Covers evidence gathering, source quality, competitor scans, supplied-source synthesis, UX/product implications, and a clean URL list for optional NotebookLM use.
 - **`figma-writing`** (v1). Safe write-side operations against write-capable Figma MCP tools. Covers setup and permission checks, cloning frames, updating text while preserving design-system bindings, generating variants, and auto-layout-aware insertion. Surfaces warnings rather than silently swapping fonts or breaking style links.
 - **`design-critique`**. Source-grounded UX critique of static design artefacts such as screenshots, Figma frames, mockups, and wireframes. Covers context-first review, severity-ranked findings, visual accessibility checks, and optional research escalation.
+- **`usertesting`**. UserTesting.com workflow support for audience and screener definition, concise low-bias unmoderated test scripts, platform-realistic task/question blocks, export guidance, and compact qualitative synthesis with visuals where useful.
 
 Planned future skills or improvements live in [`docs/roadmap.md`](docs/roadmap.md). The roadmap is organised as toolbox areas for product teams: thinking and strategy, evidence and discovery, design quality, making artefacts, testing and iteration, and communication.
 
@@ -34,6 +35,10 @@ claude-product-suite/
 │   ├── references/setup-and-permissions.md
 │   └── playbooks/
 ├── skills/design-critique/
+│   ├── SKILL.md
+│   ├── references/
+│   └── playbooks/
+├── skills/usertesting/
 │   ├── SKILL.md
 │   ├── references/
 │   └── playbooks/
@@ -97,7 +102,7 @@ Adding a sibling skill follows the suite pattern established by the router, rese
 - An optional `helpers/` folder if the skill has an execution surface
 - A corresponding `/<skill-name>-learn` slash command at `commands/` when a learning loop is useful
 
-New skills should add a useful specialist tool to the product-team toolbox. They should not assume users must follow a fixed process before using them.
+New skills should add a useful specialist tool to the product-team toolbox. They should not assume users must follow a fixed process before using them. UserTesting.com workflows are handled by `skills/usertesting/` when the job is study planning, script review, export guidance, or results synthesis.
 
 ## Learning loops
 

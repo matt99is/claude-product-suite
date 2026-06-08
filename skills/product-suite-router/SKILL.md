@@ -24,7 +24,8 @@ is future capability rather than implemented behavior.
 6. If evidence gathering is the user goal, route to `research`.
 7. If Figma mutation is the user goal, route to `figma-writing`.
 8. If static artefact critique is the user goal, route to `design-critique`.
-9. Ask one clarifying question when the request could mean research, synthesis, critique, or artefact production.
+9. If UserTesting.com study planning, script review, export guidance, or results synthesis is the user goal, route to `usertesting`.
+10. Ask one clarifying question when the request could mean research, synthesis, critique, testing, or artefact production.
 
 ## Pre-flight checklist
 
@@ -43,7 +44,8 @@ Before doing product-suite work:
 - Synthesis of supplied source material -> `skills/research/SKILL.md`, skipping source discovery.
 - Figma write-side mutation or troubleshooting write-capable Figma setup -> `skills/figma-writing/SKILL.md`.
 - Static design artefact critique, UX critique, heuristic review, or visual accessibility review -> `skills/design-critique/SKILL.md`.
-- Product/design brainstorming, product brief processing, user testing, wireframes, prototypes, and slide decks -> future specialist skills; use general assistance for now unless the user explicitly asks for an implemented specialist first.
+- UserTesting.com study planning, script review, audience and screener setup, export guidance, or results synthesis -> `skills/usertesting/SKILL.md`.
+- Product/design brainstorming, product brief processing, wireframes, prototypes, and slide decks -> future specialist skills; use general assistance for now unless the user explicitly asks for an implemented specialist first.
 
 ## Composition rules
 

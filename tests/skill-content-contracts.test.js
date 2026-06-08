@@ -231,3 +231,53 @@ test('plugin marketplace manifest supports GitHub installation', async () => {
   assert.equal(manifest.plugins[0].name, 'claude-product-suite');
   assert.equal(manifest.plugins[0].source, './');
 });
+
+
+test('usertesting skill supports low-bias platform-realistic studies', async () => {
+  const skill = await read('skills/usertesting/SKILL.md');
+  const platform = await read('skills/usertesting/references/platform-capabilities.md');
+  const guardrails = await read('skills/usertesting/references/bias-and-quality-guardrails.md');
+  const plan = await read('skills/usertesting/playbooks/plan-unmoderated-test.md');
+  const synthesis = await read('skills/usertesting/playbooks/synthesize-results.md');
+
+  assert.match(skill, /name:\s*usertesting/);
+  assert.match(skill, /UserTesting.com/i);
+  assert.match(skill, /audience/i);
+  assert.match(skill, /screener/i);
+  assert.match(skill, /verbal responses/i);
+  assert.match(skill, /concise/i);
+  assert.match(skill, /bias/i);
+  assert.match(skill, /Excel export/i);
+  assert.match(skill, /synthesis/i);
+
+  assert.match(platform, /audience filters/i);
+  assert.match(platform, /screener/i);
+  assert.match(platform, /tasks/i);
+  assert.match(platform, /verbal response/i);
+  assert.match(platform, /rating/i);
+  assert.match(platform, /success/i);
+  assert.match(platform, /difficulty/i);
+  assert.match(platform, /transcripts/i);
+  assert.match(platform, /Excel export/i);
+
+  assert.match(guardrails, /goal/i);
+  assert.match(guardrails, /not step-by-step/i);
+  assert.match(guardrails, /leading/i);
+  assert.match(guardrails, /written responses/i);
+  assert.match(guardrails, /qualitative/i);
+  assert.match(guardrails, /statistical/i);
+
+  assert.match(plan, /Decision to inform/i);
+  assert.match(plan, /Target audience/i);
+  assert.match(plan, /Screener/i);
+  assert.match(plan, /15-20 minutes/i);
+  assert.match(plan, /pilot/i);
+  assert.match(plan, /verbal/i);
+
+  assert.match(synthesis, /data received/i);
+  assert.match(synthesis, /participant/i);
+  assert.match(synthesis, /task/i);
+  assert.match(synthesis, /evidence/i);
+  assert.match(synthesis, /visual/i);
+  assert.match(synthesis, /confidence/i);
+});

@@ -6,7 +6,7 @@ This is the entry point for any AI agent working on this project. Read this file
 
 ## What this project is
 
-claude-product-suite is a Claude plugin providing a modular toolbox of product, design, research, testing, and creative workflow skills for product teams. Skills are useful independently and can be combined when a user asks for a connected workflow; the suite should not force a prescribed product lifecycle. Current skills include `product-suite-router` for job-to-be-done routing, `research` for brief-first source-led UX/product research, `figma-writing` for safe write-side Figma MCP operations such as cloning frames, updating text while preserving design-system bindings, generating variants, and inserting nodes in auto-layout frames, and `design-critique` for source-grounded UX critique of static design artefacts.
+claude-product-suite is a Claude plugin providing a modular toolbox of product, design, research, testing, and creative workflow skills for product teams. Skills are useful independently and can be combined when a user asks for a connected workflow; the suite should not force a prescribed product lifecycle. Current skills include `product-suite-router` for job-to-be-done routing, `research` for brief-first source-led UX/product research, `figma-writing` for safe write-side Figma MCP operations such as cloning frames, updating text while preserving design-system bindings, generating variants, and inserting nodes in auto-layout frames, `design-critique` for source-grounded UX critique of static design artefacts, and `usertesting` for UserTesting.com study planning, script review, export guidance, and concise synthesis.
 
 **Stack:** Claude plugin manifest, Markdown skills/playbooks, pure JavaScript helpers, Node.js built-in `node:test`
 
@@ -23,14 +23,15 @@ Read these files before starting any task:
 | 3 - always | `skills/research/SKILL.md` | Current research skill router and evidence guard |
 | 4 - always | `skills/figma-writing/SKILL.md` | Figma write-side router and safety guard |
 | 5 - always | `skills/design-critique/SKILL.md` | Design critique router and artefact-only safety guard |
-| 6 - always | `../vault/Projects/claude-product-suite.md` | Current status, decisions, gotchas, and next steps |
-| 7 - always | `../vault/Patterns/vault-note-governance.md` | Rules for keeping the vault project note lean |
-| 8 - before helper changes | `skills/figma-writing/helpers/figma-helpers.js` | Shared helper preamble pasted into Figma MCP calls |
-| 8 - before Figma setup or permission changes | `skills/figma-writing/references/setup-and-permissions.md` | Write-capable Figma MCP setup, auth, and edit-access guidance |
-| 8 - before pitfall/playbook changes | `skills/figma-writing/references/pitfalls.md` | Current failure-mode catalogue |
-| 8 - before real Figma validation | `docs/hand-test-figma-helpers.md` | Manual validation flow for API-bound helpers |
-| 8 - for historical design context | `docs/specs/2026-05-28-figma-writing-skill-design.md` | v1 design rationale |
-| 8 - for historical implementation context | `docs/plans/2026-05-28-figma-writing-v1-implementation-plan.md` | v1 implementation plan |
+| 6 - always | `skills/usertesting/SKILL.md` | UserTesting.com workflow router and testing safety guard |
+| 7 - always | `../vault/Projects/claude-product-suite.md` | Current status, decisions, gotchas, and next steps |
+| 8 - always | `../vault/Patterns/vault-note-governance.md` | Rules for keeping the vault project note lean |
+| 9 - before helper changes | `skills/figma-writing/helpers/figma-helpers.js` | Shared helper preamble pasted into Figma MCP calls |
+| 9 - before Figma setup or permission changes | `skills/figma-writing/references/setup-and-permissions.md` | Write-capable Figma MCP setup, auth, and edit-access guidance |
+| 9 - before pitfall/playbook changes | `skills/figma-writing/references/pitfalls.md` | Current failure-mode catalogue |
+| 9 - before real Figma validation | `docs/hand-test-figma-helpers.md` | Manual validation flow for API-bound helpers |
+| 9 - for historical design context | `docs/specs/2026-05-28-figma-writing-skill-design.md` | v1 design rationale |
+| 9 - for historical implementation context | `docs/plans/2026-05-28-figma-writing-v1-implementation-plan.md` | v1 implementation plan |
 
 ---
 
@@ -44,9 +45,10 @@ Before running commands, searching code, or editing files, every agent must load
 4. Read `skills/research/SKILL.md`.
 5. Read `skills/figma-writing/SKILL.md`.
 6. Read `skills/design-critique/SKILL.md`.
-7. Read vault project note: `../vault/Projects/claude-product-suite.md`.
-8. Read vault governance note: `../vault/Patterns/vault-note-governance.md`.
-9. In the first response of the session, explicitly confirm these files were loaded.
+7. Read `skills/usertesting/SKILL.md`.
+8. Read vault project note: `../vault/Projects/claude-product-suite.md`.
+9. Read vault governance note: `../vault/Patterns/vault-note-governance.md`.
+10. In the first response of the session, explicitly confirm these files were loaded.
 
 Load other items from the table above only when their scope applies to the task.
 
@@ -121,7 +123,7 @@ npm run check
 
 - No build step and no runtime dependencies are expected; keep helpers as plain JavaScript and tests on Node's built-in runner.
 - `node --test tests/` does not work reliably here; use the package script, which expands to `node --test tests/*.test.js`.
-- Research is deliberate, not a mandatory pre-step for prototype, deck, wireframe, or Figma requests. Route to research only when the user asks for evidence gathering, competitor/best-practice research, or source-led synthesis.
+- Research is deliberate, not a mandatory pre-step for prototype, deck, wireframe, UserTesting.com, or Figma requests. Route to research only when the user asks for evidence gathering, competitor/best-practice research, or source-led synthesis.
 - NotebookLM support is only a paste-ready clean URL list in the portable research skill; do not require NotebookLM, vault paths, or private automation.
 - The Figma plugin sandbox cannot import local modules. Helper code is pasted as a preamble into each write-side Figma MCP call.
 - Helper result convention: hard failures throw; soft drift returns an envelope such as `{ ok, warnings, value }`.
@@ -161,6 +163,10 @@ skills/
     SKILL.md                      # artefact-only UX critique router and guard
     references/                   # source canon and critique principles
     playbooks/                    # critique operation recipes
+  usertesting/
+    SKILL.md                      # UserTesting.com workflow router and guard
+    references/                   # platform capabilities and bias guardrails
+    playbooks/                    # test planning and synthesis recipes
 tests/                            # Node test suite and Figma mocks
 docs/
   hand-test-figma-helpers.md

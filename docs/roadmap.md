@@ -37,8 +37,8 @@ Skills should be useful independently and composable when the user asks for a co
 
 ### Testing and iteration
 
-- [ ] Add a user testing skill for people using UserTesting.com to run testing with real users. It should help set up testing scenarios, choose audiences, consume exported UserTesting.com results, synthesize findings, and return them in the requested format such as Figma, PDF, slides, or another suitable deliverable.
-- [ ] Decide whether user testing outputs need reusable report templates or should start as playbook-driven narrative outputs.
+- [x] Provide UserTesting.com workflow support through `skills/usertesting/`, including audience and screener definition, concise low-bias test scripts, export guidance, and compact qualitative synthesis.
+- [ ] Decide whether user testing outputs need reusable report templates, richer visual artefacts, or should stay as playbook-driven narrative outputs.
 - [ ] Consider experiment planning and iteration-planning support after user testing workflows are clearer.
 
 ### Communication
@@ -48,11 +48,11 @@ Skills should be useful independently and composable when the user asks for a co
 
 ## Near-Term Priorities
 
-- [ ] Make the router fit the toolbox model: classify requests by job-to-be-done, route to implemented specialists, avoid lifecycle forcing, and keep future capabilities honest.
-- [ ] Shape the next specialist skill brief before implementation starts. Strong candidates are product/design brainstorming and UserTesting.com workflows.
-- [ ] Run Figma helper hand-tests when real usage opportunities arise, but do not treat Figma writing validation as a blocker for suite expansion.
-- [ ] Keep install, update, changelog, and release docs accurate as plugin distribution matures.
-- [ ] Decide the first public-sharing path: keep private, share with named colleagues, or open the GitHub repo.
+- [ ] Validate the current Figma writing track with the hand-test guide against a real editable Figma file, then promote only durable lessons into helpers, pitfalls, playbooks, or docs.
+- [ ] Shape the next specialist skill brief before implementation starts. Product/design brainstorming is now the strongest broad-use candidate; deeper UserTesting.com report-template work remains a testing-and-iteration follow-up.
+- [ ] Decide the first external-sharing path: keep private for more hand-testing, share with named colleagues, or open the GitHub repo.
+- [ ] Keep install, update, changelog, release, and contribution docs accurate as plugin distribution matures.
+- [ ] Revisit roadmap priorities after the next real-world use of research, design critique, or Figma writing reveals repeated request patterns.
 
 ## Parking Lot
 
