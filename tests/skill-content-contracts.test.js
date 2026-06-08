@@ -34,6 +34,7 @@ test('product-suite-router skill defines routing boundaries', async () => {
   assert.match(skill, /research/i);
   assert.match(skill, /figma-writing/i);
   assert.match(skill, /design-critique/i);
+  assert.match(skill, /brainstorming/i);
   assert.match(skill, /future capability/i);
 });
 
@@ -44,6 +45,7 @@ test('router references include capability map and pitfalls', async () => {
   assert.match(capabilityMap, /Research/i);
   assert.match(capabilityMap, /Figma writing/i);
   assert.match(capabilityMap, /Design critique/i);
+  assert.match(capabilityMap, /Brainstorming.*Implemented/is);
   assert.match(capabilityMap, /Thinking and strategy/i);
   assert.match(capabilityMap, /Evidence and discovery/i);
   assert.match(capabilityMap, /Design quality/i);
@@ -57,6 +59,7 @@ test('router references include capability map and pitfalls', async () => {
   assert.match(pitfalls, /False capability/i);
   assert.match(pitfalls, /Chain inflation/i);
   assert.match(pitfalls, /Lifecycle forcing/i);
+  assert.match(pitfalls, /Brainstorming Over-Capture/i);
 });
 
 test('research skill enforces brief-first source-led workflow', async () => {
@@ -220,6 +223,7 @@ test("README frames the suite as a modular toolbox", async () => {
   assert.match(readme, /product teams/i);
   assert.match(readme, /without forcing a prescribed lifecycle/i);
   assert.match(readme, /independently or combined/i);
+  assert.match(readme, /brainstorming/i);
 });
 
 test("README documents correct plugin reinstall command", async () => {
@@ -331,4 +335,52 @@ test('usertesting skill supports low-bias platform-realistic studies', async () 
   assert.match(synthesis, /evidence/i);
   assert.match(synthesis, /visual/i);
   assert.match(synthesis, /confidence/i);
+});
+
+test('brainstorming skill supports product design ideation without over-routing', async () => {
+  const skill = await read('skills/brainstorming/SKILL.md');
+  const qualityBar = await read('skills/brainstorming/references/brainstorming-quality-bar.md');
+  const pitfalls = await read('skills/brainstorming/references/brainstorming-pitfalls.md');
+  const shapeGenerate = await read('skills/brainstorming/playbooks/shape-and-generate.md');
+  const compareNarrow = await read('skills/brainstorming/playbooks/compare-and-narrow.md');
+
+  assert.match(skill, /name:\s*brainstorming/);
+  assert.match(skill, /product/i);
+  assert.match(skill, /design/i);
+  assert.match(skill, /creative/i);
+  assert.match(skill, /Diverge/i);
+  assert.match(skill, /Shape/i);
+  assert.match(skill, /Compare/i);
+  assert.match(skill, /Narrow/i);
+  assert.match(skill, /Translate/i);
+  assert.match(skill, /Do not use brainstorming/i);
+  assert.match(skill, /research/i);
+  assert.match(skill, /design-critique/i);
+  assert.match(skill, /usertesting/i);
+  assert.match(skill, /figma-writing/i);
+  assert.match(skill, /creative possibilit/i);
+  assert.match(skill, /validated/i);
+  assert.match(skill, /handoff/i);
+
+  assert.match(qualityBar, /specific/i);
+  assert.match(qualityBar, /audience/i);
+  assert.match(qualityBar, /varied/i);
+  assert.match(qualityBar, /assumptions/i);
+  assert.match(qualityBar, /actionable/i);
+
+  assert.match(pitfalls, /idea soup/i);
+  assert.match(pitfalls, /premature narrowing/i);
+  assert.match(pitfalls, /evidence/i);
+  assert.match(pitfalls, /over-routing/i);
+  assert.match(pitfalls, /generic/i);
+  assert.match(pitfalls, /overbuilding/i);
+
+  assert.match(shapeGenerate, /fuzzy/i);
+  assert.match(shapeGenerate, /option/i);
+  assert.match(shapeGenerate, /theme/i);
+
+  assert.match(compareNarrow, /criteria/i);
+  assert.match(compareNarrow, /tradeoff/i);
+  assert.match(compareNarrow, /recommend/i);
+  assert.match(compareNarrow, /what would change/i);
 });

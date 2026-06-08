@@ -12,7 +12,7 @@ Skills should be useful independently and composable when the user asks for a co
 
 ### Thinking and strategy
 
-- [ ] Add a standalone brainstorming skill for design concepts, product ideas, positioning angles, UX flow options, feature shaping, copy ideation, and experiment ideas. It should borrow the useful shape of Superpowers brainstorming while staying tailored to product, design, and creative work rather than engineering implementation.
+- [x] Add a standalone brainstorming skill for design concepts, product ideas, positioning angles, UX flow options, feature shaping, copy ideation, and experiment ideas. It borrows the useful shape of Superpowers brainstorming while staying tailored to product, design, and creative work rather than engineering implementation.
 - [ ] Add product brief and strategy-document support as a toolbox item for clarifying, critiquing, rewriting, comparing, or converting product docs into actionable next steps without making briefs the mandatory front door.
 - [ ] Consider prioritisation and decision-framing playbooks once brief processing and brainstorming have real examples.
 
@@ -49,7 +49,7 @@ Skills should be useful independently and composable when the user asks for a co
 ## Near-Term Priorities
 
 - [ ] Validate the current Figma writing track with the hand-test guide against a real editable Figma file, then promote only durable lessons into helpers, pitfalls, playbooks, or docs.
-- [ ] Shape the next specialist skill brief before implementation starts. Product/design brainstorming is now the strongest broad-use candidate; deeper UserTesting.com report-template work remains a testing-and-iteration follow-up.
+- [ ] Shape the next specialist skill brief before implementation starts. Product/design brainstorming is implemented; deeper UserTesting.com report-template work remains a testing-and-iteration follow-up.
 - [ ] Decide the first external-sharing path: keep private for more hand-testing, share with named colleagues, or open the GitHub repo.
 - [ ] Keep install, update, changelog, release, and contribution docs accurate as plugin distribution matures.
 - [ ] Revisit roadmap priorities after the next real-world use of research, design critique, or Figma writing reveals repeated request patterns.

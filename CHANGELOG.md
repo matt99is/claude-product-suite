@@ -6,6 +6,19 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-06-08
+
+### Added
+
+- Added `brainstorming`, a product/design/creative ideation skill for shaping fuzzy ideas, generating concepts, comparing options, narrowing directions, and creating lightweight handoffs.
+- Added brainstorming references and playbooks covering quality bars, pitfalls, shape/generate workflows, and compare/narrow workflows.
+- Added content-contract coverage for brainstorming skill boundaries and over-routing risks.
+
+### Changed
+
+- Updated `product-suite-router`, capability map, roadmap, and README so brainstorming is treated as an implemented specialist skill.
+
+
 ## [0.3.0] - 2026-06-08
 
 ### Added

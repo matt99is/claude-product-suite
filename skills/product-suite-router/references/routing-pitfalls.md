@@ -81,7 +81,7 @@ requests.
 
 #### Symptom
 The response claims the suite can create decks, prototypes, wireframes, user
-testing reports, brainstorming systems, or full design-system-safe Figma
+testing reports, product brief systems, or full design-system-safe Figma
 compositions through a dedicated skill when that skill does not exist yet.
 
 #### Cause
@@ -93,6 +93,32 @@ so plainly and proceed with general assistance.
 
 #### When this matters
 Any request in a roadmap area that has no real skill folder yet.
+
+---
+
+## Brainstorming Over-Capture
+
+### Brainstorming swallows evidence, critique, testing, or mutation
+
+#### Symptom
+A user asks for best practices, competitor evidence, critique of a design,
+UserTesting.com setup, or Figma edits, and the response starts generating ideas
+instead of routing to the better specialist.
+
+#### Cause
+The router treats "brainstorming" as a generic product thinking mode rather than
+a specialist for possibility generation and concept shaping.
+
+#### Correct pattern
+Use `skills/brainstorming/SKILL.md` for ideation, concept shaping, option
+generation, and idea narrowing. Route source-backed evidence to `research`,
+static artefact critique to `design-critique`, UserTesting.com workflows to
+`usertesting`, and Figma mutation to `figma-writing`.
+
+#### When this matters
+Ambiguous requests such as "what should we do?", "what do you think of this?",
+"test this", "review this", "best practice", "make variants", or "improve this
+flow".
 
 ---
 
