@@ -24,8 +24,8 @@ Before writing any `use_figma` script:
 
 1. Identify whether the user is asking for Figma mutation, read-only inspection, or critique. Route critique to `design-critique` instead.
 2. Confirm a write-capable Figma MCP setup is available. If the server, tools, authentication, or file edit access are unclear, read `skills/figma-writing/references/setup-and-permissions.md` and stop to provide setup or troubleshooting guidance.
-3. Identify the operation type: clone, text update, variant generation, process map or flow chart, arc, or other.
-4. If a playbook in `skills/figma-writing/playbooks/` matches, read it end to end. For process maps, flow charts, journey maps, service blueprints, workflow diagrams, or stakeholder-level process views, use `playbooks/create-process-map-or-flowchart.md`.
+3. Identify the operation type: clone, text update, variant generation, style-matched node creation, process map or flow chart, arc, or other.
+4. If a playbook in `skills/figma-writing/playbooks/` matches, read it end to end. For process maps, flow charts, journey maps, service blueprints, workflow diagrams, or stakeholder-level process views, use `playbooks/create-process-map-or-flowchart.md`. For net-new nodes or artefacts that should match an existing Figma file style, use `playbooks/build-nodes-matching-existing-style.md`.
 5. Read the sections of `skills/figma-writing/references/pitfalls.md` named in the playbook (or the relevant categories if no playbook fits).
 6. For text operations, confirm the font is loadable. If unsure, call `figma.listAvailableFontsAsync()` from a probe script first.
 

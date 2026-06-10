@@ -1,9 +1,9 @@
 # Hand-testing figma-helpers in real Figma
 
-Six of the eight helpers in `skills/figma-writing/helpers/figma-helpers.js`
-are not unit-tested because mocking the relevant Figma plugin API surface
-would be more work than the value warrants for v1. They are validated by
-running the script below against a real Figma file via the `use_figma` MCP
+The helpers in `skills/figma-writing/helpers/figma-helpers.js` include
+Figma API behavior that still needs real-file hand-testing even when unit tests
+cover the pure-data and compatibility paths. Validate the write-side behavior
+by running the script below against a real Figma file via the `use_figma` MCP
 tool.
 
 ## Prerequisites
@@ -12,6 +12,8 @@ tool.
 - The file contains at least one frame named `__handtest_source` containing:
   - One text node with a bound text style.
   - Optionally, a second text node and a non-text shape.
+  - Ideally, one text node with mixed styled text segments, such as a bold
+    prefix plus regular body copy.
 - The file's auto-layout parent for inserts is named `__handtest_target`.
 
 ## Test script
@@ -59,6 +61,8 @@ return { ok: true, warnings, c1Id: c1.value.id, c2Id: c2.value.id };
 - The text on the clones updated by `setTextPreservingBindings` shows the
   new content, with the original font, text style, and any overrides
   preserved (visible by inspecting the layer's properties panel).
+- Mixed-font text updates may produce a warning from `loadFontsForTextNode`;
+  if they do, inspect the layer visually for styled-range drift.
 - The `applyStyleProfile` round-trip produces no warnings if the source's
   bindings were valid.
 - The screenshot of `__handtest_target` shows two cloned frames stacked
@@ -69,7 +73,7 @@ return { ok: true, warnings, c1Id: c1.value.id, c2Id: c2.value.id };
 If the screenshot shows the wrong outcome, walk through pitfalls.md in
 this order:
 
-1. Fonts (was the font loadable?)
+1. Fonts (was the font loadable, and were mixed-font segments loaded?)
 2. Design-system bindings (did the style snapshot survive the mutation?)
 3. Sibling instances (was the pairing correct?)
 4. Auto-layout (was the insert position right?)

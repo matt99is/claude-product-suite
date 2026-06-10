@@ -171,6 +171,28 @@ test('figma writing skill covers process maps and flow charts', async () => {
   assert.match(playbook, /pink diamond/i);
   assert.match(playbook, /sequential, parallel, repeated, conditional, or independent/i);
 });
+test('figma writing skill covers style-matched node creation and mixed fonts', async () => {
+  const skill = await read('skills/figma-writing/SKILL.md');
+  const pitfalls = await read('skills/figma-writing/references/pitfalls.md');
+  const playbook = await read('skills/figma-writing/playbooks/build-nodes-matching-existing-style.md');
+  const handTest = await read('docs/hand-test-figma-helpers.md');
+
+  assert.match(skill, /style-matched node creation/i);
+  assert.match(skill, /build-nodes-matching-existing-style.md/);
+
+  assert.match(pitfalls, /Mixed-font text requires segment font loading/i);
+  assert.match(pitfalls, /Optional API property access can throw/i);
+  assert.match(pitfalls, /Style-matched node creation/i);
+
+  assert.match(playbook, /style source/i);
+  assert.match(playbook, /read-only probe/i);
+  assert.match(playbook, /clone text-heavy/i);
+  assert.match(playbook, /extracted fills, strokes, radii, typography/i);
+
+  assert.match(handTest, /mixed styled text segments/i);
+  assert.match(handTest, /loadFontsForTextNode/i);
+});
+
 
 test('figma learning command keeps public learning local by default', async () => {
   const command = await read('commands/figma-learn.md');

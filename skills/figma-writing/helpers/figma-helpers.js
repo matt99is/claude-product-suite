@@ -8,10 +8,26 @@
  * `textStyleId` property. Returns the id (string) or `''` if unstyled.
  */
 async function getTextStyleIdCompat(node) {
-  if (typeof node.getTextStyleIdAsync === 'function') {
-    return await node.getTextStyleIdAsync();
+  let asyncReader;
+  try {
+    asyncReader = node.getTextStyleIdAsync;
+  } catch (e) {
+    asyncReader = null;
   }
-  return node.textStyleId || '';
+
+  if (typeof asyncReader === 'function') {
+    try {
+      return await asyncReader.call(node);
+    } catch (e) {
+      // Fall back to sync textStyleId below for older or proxy-backed files.
+    }
+  }
+
+  try {
+    return node.textStyleId || '';
+  } catch (e) {
+    return '';
+  }
 }
 
 /**
@@ -31,6 +47,64 @@ async function loadFontForNode(node) {
   const font = node.fontName;
   await figma.loadFontAsync(font);
   return { font, fallback: false, warnings: [] };
+}
+
+/**
+ * Load every font needed before changing a text node characters. Single-font
+ * nodes delegate to loadFontForNode. Mixed-font nodes load each styled segment
+ * font and return a warning so callers know to visually verify styled ranges.
+ */
+async function loadFontsForTextNode(node) {
+  if (node.type !== "TEXT") {
+    throw new Error(`loadFontsForTextNode: node ${node.id} is ${node.type}, expected TEXT`);
+  }
+  if (!node.fontName) {
+    throw new Error(`loadFontsForTextNode: node ${node.id} has no fontName`);
+  }
+  if (node.fontName !== figma.mixed) {
+    const result = await loadFontForNode(node);
+    return {
+      ok: true,
+      fonts: [result.font],
+      fallback: result.fallback,
+      warnings: result.warnings,
+    };
+  }
+
+  if (typeof node.getStyledTextSegments !== "function") {
+    throw new Error(
+      `loadFontsForTextNode: node ${node.id} has mixed fonts but cannot list styled text segments`
+    );
+  }
+
+  const fonts = [];
+  const seen = new Set();
+  const segments = node.getStyledTextSegments(["fontName"]);
+  for (const segment of segments) {
+    const font = segment.fontName;
+    if (!font || font === figma.mixed) {
+      throw new Error(
+        `loadFontsForTextNode: node ${node.id} has a segment without a concrete fontName`
+      );
+    }
+    const key = `${font.family}\u0000${font.style}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    fonts.push(font);
+  }
+
+  for (const font of fonts) {
+    await figma.loadFontAsync(font);
+  }
+
+  return {
+    ok: true,
+    fonts,
+    fallback: false,
+    warnings: [
+      `loadFontsForTextNode: node ${node.id} has mixed fonts; verify styled ranges after mutation`,
+    ],
+  };
 }
 
 /**
@@ -117,7 +191,7 @@ async function setTextPreservingBindings(node, newText) {
   }
   const warnings = [];
   const profile = await snapshotStyleProfile(node);
-  const fontResult = await loadFontForNode(node);
+  const fontResult = await loadFontsForTextNode(node);
   warnings.push(...fontResult.warnings);
   node.characters = newText;
   const applyResult = await applyStyleProfile(node, profile);

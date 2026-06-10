@@ -9,6 +9,7 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 ### Added
 
 - Added a Figma writing playbook for process maps and flow charts, including style-source inspection, a default stakeholder-map style, diagram-safe primitives, and verification guidance.
+- Hardened Figma text helpers for optional API property access and mixed-font text nodes, and added a general style-matched node creation playbook.
 
 ## [0.4.0] - 2026-06-08
 

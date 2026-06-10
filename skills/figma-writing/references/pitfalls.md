@@ -1,5 +1,4 @@
 # Figma writing pitfalls
-
 A catalogue of write-side traps encountered in real Figma plugin work. The
 `figma-writing` skill points here pre-flight. Add new entries via
 `/figma-learn`.
@@ -47,6 +46,28 @@ construct font objects from intent.
 #### When this matters
 Any text mutation on bound styles where you have not first inspected the
 node's current font.
+
+### Mixed-font text requires segment font loading
+
+#### Symptom
+Setting `node.characters` throws even though the text node appears to use a
+loadable font, or a title-card body with bold headings and regular copy fails
+mid-script.
+
+#### Cause
+The text node `fontName` is `figma.mixed`. Loading only `node.fontName` is
+impossible because there is no single concrete font to load. Each styled text
+segment must have its concrete font loaded first.
+
+#### Correct pattern
+Use `loadFontsForTextNode(node)` or `setTextPreservingBindings(node, text)`.
+The helper loads every unique styled segment font and returns a warning so the
+final screenshot can be checked for styled-range drift. Do not silently collapse
+mixed-font text to one style unless the user explicitly wants that.
+
+#### When this matters
+Title cards, rich descriptions, labels with bold prefixes, and any cloned
+documentation-style text block.
 
 ---
 
@@ -222,6 +243,25 @@ falls back to the sync property.
 #### When this matters
 Any read of style ids across mixed-age files.
 
+### Optional API property access can throw
+
+#### Symptom
+A guard such as `typeof node.getTextStyleIdAsync === function` throws before
+the fallback path can run.
+
+#### Cause
+Some proxy-backed Figma nodes throw when optional properties are accessed, not
+only when missing methods are called.
+
+#### Correct pattern
+Use `getTextStyleIdCompat(node)`. It wraps optional async method access in
+`try` / `catch`, falls back to sync `textStyleId`, and returns an empty string if neither
+reader is available.
+
+#### When this matters
+Any helper or script that checks newer optional API fields before falling back
+to older sync properties.
+
 ### Setting `figma.currentPage` directly is unsupported
 
 #### Symptom
@@ -235,6 +275,31 @@ A page-switch operation does nothing, or throws "currentPage is read-only".
 
 #### When this matters
 Any script that navigates between pages before mutating.
+
+---
+
+## Style-matched node creation
+
+### New nodes ignore the existing file style
+
+#### Symptom
+A newly-created Figma artefact is structurally correct but looks generic,
+off-brand, or disconnected from nearby work.
+
+#### Cause
+The script created nodes from generic defaults instead of inspecting a nearby
+reference frame, sibling group, or existing pattern first.
+
+#### Correct pattern
+Use `build-nodes-matching-existing-style.md`. Run a read-only style probe
+before mutation, clone text-heavy templates when fonts or spacing matter, and
+build simple shapes from extracted fills, strokes, radii, typography, and
+layout values when cloning would carry too much structure.
+
+#### When this matters
+Any net-new card, table, annotation, content block, lightweight wireframe,
+diagram element, or supporting artefact that should belong in the existing
+Figma file.
 
 ---
 

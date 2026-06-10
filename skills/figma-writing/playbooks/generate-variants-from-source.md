@@ -21,6 +21,7 @@ text changes, laid out beside or beneath the source.
   - `cloneAndRebind`
   - `matchTextNodesByIndex`
   - `setTextPreservingBindings`
+  - `loadFontsForTextNode`
 
 ## Steps
 

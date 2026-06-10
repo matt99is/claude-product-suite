@@ -22,6 +22,7 @@ duplicate, while preserving every design-system link in the original.
   - `cloneAndRebind`
   - `matchTextNodesByIndex`
   - `setTextPreservingBindings`
+  - `loadFontsForTextNode`
 
 ## Steps
 
@@ -60,3 +61,7 @@ duplicate, while preserving every design-system link in the original.
 - **Font fallback warning.** The requested font was not loadable in the
   cloud renderer. Stop. Surface the warning to the user. Do not
   silently proceed with Inter.
+- **Mixed-font warning.** The text node has styled segments with more than
+  one font. `setTextPreservingBindings` loads each segment font before
+  mutation, but the final screenshot still needs a visual check for
+  styled-range drift.
