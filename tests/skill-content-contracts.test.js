@@ -151,6 +151,27 @@ test('figma writing skill guards write-capable setup', async () => {
   assert.match(setup, /claude plugin install figma@claude-plugins-official/);
 });
 
+test('figma writing skill covers process maps and flow charts', async () => {
+  const skill = await read('skills/figma-writing/SKILL.md');
+  const pitfalls = await read('skills/figma-writing/references/pitfalls.md');
+  const playbook = await read('skills/figma-writing/playbooks/create-process-map-or-flowchart.md');
+
+  assert.match(skill, /process map/i);
+  assert.match(skill, /flow chart/i);
+  assert.match(skill, /create-process-map-or-flowchart\.md/);
+
+  assert.match(pitfalls, /diagram/i);
+  assert.match(pitfalls, /Connector/i);
+  assert.match(pitfalls, /decision diamond/i);
+
+  assert.match(playbook, /reference frame/i);
+  assert.match(playbook, /existing process map/i);
+  assert.match(playbook, /go-to style/i);
+  assert.match(playbook, /green milestone/i);
+  assert.match(playbook, /pink diamond/i);
+  assert.match(playbook, /sequential, parallel, repeated, conditional, or independent/i);
+});
+
 test('figma learning command keeps public learning local by default', async () => {
   const command = await read('commands/figma-learn.md');
 

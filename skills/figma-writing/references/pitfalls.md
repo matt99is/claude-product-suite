@@ -238,6 +238,67 @@ Any script that navigates between pages before mutating.
 
 ---
 
+## Diagrams and process maps
+
+### Connector nodes are unavailable or blocked
+
+#### Symptom
+A process map script fails when creating Connector, Sticky, or ShapeWithText
+nodes, or the nodes do not appear in the target design file.
+
+#### Cause
+Some FigJam-style or convenience diagram node types are unavailable or blocked
+in design files through the Figma plugin API.
+
+#### Correct pattern
+Draw diagram connectors with design-safe primitives: rectangle or line shafts
+for orthogonal segments, plus vector arrowheads. For branching flows, route a
+horizontal stub to a vertical bus, then draw per-lane arrows from the bus.
+Route loop-backs above or below lanes so they do not collide with node labels.
+
+#### When this matters
+Any process map, flow chart, journey map, service blueprint, or workflow
+diagram created in a Figma design file.
+
+### Decision diamonds cannot contain their labels
+
+#### Symptom
+A decision diamond renders without text, or the label drifts when the map is
+repositioned.
+
+#### Cause
+Polygon nodes are shapes, not text containers. Attempting to treat the diamond
+as a parent for text does not create a reliable labelled decision node.
+
+#### Correct pattern
+Create the diamond as a polygon and place the decision label as a sibling text
+node positioned over it. Group or frame the polygon and label together when
+repositioning matters.
+
+#### When this matters
+Any flow chart or process map with branch decisions.
+
+### Generic diagram style ignores the host file
+
+#### Symptom
+A new process map looks technically correct but visually disconnected from
+the surrounding Figma file.
+
+#### Cause
+The script built from generic flow-chart defaults instead of first inspecting
+an existing process map or reference frame in the file.
+
+#### Correct pattern
+Before creating a diagram, inspect the nearest existing process map or user
+provided reference frame and reuse its visual vocabulary: containers, title
+cards, node styles, decision diamonds, connector routing, legends, spacing,
+and placeholder treatments. If no reference exists, use the process-map
+playbook go-to style as the default starting point.
+
+#### When this matters
+Stakeholder maps, process maps, flow charts, and any artefact that should feel
+like part of an existing Figma working file.
+
 ## Verification
 
 ### The plugin API report claims success but the render is wrong
