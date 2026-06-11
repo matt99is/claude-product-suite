@@ -34,6 +34,14 @@ Skills should be useful independently and composable when the user asks for a co
 - [ ] Add Figma chart, graph, and table generation. These should help users create accurate, editable design artefacts for data-heavy work, including sensible defaults for axes, legends, labels, series styling, table structure, empty states, and design-system-safe visual treatment.
 - [ ] Add a prototyping skill for producing high-fidelity prototypes from Figma designs or other sources. It should gather the information Claude needs before building and steer implementation toward the suite backend and frontend design principles rather than a monolithic React app.
 - [ ] Define prototyping standards for a centralised design library, reusable components, clear project structure, and adequate documentation.
+- [ ] Promote durable `figma-writing` lessons from real builds into bundled helpers, pitfalls, or playbooks (gate on reliability per the experimental-track note above). Candidates surfaced while building a multi-section research board:
+  - [ ] Add element-*creation* helpers such as `createStyledText` and `createCard`. Current helpers only mutate existing nodes, so from-scratch builds re-implement text/card creation in every script. A `createCard` should encode the FIXED-width frame + `FILL` children recipe.
+  - [ ] Document a text-hyperlink technique (`node.hyperlink = {type:'URL', value}` after font load + characters, with underline + link fill).
+  - [ ] Add an inspection pitfall: `get_metadata` on a large page or frame exceeds the token budget; probe instead with a compact read-only `use_figma` projection (`{id,name,x,y,w,h}` for children, `{id,chars}` for text).
+  - [ ] Document a measure-then-place stacking recipe for hug-height cards in absolutely-positioned boards (create card, read rendered `.height`, place the next below).
+  - [ ] Add a "revise an existing artefact" operation type: probe-then-patch-by-id, scoped to the subtree root rather than `currentPage.findAll`, so copy edits don't disturb sibling nodes.
+  - [ ] Clarify the Fonts guidance for create-vs-mutate: the "don't construct fonts from intent" rule is a mutation rule; when creating, verify with `listAvailableFontsAsync` then construct from intent.
+- [ ] **Needs further consideration:** codify a reusable "research summary board" output — a canonical multi-column layout (Define/Verdict · Key Findings + source cards · Recommendation + caveat · What to build DO/DON'T · Sources) that renders the `research` skill's Default output shape onto canvas. Open questions: split ownership between a Figma-agnostic information-architecture reference in `skills/research/` and a render playbook in `skills/figma-writing/` (extending `build-nodes-matching-existing-style`); and whether the visual style should clone a host reference board when present or fall back to default tokens.
 
 ### Testing and iteration
 
