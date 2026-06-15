@@ -6,6 +6,14 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.4.4] - 2026-06-15
+
+### Changed
+
+- Updated Figma setup guidance to attempt available write-capable tools before showing setup instructions, and added surface-specific fallback guidance for Claude Code CLI, Claude Desktop, Claude.ai web or chat, and Claude Cowork.
+- Expanded Figma writing pitfalls for auto-layout primary-axis resizing, wrapping diagnostics, stale geometry, async node lookup, mixed-font sources, cross-file style matching, existing table edits, and concurrent editing.
+- Added a roadmap item to split the growing Figma pitfalls catalogue into focused references when context cost warrants it.
+
 ## [0.4.3] - 2026-06-15
 
 ### Fixed

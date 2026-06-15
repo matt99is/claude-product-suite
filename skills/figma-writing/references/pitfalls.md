@@ -69,6 +69,27 @@ mixed-font text to one style unless the user explicitly wants that.
 Title cards, rich descriptions, labels with bold prefixes, and any cloned
 documentation-style text block.
 
+### Mixed-font source nodes can be poor templates
+
+#### Symptom
+A cloned text-heavy source looks right at first, but retexting it fails or
+collapses styling because the source text uses mixed fonts.
+
+#### Cause
+When `node.fontName === figma.mixed`, the node does not have one concrete font
+that can be loaded and reused safely. Treating it as a simple font source hides
+per-segment styling that may be hard to preserve.
+
+#### Correct pattern
+Check for `figma.mixed` before using a node as a font source. For rich text, use
+`loadFontsForTextNode` and verify styled ranges after mutation. If the desired
+output is plain text, creating fresh text with explicitly loaded fonts can be
+more reliable than cloning and retexting a mixed-font source.
+
+#### When this matters
+Existing documentation cards, rich table cells, and source nodes with bold
+prefixes, links, or mixed emphasis.
+
 ---
 
 ## Design-system bindings
@@ -176,6 +197,27 @@ fixed-height and the content overflows, surface that to the user.
 #### When this matters
 Any text mutation inside an auto-layout container.
 
+### Resizing the primary axis disables hug behavior
+
+#### Symptom
+An auto-layout frame that was supposed to hug its children collapses or stays at
+a tiny fixed size after new children are inserted.
+
+#### Cause
+Calling `resize()` on the primary axis after setting
+`primaryAxisSizingMode = "AUTO"` can silently flip the primary axis back to
+fixed sizing. For example, setting a vertical frame to AUTO and then calling
+`resize(width, 10)` can leave the height fixed at 10.
+
+#### Correct pattern
+Set the counter-axis size first with `resize()` or
+`layoutSizingHorizontal = "FILL"`, append or insert all children, then set
+`primaryAxisSizingMode = "AUTO"` last. Never resize the primary dimension after setting it to AUTO.
+
+#### When this matters
+Any generated card stack, list, table-like layout, or section that relies on
+auto-layout hug sizing after children are added.
+
 ---
 
 ## Text wrapping
@@ -198,6 +240,25 @@ reason out loud and document it on the script.
 
 #### When this matters
 Any text mutation inside a design-system button or chip component.
+
+### Text appears not to wrap because the container is too wide
+
+#### Symptom
+Body copy sits on one long line even though text wrapping appears enabled.
+
+#### Cause
+The parent card or text container is much wider than expected, so the text has
+no reason to wrap. This can look like a `textAutoResize` problem when the real
+issue is a too-wide container.
+
+#### Correct pattern
+Before touching `textAutoResize`, inspect the container width and take a
+screenshot. Fix the parent/card width first. Only change `textAutoResize` after
+you can explain why width constraints are not the cause.
+
+#### When this matters
+Generated cards, research summary boards, table-like layouts, and any long body
+copy inserted into newly-created frames.
 
 ---
 
@@ -276,6 +337,24 @@ A page-switch operation does nothing, or throws "currentPage is read-only".
 #### When this matters
 Any script that navigates between pages before mutating.
 
+### Prefer async node lookup in dynamic files
+
+#### Symptom
+`figma.getNodeById(id)` returns `null`, but the node exists and can be found
+with an async lookup.
+
+#### Cause
+Some newer or dynamic files resolve nodes through async APIs more reliably than
+the older synchronous getter.
+
+#### Correct pattern
+Use `await figma.getNodeByIdAsync(id)` by default when resolving known node IDs.
+Fall back to sync lookup only when the async getter is unavailable.
+
+#### When this matters
+Any script that targets nodes by ID from a supplied Figma URL, selection URL, or
+prior probe.
+
 ---
 
 ## Style-matched node creation
@@ -300,6 +379,53 @@ layout values when cloning would carry too much structure.
 Any net-new card, table, annotation, content block, lightweight wireframe,
 diagram element, or supporting artefact that should belong in the existing
 Figma file.
+
+### Cross-file clone is not a style transfer strategy
+
+#### Symptom
+A script tries to clone a node from another Figma file to reuse its style, but
+the clone operation fails or the source node is unavailable.
+
+#### Cause
+Native `clone()` works on nodes in the current file context. A node from another
+file is not a direct clone source for the active canvas.
+
+#### Correct pattern
+Prefer an in-file clone source. For cross-file style matching, probe the source
+file's tokens, styles, geometry, and typography, then rebuild the target in the
+destination file from those values.
+
+#### When this matters
+Any request to match a style from a different Figma file, library sample, or
+external reference frame.
+
+
+## Native or plugin-created tables
+
+### Existing table nodes need inspection before editing
+
+#### Symptom
+Editing an existing table changes the wrong row, loses per-column styling, or
+new rows look different from the existing data rows.
+
+#### Cause
+Tables may be native or plugin-created structures with row/cell APIs and
+default styles for newly inserted cells. Row indices shift as rows are inserted,
+and user edits can move the intended target away from a fixed row number.
+
+#### Correct pattern
+Do not promise native table creation from scratch. When editing an existing
+plugin-created table or native table-like node, inspect its API and structure
+first. If row/cell APIs are available, use patterns such as `table.insertRow(i)`,
+`table.cellAt(row, col)`, `cell.text.characters`, and `cell.fills`; load
+`cell.text.fontName` before setting text. Capture an existing data row's
+per-column style and re-apply it to new or edited cells. Insert multiple rows
+bottom-up or track shifted indices. Identify target rows by a content marker
+rather than a remembered fixed index.
+
+#### When this matters
+Tables created by Figma features or third-party plugins that Claude is asked to
+edit, extend, or restyle in place.
 
 ---
 
@@ -364,6 +490,32 @@ playbook go-to style as the default starting point.
 Stakeholder maps, process maps, flow charts, and any artefact that should feel
 like part of an existing Figma working file.
 
+## Concurrent editing
+
+### Re-read geometry before destructive resize or move
+
+#### Symptom
+Claude resizes or moves a frame and accidentally clobbers a user's manual edit
+made during the same session.
+
+#### Cause
+Figma files are collaborative. Geometry read earlier in the script or a prior
+turn may be stale by the time a destructive resize or move runs. In
+`layoutMode: "NONE"` frames, children can visually overflow without causing the
+frame to auto-grow, so remembered dimensions are especially risky.
+
+#### Correct pattern
+Re-read current geometry immediately before any destructive resize or move.
+Prefer fitting the frame to measured child/content bounds over restoring a
+remembered width or height. If the user is actively editing the same area, tell
+them before applying broad layout changes.
+
+#### When this matters
+Any shared live editing session, especially when changing parent frame bounds,
+resizing non-auto-layout frames, or fitting generated content.
+
+---
+
 ## Verification
 
 ### The plugin API report claims success but the render is wrong
@@ -385,3 +537,40 @@ diverged, screenshot intermediate states to localise the failure.
 #### When this matters
 Every visual mutation. Especially after text changes inside auto-layout
 parents.
+
+### Returned geometry can be stale
+
+#### Symptom
+The `use_figma` return object reports stale geometry such as a height, width,
+or bounding box that does not match the canvas after reflow.
+
+#### Cause
+The script response can reflect an intermediate state or pre-reflow geometry.
+The render and a fresh probe are more reliable than the original return value.
+
+#### Correct pattern
+Never trust dimensions in the script return object as confirmation. Use a
+screenshot or a fresh readback call after the final property set before
+debugging layout.
+
+#### When this matters
+Any generated layout whose size depends on auto-layout, text wrapping, table
+rows, or children inserted during the same script.
+
+### Screenshot bounds can be transiently wrong
+
+#### Symptom
+`get_screenshot` returns a 1x1 image, a pre-reflow width, or otherwise
+degenerate bounds even though the canvas looks plausible.
+
+#### Cause
+The screenshot tool may capture before layout bounds settle or may receive
+stale bounds metadata.
+
+#### Correct pattern
+If screenshot dimensions look wrong, re-request once before debugging the
+layout. If the second screenshot is still wrong, then inspect frame bounds and
+child absolute bounding boxes.
+
+#### When this matters
+Any verification step where the screenshot dimensions themselves look suspect.

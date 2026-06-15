@@ -149,6 +149,14 @@ test('figma writing skill guards write-capable setup', async () => {
   assert.match(setup, /\/plugin/);
   assert.match(setup, /\/mcp/);
   assert.match(setup, /claude plugin install figma@claude-plugins-official/);
+  assert.match(setup, /Do not start with a setup wizard/i);
+  assert.match(setup, /write-capable tools.*attempt/is);
+  assert.match(setup, /If the write attempt fails.*troubleshoot/is);
+  assert.match(setup, /Claude Code CLI/i);
+  assert.match(setup, /Claude Desktop/i);
+  assert.match(setup, /Claude\.ai web/i);
+  assert.match(setup, /Claude Cowork/i);
+  assert.match(setup, /Cowork.*Claude Code/is);
 });
 
 test('figma writing skill covers process maps and flow charts', async () => {
@@ -183,6 +191,18 @@ test('figma writing skill covers style-matched node creation and mixed fonts', a
   assert.match(pitfalls, /Mixed-font text requires segment font loading/i);
   assert.match(pitfalls, /Optional API property access can throw/i);
   assert.match(pitfalls, /Style-matched node creation/i);
+
+  assert.match(pitfalls, /primaryAxisSizingMode/i);
+  assert.match(pitfalls, /Never resize the primary dimension after setting it to AUTO/i);
+  assert.match(pitfalls, /too-wide container/i);
+  assert.match(pitfalls, /stale geometry/i);
+  assert.match(pitfalls, /get_screenshot.*re-request/is);
+  assert.match(pitfalls, /getNodeByIdAsync/i);
+  assert.match(pitfalls, /cross-file clone/i);
+  assert.match(pitfalls, /Concurrent editing/i);
+  assert.match(pitfalls, /re-read current geometry/i);
+  assert.match(pitfalls, /plugin-created tables/i);
+  assert.match(pitfalls, /Do not promise native table creation/i);
 
   assert.match(playbook, /style source/i);
   assert.match(playbook, /read-only probe/i);

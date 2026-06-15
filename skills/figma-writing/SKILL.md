@@ -7,11 +7,11 @@ description: Use when modifying, cloning, or generating Figma nodes via the MCP,
 
 This skill governs every write-side operation against Figma through write-capable Figma MCP tools such as `use_figma`. The Figma cloud renderer is the execution environment. The render is the truth, the API response is the intention.
 
-Figma setup is part of the safety guard. A user may have read-only Figma context available without having write-to-canvas capability. Before attempting mutation, confirm the remote Figma MCP setup described in `references/setup-and-permissions.md`, including the Claude Code setup command `claude plugin install figma@claude-plugins-official`, browser authorization, and edit access to the target file.
+Figma setup is part of the safety guard, but do not start with setup guidance when the current session already exposes write-capable Figma tools. If `use_figma` or an equivalent write tool is available and the user supplied a target file or selection URL, attempt the requested edit and verify it. If write tools are missing or the write attempt fails, read `references/setup-and-permissions.md` for surface-specific troubleshooting, including Claude Code CLI, Claude Desktop, Claude.ai web, Claude chat, and Claude Cowork. Only show the Claude Code CLI command `claude plugin install figma@claude-plugins-official` after troubleshooting confirms the user is in Claude Code CLI.
 
 ## Non-negotiables
 
-1. Never attempt mutation unless the remote Figma MCP server is connected, browser authorization has completed, and the authenticated user has edit access to the target file. If unsure, read `references/setup-and-permissions.md` and provide setup guidance before writing.
+1. Never attempt mutation unless a write-capable Figma tool is available in the current session, the user supplied a target file or selection URL, and the authenticated user has edit access to the target file. If tools are missing or a write fails, read `references/setup-and-permissions.md` and troubleshoot the user surface before giving setup advice.
 2. Never set `node.characters` without first calling `loadFontForNode(node)`. Setting characters with an unloaded font throws.
 3. Never mutate a styled property (fontName, fontSize, fills, textStyleId source) without re-applying the snapshot. Mutating a bound property breaks the binding silently.
 4. Never use ancestor pathKeys to match text nodes across sibling instances. Use `matchTextNodesByIndex(sourceParent, targetParent)`.
@@ -23,10 +23,10 @@ Figma setup is part of the safety guard. A user may have read-only Figma context
 Before writing any `use_figma` script:
 
 1. Identify whether the user is asking for Figma mutation, read-only inspection, or critique. Route critique to `design-critique` instead.
-2. Confirm a remote, write-capable Figma MCP setup is available. If the server, tools, authentication, or file edit access are unclear, read `skills/figma-writing/references/setup-and-permissions.md` and stop to provide setup or troubleshooting guidance.
+2. Check whether write-capable Figma tools are available. If they are, attempt the requested edit; if they are missing or the write fails, read `skills/figma-writing/references/setup-and-permissions.md` and give surface-specific setup or troubleshooting guidance.
 3. Identify the operation type: clone, text update, variant generation, style-matched node creation, process map or flow chart, arc, or other.
 4. If a playbook in `skills/figma-writing/playbooks/` matches, read it end to end. For process maps, flow charts, journey maps, service blueprints, workflow diagrams, or stakeholder-level process views, use `playbooks/create-process-map-or-flowchart.md`. For net-new nodes or artefacts that should match an existing Figma file style, use `playbooks/build-nodes-matching-existing-style.md`.
-5. Read the sections of `skills/figma-writing/references/pitfalls.md` named in the playbook (or the relevant categories if no playbook fits).
+5. Read the sections of `skills/figma-writing/references/pitfalls.md` named in the playbook (or the relevant categories if no playbook fits). For auto-layout sizing, existing table edits, cross-file style matching, or concurrent editing, read those pitfall sections before scripting.
 6. For text operations, confirm the font is loadable. If unsure, call `figma.listAvailableFontsAsync()` from a probe script first.
 
 ## Script-writing pattern
