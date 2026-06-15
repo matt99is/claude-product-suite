@@ -142,7 +142,7 @@ test('figma writing skill guards write-capable setup', async () => {
   assert.match(skill, /edit access/i);
 
   assert.match(setup, /remote Figma MCP server/i);
-  assert.match(setup, /desktop Figma MCP server/i);
+  assert.match(setup, /desktop MCP.*not.*write/i);
   assert.match(setup, /figma-use/i);
   assert.match(setup, /Skills do not add MCP capabilities/i);
   assert.match(setup, /read-only/i);

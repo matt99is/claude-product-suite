@@ -6,6 +6,12 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-06-15
+
+### Fixed
+
+- Corrected Figma setup guidance to use only the official remote Figma MCP plugin and browser authorization for write-to-canvas access, with desktop MCP, personal access tokens, and tunnels treated as non-write setup paths for this skill.
+
 ### Added
 
 - Added a Figma writing playbook for process maps and flow charts, including style-source inspection, a default stakeholder-map style, diagram-safe primitives, and verification guidance.
