@@ -6,6 +6,19 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-06-16
+
+### Added
+
+- Added a design-system-safe Figma writing playbook for creating frames, components, tables, charts, graphs, dashboards, and production-looking UI from existing components, variables, styles, modes, Code Connect mappings, and auto-layout conventions.
+- Added guidance for editable table-like structures, truthful chart and graph primitives, chart kit reuse, and avoiding colour-only series distinctions.
+
+### Changed
+
+- Updated Figma writing routing, capability map, README, roadmap, and pitfalls so design-system-safe Figma creation and table/chart/graph guidance are treated as implemented playbook-level guidance rather than future capability.
+- Expanded Figma pitfalls for library enablement, design-system component reuse, variable-bound paints, fill-versus-hug auto-layout sizing, and decorative chart risks.
+
+
 ## [0.4.4] - 2026-06-15
 
 ### Changed
