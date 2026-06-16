@@ -24,6 +24,8 @@ workflow or one output is genuinely needed by another.
 | Thinking and strategy | Brainstorming | Implemented | `skills/brainstorming/SKILL.md` |
 | Thinking and strategy | Product brief processing | Future | General assistance unless evidence gathering or source-led synthesis is requested |
 | Thinking and strategy | Prioritisation and decision framing | Future | General assistance until a dedicated skill exists |
+| Delivery shaping and refinement | BA/product delivery shaping | Future | General assistance until a dedicated skill exists; planned inputs include workshop notes, stakeholder asks, process maps, and rough requirements |
+| Delivery shaping and refinement | ADO-ready epics, features, requirements, and INVEST review | Future | General assistance until a dedicated skill exists; do not claim bundled ADO-specific playbooks yet |
 | Testing and iteration | UserTesting.com workflows | Implemented | `skills/usertesting/SKILL.md` |
 | Testing and iteration | Experiment planning | Future | General assistance until a dedicated skill exists |
 | Communication | Slide decks | Future | General assistance until a dedicated skill exists |

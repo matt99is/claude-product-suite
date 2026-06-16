@@ -6,6 +6,13 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.5.3] - 2026-06-16
+
+### Added
+
+- Added roadmap and capability-map entries for a future BA/product-delivery shaping skill covering workshop notes, stakeholder asks, process maps, ADO-ready epics/features/requirements, INVEST reviews, alternate user stories, and gap/ambiguity checks before refinement.
+
+
 ## [0.5.2] - 2026-06-16
 
 ### Fixed

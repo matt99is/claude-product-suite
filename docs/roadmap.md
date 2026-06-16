@@ -46,6 +46,12 @@ Skills should be useful independently and composable when the user asks for a co
   - [ ] Split `references/pitfalls.md` into focused files when it grows beyond a useful single-pass reference, likely `pitfalls/auto-layout.md`, `pitfalls/text-and-fonts.md`, `pitfalls/api-quirks.md`, `pitfalls/verification.md`, `pitfalls/style-matching.md`, and `pitfalls/tables.md`.
 - [ ] **Needs further consideration:** codify a reusable "research summary board" output — a canonical multi-column layout (Define/Verdict · Key Findings + source cards · Recommendation + caveat · What to build DO/DON'T · Sources) that renders the `research` skill's Default output shape onto canvas. Open questions: split ownership between a Figma-agnostic information-architecture reference in `skills/research/` and a render playbook in `skills/figma-writing/` (extending `build-nodes-matching-existing-style`); and whether the visual style should clone a host reference board when present or fall back to default tokens.
 
+### Delivery shaping and refinement
+
+- [ ] Add a BA/product-delivery shaping skill for turning workshop notes, stakeholder asks, process maps, and rough requirements into delivery-ready artefacts. Initial colleague feedback points to process map -> epics -> features -> requirements for ADO, INVEST reviews, alternate user stories for the same requirement, and gap/ambiguity checks before refinement.
+- [ ] Define ADO-oriented output patterns for epics, features, PBIs or user stories, acceptance criteria, assumptions, open questions, dependencies, and traceability from need to delivery item.
+- [ ] Capture anonymised BA/PO examples before implementation so the skill can learn what "good enough for ADO/refinement" means without over-prescribing one delivery process.
+
 ### Testing and iteration
 
 - [x] Provide UserTesting.com workflow support through `skills/usertesting/`, including audience and screener definition, concise low-bias test scripts, export guidance, and compact qualitative synthesis.

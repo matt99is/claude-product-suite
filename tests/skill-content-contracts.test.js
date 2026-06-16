@@ -53,6 +53,8 @@ test('router references include capability map and pitfalls', async () => {
   assert.match(capabilityMap, /Testing and iteration/i);
   assert.match(capabilityMap, /Communication/i);
   assert.match(capabilityMap, /Wireframing/i);
+  assert.match(capabilityMap, /Delivery shaping and refinement/i);
+  assert.match(capabilityMap, /ADO-ready epics, features, requirements, and INVEST review/i);
   assert.match(capabilityMap, /Future/i);
 
   assert.match(pitfalls, /Over-routing/i);
@@ -317,6 +319,9 @@ test("roadmap captures planned suite capabilities", async () => {
   assert.match(roadmap, /prototyping/i);
   assert.match(roadmap, /centralised design library/i);
   assert.match(roadmap, /reusable components/i);
+  assert.match(roadmap, /BA\/product-delivery shaping/i);
+  assert.match(roadmap, /process map -> epics -> features -> requirements for ADO/i);
+  assert.match(roadmap, /INVEST reviews/i);
 });
 
 test("README frames the suite as a modular toolbox", async () => {
