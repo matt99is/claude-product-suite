@@ -399,6 +399,20 @@ Prefer existing component instances, component sets, Code Connect mappings, and 
 #### When this matters
 Any production-looking UI, component exploration, or design-system-backed artefact.
 
+### Resolved design-system values copied without bindings
+
+#### Symptom
+A generated frame, rectangle, table cell, chart primitive, or text node looks correct and uses the right colour or font, but inspecting it shows no linked text style, paint style, stroke style, or variable binding.
+
+#### Cause
+Claude matched the design system by resolved values instead of applying the source style or variable. The rendered result is visually close, but it will not follow future design-system updates or theme/mode changes.
+
+#### Correct pattern
+For every newly-created non-component node, prefer a real binding over a copied value. Apply text styles or typography variables for text, paint styles or `figma.variables.setBoundVariableForPaint` for fills and strokes, and `setBoundVariable` for supported numeric fields such as spacing, radius, sizing, opacity, and effects. After creation, read back `textStyleId`, `fillStyleId`, `strokeStyleId`, and `boundVariables`; report any node that only has copied resolved values as drift.
+
+#### When this matters
+Any generated non-component frame, text node, table, chart, graph, card, section, or email mockup that is expected to stay linked to the design system.
+
 ### Variable-bound paints are replaced by literal colours
 
 #### Symptom

@@ -57,6 +57,15 @@ Do not start from generic colours or fonts when a design-system source exists.
 4. For typography, prefer the file's text styles or typography variables. Verify font availability with `figma.listAvailableFontsAsync()` before creating or mutating text.
 5. If token names are ambiguous, choose the most specific semantic token available, such as action, surface, border, danger, success, warning, or text-secondary, instead of the closest raw colour.
 
+## Non-component binding pattern
+Newly-created non-component nodes must be linked back to the design system when matching tokens exist. This applies to frames, rectangles, text nodes, table cells, chart primitives, and other nodes that are not component instances.
+
+1. For text, apply the closest text style or typography variables after loading the required font. Do not stop at setting `fontName`, `fontSize`, or literal fills.
+2. For fills and strokes, prefer paint styles or paint variables over copied RGB values. For variable paints, mutate a copied paint object and use `figma.variables.setBoundVariableForPaint` before assigning the fill or stroke array.
+3. For spacing, radius, sizing, opacity, effects, and component properties, bind matching variables with `setBoundVariable` where the node supports that field.
+4. If only a resolved value can be found, create the node with that value but report it as drift rather than claiming the node uses the design system.
+5. After building, read back non-component nodes and report whether `textStyleId, fillStyleId, strokeStyleId, or boundVariables` are present. A screenshot proves visual match only; it does not prove design-system linkage.
+
 ## Auto-layout sizing recipes
 Use HUG, FILL, and FIXED intentionally.
 
@@ -92,13 +101,13 @@ Charts must start from data and the design system, not decoration.
 ## Verification
 1. Screenshot the final parent frame or component set, not only the changed node.
 2. Compare the output against the source components, variables, styles, modes, and reference frame.
-3. Read back selected nodes for component IDs, style IDs, bound variables, layout sizing, and dimensions when the screenshot cannot prove bindings survived.
+3. Read back selected nodes for component IDs, style IDs, bound variables, layout sizing, and dimensions when the screenshot cannot prove bindings survived. For non-component nodes, explicitly verify `textStyleId, fillStyleId, strokeStyleId, or boundVariables` rather than trusting matched resolved values.
 4. Check long labels, table overflow, chart labels, legends, empty states, and mobile or narrow-frame resizing when applicable.
 5. Surface any drift: missing libraries, unavailable fonts, ambiguous tokens, unbound literal values, detached instances, or layout sizing compromises.
 
 ## Common failures
 
-- **Looks right but is not system-backed.** The output used copied colours and fonts instead of imported components, styles, or variables. Rebuild using actual components and bind variables where possible.
+- **Looks right but is not system-backed.** The output used copied colours and fonts instead of imported components, styles, or variables. Rebuild using actual components and bind variables where possible. For non-component nodes, verify `textStyleId`, `fillStyleId`, `strokeStyleId`, or `boundVariables` before saying the build is design-system-safe.
 - **Wrong theme or mode.** Tokens were chosen from resolved colour values without checking the active variable mode. Re-probe variables and mode context.
 - **Rigid layout breaks when content changes.** The frame used fixed widths or heights where HUG or FILL was expected. Rebuild the hierarchy with explicit auto-layout sizing recipes.
 - **Table edits lose column styling.** New rows copied only row-level styling. Capture and reapply each column's cell treatment.

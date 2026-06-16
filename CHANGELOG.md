@@ -6,6 +6,14 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-06-16
+
+### Fixed
+
+- Tightened the design-system-safe Figma playbook after real validation showed Claude could copy correct design-system fonts and colours onto non-component nodes without linking them back to text styles, paint styles, or variables.
+- Added a Figma pitfall for resolved design-system values copied without bindings, with verification guidance to read back `textStyleId`, `fillStyleId`, `strokeStyleId`, and `boundVariables`.
+
+
 ## [0.5.0] - 2026-06-16
 
 ### Added
