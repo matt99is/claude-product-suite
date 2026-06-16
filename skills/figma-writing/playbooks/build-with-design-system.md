@@ -28,6 +28,15 @@ For process maps, flow charts, journey maps, service blueprints, workflow diagra
   - `matchTextNodesByIndex`
   - `setTextPreservingBindings`
 
+## Target page and placement rule
+When the supplied Figma URL contains a node ID, treat that node as the placement anchor unless the user says otherwise.
+
+1. Extract the node ID from the URL and resolve it with `await figma.getNodeByIdAsync(nodeId)`.
+2. Walk up the parent chain to find the containing `PAGE` node, then call `await figma.setCurrentPageAsync(page)`.
+3. Place new work on that resolved page, preferably near the target node or inside the target parent if the request implies insertion.
+4. Do not append new work to `figma.currentPage` when a target node or page URL exists. The MCP current page can point at a cover or hidden page that is not the page the user has open.
+5. After mutation, verify the new frame parent page name and ID in the return payload or a readback probe. Wrong-page placement is a failure even if the mockup itself renders correctly.
+
 ## Design-system discovery rule
 Do not start from generic colours or fonts when a design-system source exists.
 
@@ -58,7 +67,7 @@ Do not start from generic colours or fonts when a design-system source exists.
 5. If token names are ambiguous, choose the most specific semantic token available, such as action, surface, border, danger, success, warning, or text-secondary, instead of the closest raw colour.
 
 ## Non-component binding pattern
-Newly-created non-component nodes must be linked back to the design system when matching tokens exist. This applies to frames, rectangles, text nodes, table cells, chart primitives, and other nodes that are not component instances.
+Newly-created non-component nodes must be linked back to the design system when matching tokens exist. Matching the correct fonts and colours is not design-system compliance. This applies to frames, rectangles, text nodes, table cells, chart primitives, and other nodes that are not component instances.
 
 1. For text, apply the closest text style or typography variables after loading the required font. Do not stop at setting `fontName`, `fontSize`, or literal fills.
 2. For fills and strokes, prefer paint styles or paint variables over copied RGB values. For variable paints, mutate a copied paint object and use `figma.variables.setBoundVariableForPaint` before assigning the fill or stroke array.
@@ -99,7 +108,7 @@ Charts must start from data and the design system, not decoration.
 7. If data is incomplete, create a clearly labelled placeholder state rather than inventing values.
 
 ## Verification
-1. Screenshot the final parent frame or component set, not only the changed node.
+1. Screenshot the final parent frame or component set, not only the changed node, and confirm it is on the resolved target page when the user supplied a node or page URL.
 2. Compare the output against the source components, variables, styles, modes, and reference frame.
 3. Read back selected nodes for component IDs, style IDs, bound variables, layout sizing, and dimensions when the screenshot cannot prove bindings survived. For non-component nodes, explicitly verify `textStyleId, fillStyleId, strokeStyleId, or boundVariables` rather than trusting matched resolved values.
 4. Check long labels, table overflow, chart labels, legends, empty states, and mobile or narrow-frame resizing when applicable.
@@ -107,7 +116,8 @@ Charts must start from data and the design system, not decoration.
 
 ## Common failures
 
-- **Looks right but is not system-backed.** The output used copied colours and fonts instead of imported components, styles, or variables. Rebuild using actual components and bind variables where possible. For non-component nodes, verify `textStyleId`, `fillStyleId`, `strokeStyleId`, or `boundVariables` before saying the build is design-system-safe.
+- **Looks right but is not system-backed.** The output used copied colours and fonts instead of imported components, styles, or variables. Matching the correct fonts and colours is not design-system compliance. Rebuild using actual components and bind variables where possible. For non-component nodes, verify `textStyleId`, `fillStyleId`, `strokeStyleId`, or `boundVariables` before saying the build is design-system-safe.
+- **Wrong page.** The output was created on `figma.currentPage` instead of the page implied by the supplied target node or page URL. Move it to the resolved target page, then update the skill memory or user-facing note if needed.
 - **Wrong theme or mode.** Tokens were chosen from resolved colour values without checking the active variable mode. Re-probe variables and mode context.
 - **Rigid layout breaks when content changes.** The frame used fixed widths or heights where HUG or FILL was expected. Rebuild the hierarchy with explicit auto-layout sizing recipes.
 - **Table edits lose column styling.** New rows copied only row-level styling. Capture and reapply each column's cell treatment.

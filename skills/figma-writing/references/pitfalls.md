@@ -369,6 +369,22 @@ prior probe.
 
 ---
 
+## Targeting and placement
+
+### New frame created on the wrong page
+
+#### Symptom
+The script reports that a frame was created successfully, but the user cannot see it on the page linked in their Figma URL. A later probe finds the frame on a cover, hidden, or previously-current page.
+
+#### Cause
+The script appended new work to `figma.currentPage`. In MCP sessions, `figma.currentPage` can differ from the page implied by the URL or the page the user has open.
+
+#### Correct pattern
+When the user supplies a target node or page URL, extract the node ID, resolve it with `await figma.getNodeByIdAsync(nodeId)`, walk to the containing page, call `await figma.setCurrentPageAsync(page)`, and parent or place new work on that resolved page. Do not append new work to `figma.currentPage` unless no target node or page was supplied. Verify the new frame parent page after mutation.
+
+#### When this matters
+Any generated frame, component, table, chart, diagram, or mockup created from a Figma URL with `node-id`.
+
 ## Design-system discovery
 
 ### Library assets are not enabled in the file

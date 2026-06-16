@@ -223,6 +223,9 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   assert.match(skill, /design-system-safe/i);
   assert.match(skill, /build-with-design-system\.md/);
   assert.match(skill, /tables, charts, graphs/i);
+  assert.match(skill, /target node or page URL/i);
+  assert.match(skill, /Do not append new work to `figma.currentPage`/i);
+  assert.match(skill, /matching fonts and colours is not design-system compliance/i);
 
   assert.match(playbook, /components, variables, styles, and modes/i);
   assert.match(playbook, /Code Connect/i);
@@ -230,6 +233,9 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   assert.match(playbook, /bind variables/i);
   assert.match(playbook, /non-component nodes/i);
   assert.match(playbook, /textStyleId, fillStyleId, strokeStyleId, or boundVariables/i);
+  assert.match(playbook, /supplied Figma URL contains a node ID/i);
+  assert.match(playbook, /Do not append new work to `figma.currentPage`/i);
+  assert.match(playbook, /Matching the correct fonts and colours is not design-system compliance/i);
   assert.match(playbook, /HUG, FILL, and FIXED/i);
   assert.match(playbook, /TableNode/i);
   assert.match(playbook, /chart kit/i);
@@ -240,6 +246,7 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   assert.match(pitfalls, /Library assets are not enabled/i);
   assert.match(pitfalls, /Variable-bound paints/i);
   assert.match(pitfalls, /Resolved design-system values copied without bindings/i);
+  assert.match(pitfalls, /New frame created on the wrong page/i);
   assert.match(pitfalls, /FILL children can prevent hug sizing/i);
   assert.match(pitfalls, /Charts built from decoration/i);
 

@@ -6,6 +6,14 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-06-16
+
+### Fixed
+
+- Promoted Figma URL placement into a non-negotiable rule: when a target node or page URL is supplied, resolve that node and create work on its containing page instead of relying on `figma.currentPage`.
+- Strengthened design-system-safe Figma guidance so matching fonts and colours is not accepted as compliance unless non-component nodes are linked through styles or variables, with wrong-page and unbound-value failures covered by content-contract tests.
+
+
 ## [0.5.1] - 2026-06-16
 
 ### Fixed
