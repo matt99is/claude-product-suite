@@ -24,9 +24,9 @@ Before writing any `use_figma` script:
 
 1. Identify whether the user is asking for Figma mutation, read-only inspection, or critique. Route critique to `design-critique` instead.
 2. Check whether write-capable Figma tools are available. If they are, attempt the requested edit; if they are missing or the write fails, read `skills/figma-writing/references/setup-and-permissions.md` and give surface-specific setup or troubleshooting guidance.
-3. Identify the operation type: clone, text update, variant generation, style-matched node creation, process map or flow chart, arc, or other.
-4. If a playbook in `skills/figma-writing/playbooks/` matches, read it end to end. For process maps, flow charts, journey maps, service blueprints, workflow diagrams, or stakeholder-level process views, use `playbooks/create-process-map-or-flowchart.md`. For net-new nodes or artefacts that should match an existing Figma file style, use `playbooks/build-nodes-matching-existing-style.md`.
-5. Read the sections of `skills/figma-writing/references/pitfalls.md` named in the playbook (or the relevant categories if no playbook fits). For auto-layout sizing, existing table edits, cross-file style matching, or concurrent editing, read those pitfall sections before scripting.
+3. Identify the operation type: clone, text update, variant generation, design-system-safe frame or component creation, table, chart, graph, style-matched node creation, process map or flow chart, arc, or other.
+4. If a playbook in `skills/figma-writing/playbooks/` matches, read it end to end. For design-system-safe frames, components, tables, charts, graphs, dashboards, or production-looking UI, use `playbooks/build-with-design-system.md`. For process maps, flow charts, journey maps, service blueprints, workflow diagrams, or stakeholder-level process views, use `playbooks/create-process-map-or-flowchart.md`. For net-new nodes or artefacts that should match an existing Figma file style but do not need strict design-system reuse, use `playbooks/build-nodes-matching-existing-style.md`.
+5. Read the sections of `skills/figma-writing/references/pitfalls.md` named in the playbook (or the relevant categories if no playbook fits). For design-system discovery, auto-layout sizing, existing table edits, charts, cross-file style matching, or concurrent editing, read those pitfall sections before scripting.
 6. For text operations, confirm the font is loadable. If unsure, call `figma.listAvailableFontsAsync()` from a probe script first.
 
 ## Script-writing pattern

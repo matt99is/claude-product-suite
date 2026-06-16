@@ -29,10 +29,11 @@ Skills should be useful independently and composable when the user asks for a co
 ### Making artefacts
 
 - [x] Provide safe Figma write-side operations through `skills/figma-writing/` v1.
+- [x] Add a design-system-safe Figma playbook for frames, components, tables, charts, graphs, dashboards, variables, modes, Code Connect, and auto-layout sizing.
 - [ ] Continue Figma writing as an experimental deep track. Durable lessons should be captured through `/figma-learn` and promoted into bundled helpers, pitfalls, or playbooks only when they are reliable.
 - [ ] Add a progressive-disclosure maintenance pass for `figma-writing`: split the growing pitfalls catalogue into category-specific references once it starts costing context, keeping `SKILL.md` as the lean router and turning `pitfalls.md` into an index.
 - [ ] Expand the Figma skill with wireframing support. Wireframing should live inside the Figma capability area because the likely output surface is Figma, not a separate standalone workflow.
-- [ ] Add Figma chart, graph, and table generation. These should help users create accurate, editable design artefacts for data-heavy work, including sensible defaults for axes, legends, labels, series styling, table structure, empty states, and design-system-safe visual treatment.
+- [x] Add Figma chart, graph, and table generation guidance through the design-system-safe Figma playbook. Current coverage is playbook-level: use real components, variables, modes, auto-layout sizing, editable table-like structures, and truthful chart primitives; helper automation remains a future improvement.
 - [ ] Add a prototyping skill for producing high-fidelity prototypes from Figma designs or other sources. It should gather the information Claude needs before building and steer implementation toward the suite backend and frontend design principles rather than a monolithic React app.
 - [ ] Define prototyping standards for a centralised design library, reusable components, clear project structure, and adequate documentation.
 - [ ] Promote durable `figma-writing` lessons from real builds into bundled helpers, pitfalls, or playbooks (gate on reliability per the experimental-track note above). Candidates surfaced while building a multi-section research board:

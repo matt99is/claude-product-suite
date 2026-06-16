@@ -218,7 +218,19 @@ Set the counter-axis size first with `resize()` or
 Any generated card stack, list, table-like layout, or section that relies on
 auto-layout hug sizing after children are added.
 
----
+### FILL children can prevent hug sizing
+
+#### Symptom
+A frame that should hug its contents becomes fixed, expands unexpectedly, or refuses to shrink after children are inserted.
+
+#### Cause
+Auto-layout sizing depends on both parent and child settings. A child set to `FILL` on an axis can make the parent need an explicit size on that axis; a parent cannot always infer a hug size from fill-sized children.
+
+#### Correct pattern
+Set the parent sizing intent first, then assign child sizing deliberately. Use HUG for content-sized children, FILL for children that should stretch inside a known parent size, and FIXED only when the design-system pattern calls for a stable dimension. Re-read geometry after layout settles.
+
+#### When this matters
+Cards, rows, toolbars, tables, chart containers, dashboards, and generated responsive frames.
 
 ## Text wrapping
 
@@ -357,6 +369,50 @@ prior probe.
 
 ---
 
+## Design-system discovery
+
+### Library assets are not enabled in the file
+
+#### Symptom
+A script cannot find expected components, styles, variables, or chart/table kits even though the organisation has a design system.
+
+#### Cause
+Figma libraries must be enabled for a specific file before their assets are available through normal design work. Local style APIs also expose local styles, not a complete inventory of every team library asset.
+
+#### Correct pattern
+First search the current file for existing instances, styles, variables, and reference frames. If expected assets are missing, tell the user the library may not be enabled and ask for an enabled library, reference frame, component instance, or explicit component/variable key. Do not recreate a design-system component from generic rectangles merely because discovery returned nothing.
+
+#### When this matters
+Any design-system-safe frame, component, table, chart, graph, or dashboard build.
+
+### Design-system component rebuilt from primitives
+
+#### Symptom
+The generated UI looks plausible but does not update with the design system, lacks component properties, or behaves differently from real product UI.
+
+#### Cause
+Claude copied the visual appearance of a button, card, field, table, or chart pattern instead of importing, cloning, or instancing the real design-system component.
+
+#### Correct pattern
+Prefer existing component instances, component sets, Code Connect mappings, and imported library components. Choose by semantic role first and visual resemblance second. Detach or rebuild only when the user explicitly needs a bespoke artefact or no system-backed source exists.
+
+#### When this matters
+Any production-looking UI, component exploration, or design-system-backed artefact.
+
+### Variable-bound paints are replaced by literal colours
+
+#### Symptom
+A layer keeps the right colour in the immediate screenshot but no longer follows theme, mode, or library updates.
+
+#### Cause
+The script assigned literal RGB fills or strokes to a node whose original paint was bound to a variable.
+
+#### Correct pattern
+Capture existing bound variables before mutation. When choosing new colours, bind variables where possible. For paint variables, mutate a copied paint object and bind the variable to that paint before assigning the fill or stroke array. Use literal colours only when no suitable variable exists or the user approves breaking the binding.
+
+#### When this matters
+Files using variables for brand, theme, semantic colour, spacing, radius, or typography.
+
 ## Style-matched node creation
 
 ### New nodes ignore the existing file style
@@ -489,6 +545,22 @@ playbook go-to style as the default starting point.
 #### When this matters
 Stakeholder maps, process maps, flow charts, and any artefact that should feel
 like part of an existing Figma working file.
+
+## Charts and graphs
+
+### Charts built from decoration instead of data
+
+#### Symptom
+A chart looks polished but has misleading proportions, missing labels, missing source notes, inaccessible colour distinctions, or values that cannot be traced to supplied data.
+
+#### Cause
+The script treated the chart as decorative UI rather than a data display with a scale, semantics, and design-system rules.
+
+#### Correct pattern
+Confirm chart type, values, units, time period, comparison baseline, and target insight before drawing. Prefer an existing chart kit or component set when present. Include title, axes or scale, labels, legend, source note, and direct annotation for the key value. Do not use colour alone to distinguish series or meaning.
+
+#### When this matters
+Dashboards, metric cards, research summaries, product analytics, executive reports, and any generated chart or graph.
 
 ## Concurrent editing
 

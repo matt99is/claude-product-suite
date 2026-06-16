@@ -17,10 +17,10 @@ workflow or one output is genuinely needed by another.
 | Evidence and discovery | Evidence synthesis | Implemented | `skills/research/SKILL.md` |
 | Design quality | Design critique | Implemented | `skills/design-critique/SKILL.md` |
 | Making artefacts | Figma writing | Existing partial v1 | `skills/figma-writing/SKILL.md`; includes write-capable setup and permission troubleshooting |
-| Making artefacts | Figma design-system-safe creation | Future improvement | Use current `figma-writing` guard for write-side safety; do not claim full creation coverage |
+| Making artefacts | Figma design-system-safe creation | Implemented guidance | `skills/figma-writing/SKILL.md`; use `playbooks/build-with-design-system.md` for frames, components, variables, modes, tokens, and auto-layout-safe UI |
 | Making artefacts | Wireframing | Future | General assistance until a dedicated skill exists |
 | Making artefacts | Prototyping | Future | General assistance until a dedicated skill exists |
-| Making artefacts | Figma charts, graphs, and tables | Future | General assistance until a dedicated skill exists |
+| Making artefacts | Figma charts, graphs, and tables | Implemented guidance | `skills/figma-writing/SKILL.md`; use `playbooks/build-with-design-system.md` for editable design-system-aware tables, charts, and graphs |
 | Thinking and strategy | Brainstorming | Implemented | `skills/brainstorming/SKILL.md` |
 | Thinking and strategy | Product brief processing | Future | General assistance unless evidence gathering or source-led synthesis is requested |
 | Thinking and strategy | Prioritisation and decision framing | Future | General assistance until a dedicated skill exists |
