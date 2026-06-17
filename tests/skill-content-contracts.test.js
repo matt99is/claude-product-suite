@@ -236,6 +236,8 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   assert.match(playbook, /components, variables, styles, and modes/i);
   assert.match(playbook, /interrogate exemplar components/i);
   assert.match(playbook, /neutral|black|surface|border/i);
+  assert.match(playbook, /embedded asset colours/i);
+  assert.match(playbook, /detached containers/i);
   assert.match(playbook, /text style binding and colour binding are separate/i);
   assert.match(playbook, /discovery budget/i);
   assert.match(playbook, /Code Connect/i);
@@ -257,6 +259,7 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   assert.match(pitfalls, /Variable-bound paints/i);
   assert.match(pitfalls, /Resolved design-system values copied without bindings/i);
   assert.match(pitfalls, /Raw black or neutral colours/i);
+  assert.match(pitfalls, /Embedded asset colours/i);
   assert.match(pitfalls, /New frame created on the wrong page/i);
   assert.match(pitfalls, /FILL children can prevent hug sizing/i);
   assert.match(pitfalls, /Charts built from decoration/i);

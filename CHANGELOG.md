@@ -6,6 +6,13 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.5.5] - 2026-06-17
+
+### Fixed
+
+- Refined Figma design-system binding guidance so embedded colours inside preserved logos, illustrations, icon artwork, image fills, and external brand assets are reported separately from true design-system drift, while detached wrappers and Claude-created surfaces still require binding checks.
+
+
 ## [0.5.4] - 2026-06-17
 
 ### Changed

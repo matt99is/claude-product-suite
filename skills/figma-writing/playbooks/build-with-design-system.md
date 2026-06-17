@@ -68,6 +68,7 @@ For production or system-backed work, components are evidence for how the design
 3. For neutral, black, white, surface, border, divider, and disabled colours, prefer the semantic binding used inside a real component over raw values such as `#000000`, `#FFFFFF`, or light greys.
 4. If a token is not discoverable through variable or style search, clone or sample a correctly-bound exemplar node before falling back to a literal value.
 5. If no binding can be found, use the resolved value only as drift and say which surface, text, or border token is missing.
+6. Do not count embedded asset colours inside preserved logos, illustrations, icons, image fills, or external brand assets as design-system drift. Report them separately as embedded asset colours when relevant. Still audit detached containers, wrapper frames, surfaces, dividers, borders, and Claude-created nodes around those assets for proper bindings.
 
 ## Component selection pattern
 1. Map the requested UI to available design-system parts: buttons, fields, tabs, cards, table rows, chart containers, badges, icons, empty states, and navigation.

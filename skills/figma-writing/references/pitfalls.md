@@ -443,6 +443,20 @@ For production or system-backed work, treat neutral colours as semantic tokens. 
 #### When this matters
 Any production UI, email mockup, dashboard, table, chart, or component-like frame that creates non-component text, card, surface, divider, or border nodes.
 
+### Embedded asset colours are mistaken for design-system drift
+
+#### Symptom
+A binding audit flags raw colours inside a preserved logo, illustration, icon, image fill, or external brand asset even though Claude did not create or restyle that artwork.
+
+#### Cause
+The audit treated every raw paint equally. Brand artwork and imported assets often contain embedded fills that are controlled by the source asset or component, not by the surrounding product design tokens.
+
+#### Correct pattern
+Separate asset artwork from authored UI. Do not count raw fills inside preserved component instances, logos, illustrations, icon artwork, or image fills as design-system drift. Report them separately as embedded asset colours only when useful. Keep the strict audit on Claude-created nodes, detached containers, wrapper frames, surfaces, dividers, borders, and any text or shape styling Claude changed.
+
+#### When this matters
+Production email mockups, branded headers, app-store badges, partner logos, product imagery, icon artwork, and any design that combines product UI with imported brand assets.
+
 ### Variable-bound paints are replaced by literal colours
 
 #### Symptom
