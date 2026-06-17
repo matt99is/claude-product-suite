@@ -6,6 +6,18 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.5.4] - 2026-06-17
+
+### Changed
+
+- Added a Figma writing fidelity gate so quick wireframes and ideation frames stay lightweight while production-ready, system-backed, and component or library work use stricter design-system discovery and verification.
+- Strengthened the design-system Figma playbook to interrogate exemplar components for colours, fonts, spacing, padding, radius, and layout conventions before creating custom non-component nodes.
+
+### Fixed
+
+- Added guidance for raw black, white, neutral, surface, border, and divider colours so text style binding is not mistaken for colour binding, and unresolved literal values are reported as drift.
+
+
 ## [0.5.3] - 2026-06-16
 
 ### Added

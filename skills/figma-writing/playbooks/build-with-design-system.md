@@ -14,6 +14,14 @@ For process maps, flow charts, journey maps, service blueprints, workflow diagra
 - A design-system source: enabled library, existing in-file component instances, nearby reference frame, component set, Code Connect mapping, or explicit component or variable keys.
 - The intended fidelity: working draft, stakeholder-ready artefact, production UI frame, or component exploration.
 
+## Discovery budget
+Use the smallest discovery pass that fits the fidelity gate.
+
+- Quick or ideation: one target-page screenshot or metadata pass, then build a useful wireframe. Do not perform strict token binding checks.
+- Styled draft: inspect the target area, nearby references, and obvious components that map directly to the artefact. Use real components when quick to import or clone.
+- Production or system-backed: inspect components, variables, styles, modes, and reference frames before mutation; verify bindings after building.
+- Component or library work: inspect the wider system, naming conventions, variable collections, component properties, variants, modes, and responsive examples before creating or changing library assets.
+
 ## Pre-flight reads
 - `references/pitfalls.md` sections:
   - Fonts
@@ -52,6 +60,15 @@ Do not start from generic colours or fonts when a design-system source exists.
 5. Prefer bind variables or style IDs over literal values. Literal values are acceptable only when no matching variable or style exists, or when the user explicitly asks for an exploratory draft outside the system.
 6. If the expected library assets are not visible, tell the user the library may not be enabled in the file and ask for a reference frame, enabled library, or explicit component/variable key.
 
+## Interrogate exemplar components
+For production or system-backed work, components are evidence for how the design system behaves, not just decoration to place on the canvas. Before creating custom frames, cards, dividers, tables, charts, or text blocks, interrogate exemplar components that use the same semantics.
+
+1. Pick two or three relevant examples: button, card, field, status badge, progress tracker, table row, chart container, email header, footer, or nearby product frame.
+2. Read their bound text styles, paint styles, variables, spacing, padding, radius, stroke, effects, component properties, and auto-layout sizing.
+3. For neutral, black, white, surface, border, divider, and disabled colours, prefer the semantic binding used inside a real component over raw values such as `#000000`, `#FFFFFF`, or light greys.
+4. If a token is not discoverable through variable or style search, clone or sample a correctly-bound exemplar node before falling back to a literal value.
+5. If no binding can be found, use the resolved value only as drift and say which surface, text, or border token is missing.
+
 ## Component selection pattern
 1. Map the requested UI to available design-system parts: buttons, fields, tabs, cards, table rows, chart containers, badges, icons, empty states, and navigation.
 2. Choose the closest component by semantics first, visual similarity second. A warning banner component is a better source for a warning state than a visually similar generic card.
@@ -67,10 +84,10 @@ Do not start from generic colours or fonts when a design-system source exists.
 5. If token names are ambiguous, choose the most specific semantic token available, such as action, surface, border, danger, success, warning, or text-secondary, instead of the closest raw colour.
 
 ## Non-component binding pattern
-Newly-created non-component nodes must be linked back to the design system when matching tokens exist. Matching the correct fonts and colours is not design-system compliance. This applies to frames, rectangles, text nodes, table cells, chart primitives, and other nodes that are not component instances.
+Newly-created non-component nodes must be linked back to the design system when matching tokens exist. Matching the correct fonts and colours is not design-system compliance. Text style binding and colour binding are separate checks: a `textStyleId` proves typography, but fills and strokes still need a paint style or variable binding. This applies to frames, rectangles, text nodes, table cells, chart primitives, and other nodes that are not component instances.
 
 1. For text, apply the closest text style or typography variables after loading the required font. Do not stop at setting `fontName`, `fontSize`, or literal fills.
-2. For fills and strokes, prefer paint styles or paint variables over copied RGB values. For variable paints, mutate a copied paint object and use `figma.variables.setBoundVariableForPaint` before assigning the fill or stroke array.
+2. For fills and strokes, prefer paint styles or paint variables over copied RGB values. For variable paints, mutate a copied paint object and use `figma.variables.setBoundVariableForPaint` before assigning the fill or stroke array. For black, white, neutral, surface, border, and divider colours, search semantic style or variable names and exemplar components before using literals.
 3. For spacing, radius, sizing, opacity, effects, and component properties, bind matching variables with `setBoundVariable` where the node supports that field.
 4. If only a resolved value can be found, create the node with that value but report it as drift rather than claiming the node uses the design system.
 5. After building, read back non-component nodes and report whether `textStyleId, fillStyleId, strokeStyleId, or boundVariables` are present. A screenshot proves visual match only; it does not prove design-system linkage.

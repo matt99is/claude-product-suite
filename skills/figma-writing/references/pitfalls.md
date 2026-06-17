@@ -429,6 +429,20 @@ For every newly-created non-component node, prefer a real binding over a copied 
 #### When this matters
 Any generated non-component frame, text node, table, chart, graph, card, section, or email mockup that is expected to stay linked to the design system.
 
+### Raw black or neutral colours are used without bindings
+
+#### Symptom
+Text, surfaces, dividers, or borders look correct but use raw `#000000`, `#FFFFFF`, or grey values with no `fillStyleId`, `strokeStyleId`, or paint variable binding. Text nodes may still have a valid `textStyleId`, which can hide the colour drift.
+
+#### Cause
+Claude treated black, white, surface, border, or neutral colours as harmless defaults, or stopped after binding typography. In many systems the semantic text or surface token is easier to find by inspecting a real component than by searching library names.
+
+#### Correct pattern
+For production or system-backed work, treat neutral colours as semantic tokens. Search variables and paint styles for text, ink, neutral, black, white, surface, border, divider, disabled, and background names. If search is inconclusive, inspect exemplar components with default text, cards, dividers, inputs, tables, or headers and reuse their bound fills, strokes, padding, radius, and spacing. Text style binding and colour binding are separate; verify both before claiming design-system compliance. If no binding exists, report the literal value as drift.
+
+#### When this matters
+Any production UI, email mockup, dashboard, table, chart, or component-like frame that creates non-component text, card, surface, divider, or border nodes.
+
 ### Variable-bound paints are replaced by literal colours
 
 #### Symptom

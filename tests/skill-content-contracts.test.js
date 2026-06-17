@@ -220,6 +220,7 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   const skill = await read('skills/figma-writing/SKILL.md');
   const pitfalls = await read('skills/figma-writing/references/pitfalls.md');
   const playbook = await read('skills/figma-writing/playbooks/build-with-design-system.md');
+  const stylePlaybook = await read('skills/figma-writing/playbooks/build-nodes-matching-existing-style.md');
   const capabilityMap = await read('skills/product-suite-router/references/capability-map.md');
 
   assert.match(skill, /design-system-safe/i);
@@ -228,8 +229,15 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   assert.match(skill, /target node or page URL/i);
   assert.match(skill, /Do not append new work to `figma.currentPage`/i);
   assert.match(skill, /matching fonts and colours is not design-system compliance/i);
+  assert.match(skill, /fidelity gate/i);
+  assert.match(skill, /wireframe|ideation/i);
+  assert.match(skill, /production|system-backed/i);
 
   assert.match(playbook, /components, variables, styles, and modes/i);
+  assert.match(playbook, /interrogate exemplar components/i);
+  assert.match(playbook, /neutral|black|surface|border/i);
+  assert.match(playbook, /text style binding and colour binding are separate/i);
+  assert.match(playbook, /discovery budget/i);
   assert.match(playbook, /Code Connect/i);
   assert.match(playbook, /Do not start from generic colours or fonts/i);
   assert.match(playbook, /bind variables/i);
@@ -248,9 +256,13 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   assert.match(pitfalls, /Library assets are not enabled/i);
   assert.match(pitfalls, /Variable-bound paints/i);
   assert.match(pitfalls, /Resolved design-system values copied without bindings/i);
+  assert.match(pitfalls, /Raw black or neutral colours/i);
   assert.match(pitfalls, /New frame created on the wrong page/i);
   assert.match(pitfalls, /FILL children can prevent hug sizing/i);
   assert.match(pitfalls, /Charts built from decoration/i);
+
+  assert.match(stylePlaybook, /lightweight wireframe/i);
+  assert.match(stylePlaybook, /Do not run a production-level token audit/i);
 
   assert.match(capabilityMap, /Figma design-system-safe creation.*Implemented/is);
   assert.match(capabilityMap, /Figma charts, graphs, and tables.*Implemented/is);

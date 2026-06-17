@@ -9,6 +9,17 @@ This skill governs every write-side operation against Figma through write-capabl
 
 Figma setup is part of the safety guard, but do not start with setup guidance when the current session already exposes write-capable Figma tools. If `use_figma` or an equivalent write tool is available and the user supplied a target file or selection URL, attempt the requested edit and verify it. If write tools are missing or the write attempt fails, read `references/setup-and-permissions.md` for surface-specific troubleshooting, including Claude Code CLI, Claude Desktop, Claude.ai web, Claude chat, and Claude Cowork. Only show the Claude Code CLI command `claude plugin install figma@claude-plugins-official` after troubleshooting confirms the user is in Claude Code CLI.
 
+## Fidelity gate
+
+Before choosing a playbook or running discovery, classify the requested fidelity from the user's words and the target artefact. Keep the classification lightweight and state it briefly when it affects scope.
+
+- **Quick or ideation:** wireframe, rough sketch, low-fi, explore, concept, workshop aid, or quick option. Use nearby style cues and sound auto-layout, but do not run production-level component interrogation or binding audits unless the user explicitly asks for system-backed output.
+- **Styled draft:** mockup, stakeholder-ready, make it look like it belongs, or use the existing style. Inspect nearby examples and obvious components, reuse easy system parts, and report visible drift without blocking progress.
+- **Production or system-backed:** production-ready, hi-fi, use the design system, ready for dev, component-backed, token-backed, or design-system-safe. Use the strict design-system playbook, interrogate exemplar components, bind styles or variables where possible, and verify non-component nodes for real bindings.
+- **Component or library work:** component, variant, token, library, or design system component. Use the strictest path and preserve or create variables, variants, component properties, documentation, and responsive behaviour.
+
+If the user asks for wireframe or ideation and also says `use the design system`, treat it as a styled draft unless they also ask for production, system-backed, or dev-ready output.
+
 ## Non-negotiables
 
 1. Never attempt mutation unless a write-capable Figma tool is available in the current session, the user supplied a target file or selection URL, and the authenticated user has edit access to the target file. If tools are missing or a write fails, read `references/setup-and-permissions.md` and troubleshoot the user surface before giving setup advice.

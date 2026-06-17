@@ -32,7 +32,7 @@ diagram-specific process model and connector guidance.
   - `setTextPreservingBindings`
 
 ## Style-source rule
-Do not start from generic UI defaults when a file-specific style source exists.
+Do not start from generic UI defaults when a file-specific style source exists. For a lightweight wireframe, rough concept, or ideation frame, keep the probe proportional: capture enough style to make the artefact readable and coherent. Do not run a production-level token audit unless the user explicitly asks for production-ready or system-backed output.
 
 1. Find the closest useful reference frame, sibling group, or existing pattern.
 2. Run a read-only probe before mutation. Capture:
