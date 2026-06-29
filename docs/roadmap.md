@@ -19,6 +19,7 @@ Skills should be useful independently and composable when the user asks for a co
 ### Evidence and discovery
 
 - [x] Provide source-led research, competitor scans, best-practice review, and supplied-source synthesis through `skills/research/`.
+- [x] Provide Contentsquare-only analysis support through `skills/contentsquare-analysis/`, covering question framing, MCP capability checks, measurement validation, CS playbooks, and standardised outputs.
 - [ ] Expand research examples and playbooks as repeated product-team request patterns appear.
 
 ### Design quality

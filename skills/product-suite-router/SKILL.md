@@ -1,6 +1,6 @@
 ---
 name: product-suite-router
-description: Use when a UX, product, design, critique, research, Figma, wireframing, prototyping, slide-deck, testing, strategy, or creative workflow request may need routing to a specialist skill. Classify the job-to-be-done before doing the work.
+description: Use when a UX, product, design, critique, research, Contentsquare analytics, Figma, wireframing, prototyping, slide-deck, testing, strategy, or creative workflow request may need routing to a specialist skill. Classify the job-to-be-done before doing the work.
 ---
 
 # product-suite-router
@@ -22,11 +22,12 @@ is future capability rather than implemented behavior.
 4. Do not automatically route deck, prototype, wireframe, testing, strategy, or Figma requests through research.
 5. Do not claim a future capability is implemented.
 6. If evidence gathering is the user goal, route to `research`.
-7. If Figma mutation is the user goal, route to `figma-writing`.
-8. If static artefact critique is the user goal, route to `design-critique`.
-9. If UserTesting.com study planning, script review, export guidance, or results synthesis is the user goal, route to `usertesting`.
-10. If product/design ideation, concept shaping, option generation, or idea narrowing is the user goal, route to `brainstorming`.
-11. Ask one clarifying question when the request could mean research, synthesis, critique, testing, brainstorming, or artefact production.
+7. If Contentsquare analysis, CS evidence validation, or CS-based reporting is the user goal, route to `contentsquare-analysis`.
+8. If Figma mutation is the user goal, route to `figma-writing`.
+9. If static artefact critique is the user goal, route to `design-critique`.
+10. If UserTesting.com study planning, script review, export guidance, or results synthesis is the user goal, route to `usertesting`.
+11. If product/design ideation, concept shaping, option generation, or idea narrowing is the user goal, route to `brainstorming`.
+12. Ask one clarifying question when the request could mean research, analytics, synthesis, critique, testing, brainstorming, or artefact production.
 
 ## Pre-flight checklist
 
@@ -43,6 +44,7 @@ Before doing product-suite work:
 
 - Research, evidence gathering, competitor scan, trend scan, best-practice review -> `skills/research/SKILL.md`.
 - Synthesis of supplied source material -> `skills/research/SKILL.md`, skipping source discovery.
+- Contentsquare analysis, CS funnel/page/journey/error/zone interpretation, CS evidence validation, or CS-based stakeholder reporting -> `skills/contentsquare-analysis/SKILL.md`.
 - Figma write-side mutation or troubleshooting write-capable Figma setup -> `skills/figma-writing/SKILL.md`.
 - Static design artefact critique, UX critique, heuristic review, or visual accessibility review -> `skills/design-critique/SKILL.md`.
 - UserTesting.com study planning, script review, audience and screener setup, export guidance, or results synthesis -> `skills/usertesting/SKILL.md`.

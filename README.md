@@ -6,8 +6,9 @@ Skills can be used independently or combined when a user asks for a multi-step w
 
 ## Installed skills
 
-- **`product-suite-router`**. Top-level intent router for UX, product, design, research, Figma, wireframing, prototyping, slide-deck, testing, strategy, and creative workflow requests. Routes to implemented specialist skills without forcing a product lifecycle.
+- **`product-suite-router`**. Top-level intent router for UX, product, design, research, Contentsquare analytics, Figma, wireframing, prototyping, slide-deck, testing, strategy, and creative workflow requests. Routes to implemented specialist skills without forcing a product lifecycle.
 - **`research`**. Brief-first, source-led research for UX and product work. Covers evidence gathering, source quality, competitor scans, supplied-source synthesis, UX/product implications, and a clean URL list for optional NotebookLM use.
+- **`contentsquare-analysis`**. Contentsquare-only analysis support for clarifying CS questions, checking MCP capability, validating mappings, page groups, segments, funnels, zones, errors, and producing standardised stakeholder or analyst outputs.
 - **`figma-writing`** (v1). Safe write-side operations against write-capable Figma MCP tools. Covers setup and permission checks, cloning frames, updating text while preserving design-system bindings, generating variants, auto-layout-aware insertion, design-system-safe frame and component creation, and editable table/chart/graph guidance. Surfaces warnings rather than silently swapping fonts, breaking style links, or inventing unavailable design-system assets.
 - **`design-critique`**. Source-grounded UX critique of static design artefacts such as screenshots, Figma frames, mockups, and wireframes. Covers context-first review, severity-ranked findings, visual accessibility checks, and optional research escalation.
 - **`usertesting`**. UserTesting.com workflow support for audience and screener definition, concise low-bias unmoderated test scripts, platform-realistic task/question blocks, export guidance, and compact qualitative synthesis with visuals where useful.
@@ -26,6 +27,10 @@ claude-product-suite/
 │   ├── SKILL.md
 │   └── references/
 ├── skills/research/
+│   ├── SKILL.md
+│   ├── references/
+│   └── playbooks/
+├── skills/contentsquare-analysis/
 │   ├── SKILL.md
 │   ├── references/
 │   └── playbooks/

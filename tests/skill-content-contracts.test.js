@@ -34,6 +34,7 @@ test('product-suite-router skill defines routing boundaries', async () => {
   assert.match(skill, /research/i);
   assert.match(skill, /figma-writing/i);
   assert.match(skill, /design-critique/i);
+  assert.match(skill, /contentsquare-analysis/i);
   assert.match(skill, /brainstorming/i);
   assert.match(skill, /future capability/i);
 });
@@ -43,6 +44,7 @@ test('router references include capability map and pitfalls', async () => {
   const pitfalls = await read('skills/product-suite-router/references/routing-pitfalls.md');
 
   assert.match(capabilityMap, /Research/i);
+  assert.match(capabilityMap, /Contentsquare analysis.*Implemented/is);
   assert.match(capabilityMap, /Figma writing/i);
   assert.match(capabilityMap, /Design critique/i);
   assert.match(capabilityMap, /Brainstorming.*Implemented/is);
@@ -62,6 +64,54 @@ test('router references include capability map and pitfalls', async () => {
   assert.match(pitfalls, /Chain inflation/i);
   assert.match(pitfalls, /Lifecycle forcing/i);
   assert.match(pitfalls, /Brainstorming Over-Capture/i);
+  assert.match(pitfalls, /Platform agnosticism/i);
+  assert.match(pitfalls, /Analytics overreach/i);
+});
+
+test('contentsquare analysis skill enforces CS-only rigorous workflow', async () => {
+  const skill = await read('skills/contentsquare-analysis/SKILL.md');
+  const platform = await read('skills/contentsquare-analysis/references/contentsquare-platform.md');
+  const workspace = await read('skills/contentsquare-analysis/references/project-workspace-contract.md');
+  const output = await read('skills/contentsquare-analysis/references/output-style.md');
+  const plan = await read('skills/contentsquare-analysis/playbooks/question-to-analysis-plan.md');
+  const funnel = await read('skills/contentsquare-analysis/playbooks/funnel-and-journey-analysis.md');
+  const zones = await read('skills/contentsquare-analysis/playbooks/zone-analysis.md');
+  const errors = await read('skills/contentsquare-analysis/playbooks/error-impact-analysis.md');
+  const launch = await read('skills/contentsquare-analysis/playbooks/launch-impact-analysis.md');
+  const summary = await read('skills/contentsquare-analysis/playbooks/stakeholder-summary.md');
+
+  assert.match(skill, /name:\s*contentsquare-analysis/);
+  assert.match(skill, /Contentsquare-only/i);
+  assert.match(skill, /MCP capability/i);
+  assert.match(skill, /project-local context/i);
+  assert.match(skill, /observation.*interpretation.*recommendation.*next check.*caveat/is);
+
+  assert.match(platform, /mappings/i);
+  assert.match(platform, /page groups/i);
+  assert.match(platform, /segments/i);
+  assert.match(platform, /funnels/i);
+  assert.match(platform, /zones/i);
+  assert.match(platform, /UI.*MCP/is);
+  assert.match(platform, /object IDs/i);
+
+  assert.match(workspace, /tracking-plan\.md/i);
+  assert.match(workspace, /release-register\.md/i);
+  assert.match(workspace, /saved-objects\.md/i);
+  assert.match(workspace, /working-notes\.md/i);
+
+  assert.match(output, /Question answered/i);
+  assert.match(output, /Data used/i);
+  assert.match(output, /Confidence and caveats/i);
+  assert.match(output, /Repeatability/i);
+
+  assert.match(plan, /decision/i);
+  assert.match(plan, /surface/i);
+  assert.match(funnel, /optional.*mandatory/is);
+  assert.match(zones, /exposure rate/i);
+  assert.match(errors, /recoveries/i);
+  assert.match(errors, /observable abandoners/i);
+  assert.match(launch, /release register/i);
+  assert.match(summary, /stakeholder/i);
 });
 
 test('research skill enforces brief-first source-led workflow', async () => {

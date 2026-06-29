@@ -15,6 +15,7 @@ workflow or one output is genuinely needed by another.
 |---|---|---|---|
 | Evidence and discovery | Research | Implemented | `skills/research/SKILL.md` |
 | Evidence and discovery | Evidence synthesis | Implemented | `skills/research/SKILL.md` |
+| Evidence and discovery | Contentsquare analysis | Implemented | `skills/contentsquare-analysis/SKILL.md` |
 | Design quality | Design critique | Implemented | `skills/design-critique/SKILL.md` |
 | Making artefacts | Figma writing | Existing partial v1 | `skills/figma-writing/SKILL.md`; includes write-capable setup and permission troubleshooting |
 | Making artefacts | Figma design-system-safe creation | Implemented guidance | `skills/figma-writing/SKILL.md`; use `playbooks/build-with-design-system.md` for frames, components, variables, modes, tokens, and auto-layout-safe UI |
@@ -34,6 +35,7 @@ workflow or one output is genuinely needed by another.
 ## Routing Defaults
 
 - Route research and source-led synthesis to `research`.
+- Route Contentsquare analysis, CS funnel/page/journey/error/zone interpretation, CS evidence validation, and CS-based stakeholder reporting to `contentsquare-analysis`.
 - Route Figma mutations and write-capable Figma setup troubleshooting to `figma-writing`.
 - Route static artefact UX critique, heuristic review, and visual-accessibility critique to `design-critique`.
 - Route UserTesting.com study planning, script review, export guidance, and results synthesis to `usertesting`.

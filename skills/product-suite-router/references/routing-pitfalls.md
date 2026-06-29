@@ -122,6 +122,52 @@ flow".
 
 ---
 
+## Platform agnosticism
+
+### Analytics gets flattened into generic advice
+
+#### Symptom
+A user asks for Contentsquare analysis and the response gives generic analytics
+guidance without CS-specific validation, object IDs, MCP capability checks, or
+UI handoff notes.
+
+#### Cause
+The router treats analytics platforms as interchangeable even though their
+objects, metrics, and failure modes differ.
+
+#### Correct pattern
+Route Contentsquare requests to `skills/contentsquare-analysis/SKILL.md`. Keep
+v1 CS-only and use its platform reference rather than inventing platform-neutral
+rules.
+
+#### When this matters
+CS funnel, journey, page, segment, zone, error, dashboard, and stakeholder
+reporting requests.
+
+---
+
+## Analytics overreach
+
+### Contentsquare is asked to answer non-CS questions
+
+#### Symptom
+A response claims CS can explain source/channel, payment decline reason,
+identity-provider behaviour, deploy ownership, BI revenue detail, or experiment
+assignment without naming the blind spot.
+
+#### Cause
+The router mistakes "analytics" for one universal data source.
+
+#### Correct pattern
+Use `contentsquare-analysis` for CS evidence, then name non-CS blind spots and
+route them to the project owner or external source outside the skill.
+
+#### When this matters
+Commercial, attribution, payment, identity, experimentation, server-log, and
+release-causality questions.
+
+---
+
 ## Chain Inflation
 
 ### Too many skills are invoked for one straightforward request
