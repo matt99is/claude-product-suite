@@ -6,6 +6,17 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-06-29
+
+### Added
+
+- Added `contentsquare-analysis`, a Contentsquare-only analysis skill for clarifying CS questions, checking MCP capability, validating mappings, page groups, segments, funnels, zones, and errors, and producing standardised stakeholder or analyst outputs.
+- Added Contentsquare analysis references and playbooks covering project workspace contracts, platform validation pitfalls, output style, question framing, funnel and journey analysis, page and segment analysis, zone analysis, error impact, launch impact, and stakeholder summaries.
+
+### Changed
+
+- Updated the product-suite router, capability map, README, roadmap, plugin metadata, and content-contract tests so Contentsquare analysis is treated as an implemented specialist skill.
+
 ## [0.5.5] - 2026-06-17
 
 ### Fixed

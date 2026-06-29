@@ -415,6 +415,13 @@ test('package and plugin manifest versions stay in sync', async () => {
   assert.match(pkg.version, /^\d+\.\d+\.\d+$/);
 });
 
+test("current package version has a changelog entry", async () => {
+  const pkg = JSON.parse(await read("package.json"));
+  const changelog = await read("CHANGELOG.md");
+
+  assert.match(changelog, new RegExp(`## \\[${pkg.version}\\] - \\d{4}-\\d{2}-\\d{2}`));
+});
+
 test("user-facing plugin changes require a new release version", async () => {
   const pkg = JSON.parse(await read("package.json"));
   const { stdout: tagOutput } = await execFileAsync("git", [
