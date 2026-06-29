@@ -6,6 +6,17 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-06-29
+
+### Added
+
+- Added `writing-style`, an all-purpose plain-language drafting and rewrite skill for product, design, research, stakeholder, marketing, and general communication.
+- Added writing references and playbooks covering AI trope scrubbing, clear-copy drafting, em dash dependence, `not just X, but Y`, rule of three cadence, vague uplift language, detector caution, and source-informed plain-writing quality checks.
+
+### Changed
+
+- Updated the product-suite router, capability map, README, roadmap, plugin metadata, and content-contract tests so writing style is treated as an implemented communication skill.
+
 ## [0.6.0] - 2026-06-29
 
 ### Added

@@ -29,6 +29,7 @@ workflow or one output is genuinely needed by another.
 | Delivery shaping and refinement | ADO-ready epics, features, requirements, and INVEST review | Future | General assistance until a dedicated skill exists; do not claim bundled ADO-specific playbooks yet |
 | Testing and iteration | UserTesting.com workflows | Implemented | `skills/usertesting/SKILL.md` |
 | Testing and iteration | Experiment planning | Future | General assistance until a dedicated skill exists |
+| Communication | Writing style | Implemented | `skills/writing-style/SKILL.md`; covers plain-language drafting, rewrite, tone and voice passes, and AI trope scrubbing |
 | Communication | Slide decks | Future | General assistance until a dedicated skill exists |
 | Communication | Stakeholder updates and product narratives | Future | General assistance until a dedicated skill exists |
 
@@ -40,6 +41,7 @@ workflow or one output is genuinely needed by another.
 - Route static artefact UX critique, heuristic review, and visual-accessibility critique to `design-critique`.
 - Route UserTesting.com study planning, script review, export guidance, and results synthesis to `usertesting`.
 - Route product/design ideation, concept shaping, option generation, idea narrowing, positioning angles, UX flow options, copy ideation, and experiment ideas to `brainstorming`.
+- Route writing, editing, rewrite, tone, voice, copy, prose, de-AI, AI trope scrubbing, and plain-language style passes to `writing-style`.
 - Do not route decks, prototypes, wireframes, general testing plans, brief processing, brainstorming, or Figma work through research by default.
 - When a future capability is requested, help with general reasoning and say that the suite does not yet have a dedicated specialist skill for that capability.
 - When the user asks for a connected workflow, use the smallest set of implemented skills that actually serve the requested output.

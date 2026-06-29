@@ -1,6 +1,6 @@
 ---
 name: product-suite-router
-description: Use when a UX, product, design, critique, research, Contentsquare analytics, Figma, wireframing, prototyping, slide-deck, testing, strategy, or creative workflow request may need routing to a specialist skill. Classify the job-to-be-done before doing the work.
+description: Use when a UX, product, design, critique, research, Contentsquare analytics, Figma, writing, editing, rewrite, tone, voice, copy, prose, wireframing, prototyping, slide-deck, testing, strategy, or creative workflow request may need routing to a specialist skill. Classify the job-to-be-done before doing the work.
 ---
 
 # product-suite-router
@@ -27,7 +27,8 @@ is future capability rather than implemented behavior.
 9. If static artefact critique is the user goal, route to `design-critique`.
 10. If UserTesting.com study planning, script review, export guidance, or results synthesis is the user goal, route to `usertesting`.
 11. If product/design ideation, concept shaping, option generation, or idea narrowing is the user goal, route to `brainstorming`.
-12. Ask one clarifying question when the request could mean research, analytics, synthesis, critique, testing, brainstorming, or artefact production.
+12. If writing, editing, rewrite, tone, voice, copy, prose, or AI tropes are the user goal, route to `writing-style`.
+13. Ask one clarifying question when the request could mean research, analytics, synthesis, critique, testing, brainstorming, writing style, or artefact production.
 
 ## Pre-flight checklist
 
@@ -49,6 +50,7 @@ Before doing product-suite work:
 - Static design artefact critique, UX critique, heuristic review, or visual accessibility review -> `skills/design-critique/SKILL.md`.
 - UserTesting.com study planning, script review, audience and screener setup, export guidance, or results synthesis -> `skills/usertesting/SKILL.md`.
 - Product/design brainstorming, concept shaping, option generation, positioning angles, UX flow options, feature ideation, copy ideation, or experiment ideas -> `skills/brainstorming/SKILL.md`.
+- Writing, editing, rewrite, tone, voice, copy, prose, de-AI, AI tropes, or plain-language style pass -> `skills/writing-style/SKILL.md`.
 - Product brief processing, wireframes, prototypes, and slide decks -> future specialist skills; use general assistance for now unless the user explicitly asks for an implemented specialist first.
 
 ## Composition rules
@@ -73,6 +75,7 @@ question. Prefer questions that distinguish the user desired output:
 - "Do you want research first, or should I go straight to the prototype/deck/wireframe?"
 - "Is this a product/design brainstorming request, or do you want source-backed research?"
 - "Should I help with the testing plan, or synthesize results you already have?"
+- "Do you want a writing style pass, or do you want the underlying product/design content changed?"
 
 ## Verification
 

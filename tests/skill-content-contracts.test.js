@@ -564,3 +564,70 @@ test('brainstorming skill supports product design ideation without over-routing'
   assert.match(compareNarrow, /recommend/i);
   assert.match(compareNarrow, /what would change/i);
 });
+
+test('writing style skill scrubs common AI prose tropes', async () => {
+  const skill = await read('skills/writing-style/SKILL.md');
+  const qualityBar = await read('skills/writing-style/references/plain-writing-quality-bar.md');
+  const tropeWatchlist = await read('skills/writing-style/references/ai-trope-watchlist.md');
+  const scrub = await read('skills/writing-style/playbooks/scrub-ai-tropes.md');
+  const draft = await read('skills/writing-style/playbooks/draft-clear-copy.md');
+
+  assert.match(skill, /name:\s*writing-style/);
+  assert.match(skill, /AI tropes/i);
+  assert.match(skill, /plain-language/i);
+  assert.match(skill, /user intent/i);
+  assert.match(skill, /do not optimize for AI detectors/i);
+  assert.match(skill, /em dash/i);
+  assert.match(skill, /not just X, but Y/i);
+  assert.match(skill, /rule of three/i);
+  assert.match(skill, /playbooks\/scrub-ai-tropes\.md/);
+  assert.match(skill, /playbooks\/draft-clear-copy\.md/);
+
+  assert.match(qualityBar, /front-load/i);
+  assert.match(qualityBar, /specific/i);
+  assert.match(qualityBar, /concrete/i);
+  assert.match(qualityBar, /active voice/i);
+  assert.match(qualityBar, /rhythm/i);
+  assert.match(qualityBar, /scan/i);
+
+  assert.match(tropeWatchlist, /em dash/i);
+  assert.match(tropeWatchlist, /not just X, but Y/i);
+  assert.match(tropeWatchlist, /rule of three/i);
+  assert.match(tropeWatchlist, /delve/i);
+  assert.match(tropeWatchlist, /underscore/i);
+  assert.match(tropeWatchlist, /tapestry/i);
+  assert.match(tropeWatchlist, /not a banned-word list/i);
+
+  assert.match(scrub, /diagnose before rewriting/i);
+  assert.match(scrub, /structural tells/i);
+  assert.match(scrub, /preserve the user's meaning/i);
+  assert.match(scrub, /before and after/i);
+  assert.match(scrub, /tradeoff/i);
+
+  assert.match(draft, /audience/i);
+  assert.match(draft, /purpose/i);
+  assert.match(draft, /choose the form/i);
+  assert.match(draft, /specific nouns and verbs/i);
+  assert.match(draft, /final trope pass/i);
+});
+
+test('router and docs include writing style as a communication skill', async () => {
+  const router = await read('skills/product-suite-router/SKILL.md');
+  const capabilityMap = await read('skills/product-suite-router/references/capability-map.md');
+  const readme = await read('README.md');
+  const roadmap = await read('docs/roadmap.md');
+
+  assert.match(router, /writing-style/i);
+  assert.match(router, /AI tropes/i);
+  assert.match(router, /writing, editing, rewrite, tone, voice, copy, prose/i);
+
+  assert.match(capabilityMap, /Writing style.*Implemented/is);
+  assert.match(capabilityMap, /skills\/writing-style\/SKILL\.md/);
+
+  assert.match(readme, /writing-style/i);
+  assert.match(readme, /AI tropes/i);
+  assert.match(readme, /em dash/i);
+
+  assert.match(roadmap, /writing style/i);
+  assert.match(roadmap, /AI prose tropes/i);
+});

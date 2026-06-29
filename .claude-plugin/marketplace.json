@@ -3,15 +3,15 @@
   "owner": {
     "name": "Matthew Lelonek"
   },
-  "description": "Modular toolbox of product, design, research, testing, and creative workflow skills for product teams.",
+  "description": "Modular toolbox of product, design, research, testing, writing, and creative workflow skills for product teams.",
   "plugins": [
     {
       "name": "claude-product-suite",
-      "description": "Modular toolbox of product, design, research, testing, and creative workflow skills for product teams.",
+      "description": "Modular toolbox of product, design, research, testing, writing, and creative workflow skills for product teams.",
       "source": "./"
     }
   ],
   "metadata": {
-    "description": "Product-team toolbox for research, design critique, Figma writing, testing, strategy, and creative workflows."
+    "description": "Product-team toolbox for research, design critique, Figma writing, testing, writing style, strategy, and creative workflows."
   }
 }

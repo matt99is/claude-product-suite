@@ -61,6 +61,7 @@ Skills should be useful independently and composable when the user asks for a co
 
 ### Communication
 
+- [x] Add a writing style skill for plain-language drafting, rewrite, tone and voice passes, and AI prose tropes such as em dash dependence, `not just X, but Y`, rule of three cadence, glossy transitions, and vague uplift language.
 - [ ] Add slide-deck generation and synthesis support for packaging research, critique, testing findings, strategy, or product decisions into stakeholder-ready narratives.
 - [ ] Add product narrative and stakeholder-update playbooks if they show up as repeated product-team needs.
 
