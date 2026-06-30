@@ -12,11 +12,10 @@ This playbook is for write-side Figma creation. It does not replace domain under
 - The intended altitude: stakeholder overview, per-domain journey, operational swimlane, implementation flow, or another level.
 
 ## Pre-flight reads
-- `references/pitfalls.md` sections:
-  - Fonts
-  - Auto-layout, if placing inside auto-layout frames
-  - Diagrams and process maps
-  - Verification
+- `references/pitfalls/text-and-fonts.md` for font loading and text mutation.
+- `references/pitfalls/auto-layout.md` if placing inside auto-layout frames.
+- `references/pitfalls/tables-charts-and-diagrams.md` for diagrams and process maps.
+- `references/pitfalls/verification-and-collaboration.md` for screenshot verification.
 - Helpers used when cloning text-bearing templates:
   - `cloneAndRebind`
   - `matchTextNodesByIndex`

@@ -14,27 +14,28 @@ claude-product-suite is a Claude plugin providing a modular toolbox of product, 
 
 ## Load order
 
-Read these files before starting any task:
+Use progressive specialist loading. Read the always-required files before starting any task, then read specialist `SKILL.md` files only when the task routes to them.
 
 | Priority | File | Why |
 |---|---|---|
 | 1 - always | `README.md` | Project overview, layout, commands, and contribution shape |
 | 2 - always | `skills/product-suite-router/SKILL.md` | Suite-level routing guard and capability map entry point |
-| 3 - always | `skills/research/SKILL.md` | Current research skill router and evidence guard |
-| 4 - always | `skills/contentsquare-analysis/SKILL.md` | Contentsquare-only analysis router and platform guard |
-| 5 - always | `skills/figma-writing/SKILL.md` | Figma write-side router and safety guard |
-| 6 - always | `skills/design-critique/SKILL.md` | Design critique router and artefact-only safety guard |
-| 7 - always | `skills/usertesting/SKILL.md` | UserTesting.com workflow router and testing safety guard |
-| 8 - always | `skills/brainstorming/SKILL.md` | Product/design ideation router and option-shaping guard |
-| 9 - always | `skills/writing-style/SKILL.md` | Plain-language drafting and AI trope-scrubbing guard |
-| 10 - always | `../vault/Projects/claude-product-suite.md` | Current status, decisions, gotchas, and next steps |
-| 11 - always | `../vault/Patterns/vault-note-governance.md` | Rules for keeping the vault project note lean |
-| 9 - before helper changes | `skills/figma-writing/helpers/figma-helpers.js` | Shared helper preamble pasted into Figma MCP calls |
-| 9 - before Figma setup or permission changes | `skills/figma-writing/references/setup-and-permissions.md` | Write-capable Figma MCP setup, auth, and edit-access guidance |
-| 9 - before pitfall/playbook changes | `skills/figma-writing/references/pitfalls.md` | Current failure-mode catalogue |
-| 9 - before real Figma validation | `docs/hand-test-figma-helpers.md` | Manual validation flow for API-bound helpers |
-| 9 - for historical design context | `docs/specs/2026-05-28-figma-writing-skill-design.md` | v1 design rationale |
-| 9 - for historical implementation context | `docs/plans/2026-05-28-figma-writing-v1-implementation-plan.md` | v1 implementation plan |
+| 3 - always | `skills/product-suite-router/references/capability-map.md` | Current implemented/future capability map |
+| 4 - always | `../vault/Projects/claude-product-suite.md` | Current status, decisions, gotchas, and next steps |
+| 5 - always | `../vault/Patterns/vault-note-governance.md` | Rules for keeping the vault project note lean |
+| 6 - when routed to research | `skills/research/SKILL.md` | Current research skill router and evidence guard |
+| 6 - when routed to Contentsquare | `skills/contentsquare-analysis/SKILL.md` | Contentsquare-only analysis router and platform guard |
+| 6 - when routed to Figma writing | `skills/figma-writing/SKILL.md` | Figma write-side router and safety guard |
+| 6 - when routed to design critique | `skills/design-critique/SKILL.md` | Design critique router and artefact-only safety guard |
+| 6 - when routed to UserTesting.com | `skills/usertesting/SKILL.md` | UserTesting.com workflow router and testing safety guard |
+| 6 - when routed to brainstorming | `skills/brainstorming/SKILL.md` | Product/design ideation router and option-shaping guard |
+| 6 - when routed to writing style | `skills/writing-style/SKILL.md` | Plain-language drafting and AI trope-scrubbing guard |
+| 7 - before helper changes | `skills/figma-writing/helpers/figma-helpers.js` | Shared helper preamble pasted into Figma MCP calls |
+| 7 - before Figma setup or permission changes | `skills/figma-writing/references/setup-and-permissions.md` | Write-capable Figma MCP setup, auth, and edit-access guidance |
+| 7 - before pitfall/playbook changes | `skills/figma-writing/references/pitfalls.md` | Index to focused Figma failure-mode references |
+| 7 - before real Figma validation | `docs/hand-test-figma-helpers.md` | Manual validation flow for API-bound helpers |
+| 7 - for historical design context | `docs/specs/2026-05-28-figma-writing-skill-design.md` | v1 design rationale |
+| 7 - for historical implementation context | `docs/plans/2026-05-28-figma-writing-v1-implementation-plan.md` | v1 implementation plan |
 
 ---
 
@@ -45,18 +46,12 @@ Before running commands, searching code, or editing files, every agent must load
 1. Read this `AGENTS.md`.
 2. Read `README.md`.
 3. Read `skills/product-suite-router/SKILL.md`.
-4. Read `skills/research/SKILL.md`.
-5. Read `skills/contentsquare-analysis/SKILL.md`.
-6. Read `skills/figma-writing/SKILL.md`.
-7. Read `skills/design-critique/SKILL.md`.
-8. Read `skills/usertesting/SKILL.md`.
-9. Read `skills/brainstorming/SKILL.md`.
-10. Read `skills/writing-style/SKILL.md`.
-11. Read vault project note: `../vault/Projects/claude-product-suite.md`.
-12. Read vault governance note: `../vault/Patterns/vault-note-governance.md`.
-13. In the first response of the session, explicitly confirm these files were loaded.
+4. Read `skills/product-suite-router/references/capability-map.md`.
+5. Read vault project note: `../vault/Projects/claude-product-suite.md`.
+6. Read vault governance note: `../vault/Patterns/vault-note-governance.md`.
+7. In the first response of the session, explicitly confirm these files were loaded.
 
-Load other items from the table above only when their scope applies to the task.
+Read specialist `SKILL.md` files only when the task routes to them through the router or capability map. Load other items from the table above only when their scope applies to the task.
 
 If any step is missed, stop and complete it before continuing.
 
@@ -118,6 +113,9 @@ npm test
 # Syntax-check helper file
 npm run check
 
+# Release governance only
+npm run release:check
+
 # Local plugin marketplace install while repo remains private
 /plugin marketplace add <absolute path to this local clone>
 /plugin install claude-product-suite@claude-product-suite
@@ -136,6 +134,7 @@ npm run check
 - Never silently swap fonts, never change `textAutoResize` without an explicit reason, and match sibling text nodes by positional index rather than `pathKey`.
 - Cloning a Figma node preserves bindings, but mutating styled properties under a binding can break them; use `setTextPreservingBindings` rather than bypassing it.
 - API-bound helpers require the hand-test guide against a real Figma file; unit tests only cover pure-data helper behavior.
+- `skills/figma-writing/references/pitfalls.md` is an index. Read the focused topic files under `skills/figma-writing/references/pitfalls/` instead of loading the whole failure-mode catalogue by default.
 
 ---
 
@@ -167,7 +166,8 @@ skills/
   figma-writing/
     SKILL.md                      # Figma write-side router and guard
     helpers/figma-helpers.js      # helper preamble for write-side Figma calls
-    references/pitfalls.md        # categorized gotchas
+    references/pitfalls.md        # index to focused gotcha references
+    references/pitfalls/          # focused Figma gotcha references
     playbooks/                    # operation recipes
   design-critique/
     SKILL.md                      # artefact-only UX critique router and guard

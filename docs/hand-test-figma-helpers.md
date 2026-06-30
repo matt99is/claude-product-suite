@@ -70,8 +70,9 @@ return { ok: true, warnings, c1Id: c1.value.id, c2Id: c2.value.id };
 
 ## Failure triage
 
-If the screenshot shows the wrong outcome, walk through pitfalls.md in
-this order:
+If the screenshot shows the wrong outcome, start from
+`skills/figma-writing/references/pitfalls.md`, then read the focused pitfall
+file for the likely issue in this order:
 
 1. Fonts (was the font loadable, and were mixed-font segments loaded?)
 2. Design-system bindings (did the style snapshot survive the mutation?)

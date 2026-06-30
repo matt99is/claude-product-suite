@@ -213,16 +213,16 @@ test('figma writing skill guards write-capable setup', async () => {
 
 test('figma writing skill covers process maps and flow charts', async () => {
   const skill = await read('skills/figma-writing/SKILL.md');
-  const pitfalls = await read('skills/figma-writing/references/pitfalls.md');
+  const tablePitfalls = await read('skills/figma-writing/references/pitfalls/tables-charts-and-diagrams.md');
   const playbook = await read('skills/figma-writing/playbooks/create-process-map-or-flowchart.md');
 
   assert.match(skill, /process map/i);
   assert.match(skill, /flow chart/i);
   assert.match(skill, /create-process-map-or-flowchart\.md/);
 
-  assert.match(pitfalls, /diagram/i);
-  assert.match(pitfalls, /Connector/i);
-  assert.match(pitfalls, /decision diamond/i);
+  assert.match(tablePitfalls, /diagram/i);
+  assert.match(tablePitfalls, /Connector/i);
+  assert.match(tablePitfalls, /decision diamond/i);
 
   assert.match(playbook, /reference frame/i);
   assert.match(playbook, /existing process map/i);
@@ -234,27 +234,40 @@ test('figma writing skill covers process maps and flow charts', async () => {
 test('figma writing skill covers style-matched node creation and mixed fonts', async () => {
   const skill = await read('skills/figma-writing/SKILL.md');
   const pitfalls = await read('skills/figma-writing/references/pitfalls.md');
+  const textPitfalls = await read('skills/figma-writing/references/pitfalls/text-and-fonts.md');
+  const autoLayoutPitfalls = await read('skills/figma-writing/references/pitfalls/auto-layout.md');
+  const apiPitfalls = await read('skills/figma-writing/references/pitfalls/api-quirks.md');
+  const stylePitfalls = await read('skills/figma-writing/references/pitfalls/style-matching-and-bindings.md');
+  const tablePitfalls = await read('skills/figma-writing/references/pitfalls/tables-charts-and-diagrams.md');
+  const verificationPitfalls = await read('skills/figma-writing/references/pitfalls/verification-and-collaboration.md');
   const playbook = await read('skills/figma-writing/playbooks/build-nodes-matching-existing-style.md');
   const handTest = await read('docs/hand-test-figma-helpers.md');
 
   assert.match(skill, /style-matched node creation/i);
   assert.match(skill, /build-nodes-matching-existing-style.md/);
 
-  assert.match(pitfalls, /Mixed-font text requires segment font loading/i);
-  assert.match(pitfalls, /Optional API property access can throw/i);
-  assert.match(pitfalls, /Style-matched node creation/i);
+  assert.match(pitfalls, /pitfalls\/text-and-fonts\.md/i);
+  assert.match(pitfalls, /pitfalls\/auto-layout\.md/i);
+  assert.match(pitfalls, /pitfalls\/api-quirks\.md/i);
+  assert.match(pitfalls, /pitfalls\/style-matching-and-bindings\.md/i);
+  assert.match(pitfalls, /pitfalls\/tables-charts-and-diagrams\.md/i);
+  assert.match(pitfalls, /pitfalls\/verification-and-collaboration\.md/i);
 
-  assert.match(pitfalls, /primaryAxisSizingMode/i);
-  assert.match(pitfalls, /Never resize the primary dimension after setting it to AUTO/i);
-  assert.match(pitfalls, /too-wide container/i);
-  assert.match(pitfalls, /stale geometry/i);
-  assert.match(pitfalls, /get_screenshot.*re-request/is);
-  assert.match(pitfalls, /getNodeByIdAsync/i);
-  assert.match(pitfalls, /cross-file clone/i);
-  assert.match(pitfalls, /Concurrent editing/i);
-  assert.match(pitfalls, /re-read current geometry/i);
-  assert.match(pitfalls, /plugin-created tables/i);
-  assert.match(pitfalls, /Do not promise native table creation/i);
+  assert.match(textPitfalls, /Mixed-font text requires segment font loading/i);
+  assert.match(apiPitfalls, /Optional API property access can throw/i);
+  assert.match(stylePitfalls, /Style-matched node creation/i);
+
+  assert.match(autoLayoutPitfalls, /primaryAxisSizingMode/i);
+  assert.match(autoLayoutPitfalls, /Never resize the primary dimension after setting it to AUTO/i);
+  assert.match(textPitfalls, /too-wide container/i);
+  assert.match(verificationPitfalls, /stale geometry/i);
+  assert.match(verificationPitfalls, /get_screenshot.*re-request/is);
+  assert.match(apiPitfalls, /getNodeByIdAsync/i);
+  assert.match(stylePitfalls, /cross-file clone/i);
+  assert.match(verificationPitfalls, /Concurrent editing/i);
+  assert.match(verificationPitfalls, /re-read current geometry/i);
+  assert.match(tablePitfalls, /plugin-created tables/i);
+  assert.match(tablePitfalls, /Do not promise native table creation/i);
 
   assert.match(playbook, /style source/i);
   assert.match(playbook, /read-only probe/i);
@@ -269,6 +282,9 @@ test('figma writing skill covers style-matched node creation and mixed fonts', a
 test('figma writing skill covers design-system-safe frames, components, tables, and charts', async () => {
   const skill = await read('skills/figma-writing/SKILL.md');
   const pitfalls = await read('skills/figma-writing/references/pitfalls.md');
+  const bindingsPitfalls = await read('skills/figma-writing/references/pitfalls/style-matching-and-bindings.md');
+  const autoLayoutPitfalls = await read('skills/figma-writing/references/pitfalls/auto-layout.md');
+  const tablePitfalls = await read('skills/figma-writing/references/pitfalls/tables-charts-and-diagrams.md');
   const playbook = await read('skills/figma-writing/playbooks/build-with-design-system.md');
   const stylePlaybook = await read('skills/figma-writing/playbooks/build-nodes-matching-existing-style.md');
   const capabilityMap = await read('skills/product-suite-router/references/capability-map.md');
@@ -305,14 +321,14 @@ test('figma writing skill covers design-system-safe frames, components, tables, 
   assert.match(playbook, /Sources that informed this playbook/i);
 
   assert.match(pitfalls, /Design-system discovery/i);
-  assert.match(pitfalls, /Library assets are not enabled/i);
-  assert.match(pitfalls, /Variable-bound paints/i);
-  assert.match(pitfalls, /Resolved design-system values copied without bindings/i);
-  assert.match(pitfalls, /Raw black or neutral colours/i);
-  assert.match(pitfalls, /Embedded asset colours/i);
-  assert.match(pitfalls, /New frame created on the wrong page/i);
-  assert.match(pitfalls, /FILL children can prevent hug sizing/i);
-  assert.match(pitfalls, /Charts built from decoration/i);
+  assert.match(bindingsPitfalls, /Library assets are not enabled/i);
+  assert.match(bindingsPitfalls, /Variable-bound paints/i);
+  assert.match(bindingsPitfalls, /Resolved design-system values copied without bindings/i);
+  assert.match(bindingsPitfalls, /Raw black or neutral colours/i);
+  assert.match(bindingsPitfalls, /Embedded asset colours/i);
+  assert.match(autoLayoutPitfalls, /New frame created on the wrong page/i);
+  assert.match(autoLayoutPitfalls, /FILL children can prevent hug sizing/i);
+  assert.match(tablePitfalls, /Charts built from decoration/i);
 
   assert.match(stylePlaybook, /lightweight wireframe/i);
   assert.match(stylePlaybook, /Do not run a production-level token audit/i);
@@ -404,6 +420,23 @@ test("README documents correct plugin reinstall command", async () => {
 
   assert.match(readme, /claude-product-suite@claude-product-suite/);
   assert.doesNotMatch(readme, /claude-product-suite-product-suite/);
+});
+
+test("startup context uses progressive specialist loading", async () => {
+  const agents = await read("AGENTS.md");
+  const claude = await read("CLAUDE.md");
+
+  assert.match(agents, /progressive specialist loading/i);
+  assert.match(agents, /Read specialist `SKILL\.md` files only when the task routes to them/i);
+  assert.match(agents, /skills\/product-suite-router\/references\/capability-map\.md/);
+  assert.doesNotMatch(agents, /\| 3 - always \| `skills\/research\/SKILL\.md`/);
+  assert.doesNotMatch(agents, /\| 4 - always \| `skills\/contentsquare-analysis\/SKILL\.md`/);
+  assert.doesNotMatch(agents, /\| 5 - always \| `skills\/figma-writing\/SKILL\.md`/);
+
+  assert.match(claude, /progressive specialist loading/i);
+  assert.match(claude, /Read specialist `SKILL\.md` files only when the task routes to them/i);
+  assert.doesNotMatch(claude, /\d+\. Read `skills\/research\/SKILL\.md`/);
+  assert.doesNotMatch(claude, /\d+\. Read `skills\/figma-writing\/SKILL\.md`/);
 });
 
 

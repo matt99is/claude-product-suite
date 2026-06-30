@@ -23,14 +23,11 @@ Use the smallest discovery pass that fits the fidelity gate.
 - Component or library work: inspect the wider system, naming conventions, variable collections, component properties, variants, modes, and responsive examples before creating or changing library assets.
 
 ## Pre-flight reads
-- `references/pitfalls.md` sections:
-  - Fonts
-  - Design-system bindings
-  - Design-system discovery
-  - Auto-layout
-  - Native or plugin-created tables, for tables
-  - Charts and graphs, for charts or graphs
-  - Verification
+- `references/pitfalls/text-and-fonts.md` for font loading and text mutation.
+- `references/pitfalls/style-matching-and-bindings.md` for design-system bindings and discovery.
+- `references/pitfalls/auto-layout.md` for auto-layout sizing and target placement.
+- `references/pitfalls/tables-charts-and-diagrams.md` for tables, charts, or graphs.
+- `references/pitfalls/verification-and-collaboration.md` for screenshot verification.
 - Helpers used when cloning or mutating text-bearing nodes:
   - `cloneAndRebind`
   - `matchTextNodesByIndex`

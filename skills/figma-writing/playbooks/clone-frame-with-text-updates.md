@@ -13,11 +13,10 @@ duplicate, while preserving every design-system link in the original.
   omitted, the clone will be appended with a warning.
 
 ## Pre-flight reads
-- `references/pitfalls.md` sections:
-  - Fonts (both entries)
-  - Design-system bindings (both entries)
-  - Sibling instances with identical paths
-  - Auto-layout (both entries)
+- `references/pitfalls/text-and-fonts.md` for font loading and text mutation.
+- `references/pitfalls/style-matching-and-bindings.md` for design-system bindings.
+- `references/pitfalls/auto-layout.md` for insertion order inside auto-layout frames.
+- `references/pitfalls/verification-and-collaboration.md` for screenshot verification.
 - Helpers used:
   - `cloneAndRebind`
   - `matchTextNodesByIndex`

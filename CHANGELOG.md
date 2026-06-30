@@ -6,6 +6,15 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) st
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-06-30
+
+### Changed
+
+- Reduced project startup context by switching `AGENTS.md` and `CLAUDE.md` to progressive specialist loading.
+- Split the large Figma writing pitfalls catalogue into a small index plus focused topic files for text and fonts, auto-layout, API quirks, style matching and bindings, tables/charts/diagrams, and verification/collaboration.
+- Added release governance checks so version files, changelog entries, git tags, and user-facing plugin changes stay aligned.
+- Added content-contract coverage so startup loading, Figma pitfall progressive disclosure, and release governance stay in place.
+
 ## [0.7.0] - 2026-06-29
 
 ### Added

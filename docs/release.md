@@ -2,6 +2,10 @@
 
 `claude-product-suite` uses Semantic Versioning for public plugin releases. Keep `package.json` and `.claude-plugin/plugin.json` on the same version.
 
+Release bookkeeping is treated as a single unit: version files, changelog
+entries, and git tags must agree. Use `npm run release:check` whenever release
+state changes.
+
 ## Semantic Versioning
 
 Use `MAJOR.MINOR.PATCH`.
@@ -14,25 +18,51 @@ While the project is below `1.0.0`, use minor releases for meaningful user-facin
 
 ## Release Checklist
 
-1. Decide the next version using the Semantic Versioning rules above.
-2. Update `package.json`.
-3. Update `.claude-plugin/plugin.json`.
-4. Update `CHANGELOG.md` with the release date and user-facing changes.
-5. Run `npm test`.
-6. Run `npm run check`.
-7. Commit the release changes.
-8. Tag the commit:
+1. Keep normal work under `## [Unreleased]` until deciding to release.
+2. Decide the next version using the Semantic Versioning rules above.
+3. Update `package.json`.
+4. Update `.claude-plugin/plugin.json`.
+5. Move the relevant `Unreleased` notes into `CHANGELOG.md` under `## [<version>] - YYYY-MM-DD`.
+6. Run `npm test`.
+7. Run `npm run check`.
+8. Commit the release changes.
+9. Tag the commit:
 
 ```bash
 git tag v<version>
 ```
 
-9. Push the branch and tag:
+10. Run the final tagged-release check:
+
+```bash
+npm run release:check -- --require-current-tag
+```
+
+11. Push the branch and tag:
 
 ```bash
 git push origin main
 git push origin v<version>
 ```
+
+## Release Governance Check
+
+`npm run release:check` verifies:
+
+- `package.json` and `.claude-plugin/plugin.json` use the same SemVer version.
+- `CHANGELOG.md` has a release entry for the current package version.
+- Older changelog release headings have matching git tags.
+- Existing SemVer tags point to commits where package and plugin versions match the tag.
+- User-facing plugin changes after the latest tag require a newer package version.
+
+Before the release commit is tagged, the current package version may be ahead
+of the latest git tag. After tagging, use `npm run release:check --
+--require-current-tag` to verify that `v<version>` exists and points at `HEAD`.
+
+Do not hand-edit one release artefact by itself. If a historical mismatch is
+discovered, repair the whole set deliberately: identify the commit whose version
+files match the changelog entry, add the missing tag locally, run the release
+check, then decide whether to push the repaired tag.
 
 ## User Updates
 

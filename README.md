@@ -39,6 +39,7 @@ claude-product-suite/
 │   ├── SKILL.md
 │   ├── helpers/figma-helpers.js
 │   ├── references/pitfalls.md
+│   ├── references/pitfalls/
 │   ├── references/setup-and-permissions.md
 │   └── playbooks/
 ├── skills/design-critique/

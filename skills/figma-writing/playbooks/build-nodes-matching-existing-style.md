@@ -20,12 +20,10 @@ diagram-specific process model and connector guidance.
   map, production UI, or design-system component exploration.
 
 ## Pre-flight reads
-- `references/pitfalls.md` sections:
-  - Fonts
-  - Design-system bindings, if cloning or mutating styled text
-  - Auto-layout, if inserting into auto-layout frames
-  - Style-matched node creation
-  - Verification
+- `references/pitfalls/text-and-fonts.md` for font loading and text mutation.
+- `references/pitfalls/style-matching-and-bindings.md` for design-system bindings and style-matched node creation.
+- `references/pitfalls/auto-layout.md` if inserting into auto-layout frames.
+- `references/pitfalls/verification-and-collaboration.md` for screenshot verification.
 - Helpers used when cloning or mutating text-bearing nodes:
   - `cloneAndRebind`
   - `matchTextNodesByIndex`

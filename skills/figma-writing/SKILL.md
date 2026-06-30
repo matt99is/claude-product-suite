@@ -27,7 +27,7 @@ If the user asks for wireframe or ideation and also says `use the design system`
 3. Never mutate a styled property (fontName, fontSize, fills, textStyleId source) without re-applying the snapshot. Mutating a bound property breaks the binding silently.
 4. Never use ancestor pathKeys to match text nodes across sibling instances. Use `matchTextNodesByIndex(sourceParent, targetParent)`.
 5. Never trust the `use_figma` API response as confirmation. Screenshot to verify visual mutations.
-6. Never change `textAutoResize`. If you think you need to, state the reason out loud and read the Text wrapping section of `references/pitfalls.md` first.
+6. Never change `textAutoResize`. If you think you need to, state the reason out loud and read the Text wrapping section of `references/pitfalls/text-and-fonts.md` first.
 7. When the user supplies a target node or page URL, resolve that node with `figma.getNodeByIdAsync`, find its containing page, and create or place new work on that page or inside the requested target. Do not append new work to `figma.currentPage` unless no target node or page was supplied.
 8. Matching fonts and colours is not design-system compliance. For design-system-safe work, verify styles or variable bindings on non-component nodes; copied resolved values are drift unless the user explicitly accepts them.
 
@@ -40,7 +40,7 @@ Before writing any `use_figma` script:
 3. Resolve the target page before mutation. If the user supplied a node URL, use the node ID from the URL as the placement anchor, resolve it with `figma.getNodeByIdAsync`, find the containing page, and call `await figma.setCurrentPageAsync(page)`. Do not rely on `figma.currentPage` for placement when a target node or page URL exists.
 4. Identify the operation type: clone, text update, variant generation, design-system-safe frame or component creation, table, chart, graph, style-matched node creation, process map or flow chart, arc, or other.
 5. If a playbook in `skills/figma-writing/playbooks/` matches, read it end to end. For design-system-safe frames, components, tables, charts, graphs, dashboards, or production-looking UI, use `playbooks/build-with-design-system.md`. For process maps, flow charts, journey maps, service blueprints, workflow diagrams, or stakeholder-level process views, use `playbooks/create-process-map-or-flowchart.md`. For net-new nodes or artefacts that should match an existing Figma file style but do not need strict design-system reuse, use `playbooks/build-nodes-matching-existing-style.md`.
-6. Read the sections of `skills/figma-writing/references/pitfalls.md` named in the playbook (or the relevant categories if no playbook fits). For design-system discovery, auto-layout sizing, existing table edits, charts, cross-file style matching, or concurrent editing, read those pitfall sections before scripting.
+6. Read `skills/figma-writing/references/pitfalls.md` as the index, then read only the topic file named by the playbook or current risk. For design-system discovery, auto-layout sizing, existing table edits, charts, cross-file style matching, or concurrent editing, read the matching focused pitfall file before scripting.
 7. For text operations, confirm the font is loadable. If unsure, call `figma.listAvailableFontsAsync()` from a probe script first.
 
 ## Script-writing pattern
